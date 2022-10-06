@@ -1,0 +1,16 @@
+C:\Users\User\source\repos\PPH_153P_Configurator\bin\Debug\PPH_153P_Configurator.exe.config
+C:\Users\User\source\repos\PPH_153P_Configurator\bin\Debug\PPH_153P_Configurator.exe
+C:\Users\User\source\repos\PPH_153P_Configurator\bin\Debug\PPH_153P_Configurator.pdb
+C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\PPH_153P_Configurator.csproj.AssemblyReference.cache
+C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\PPH_153P_Configurator.csproj.SuggestedBindingRedirects.cache
+C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\MainWindow.g.cs
+C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\App.g.cs
+C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\PPH_153P_Configurator_MarkupCompile.cache
+C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\PPH_153P_Configurator_MarkupCompile.lref
+C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\MainWindow.baml
+C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\PPH_153P_Configurator.g.resources
+C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\PPH_153P_Configurator.Properties.Resources.resources
+C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\PPH_153P_Configurator.csproj.GenerateResource.cache
+C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\PPH_153P_Configurator.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\PPH_153P_Configurator.exe
+C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\PPH_153P_Configurator.pdb
