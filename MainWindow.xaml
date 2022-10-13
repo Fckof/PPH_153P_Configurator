@@ -3,12 +3,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PPH_153P_Configurator"
+        xmlns:local="clr-namespace:PPH_153P_Configurator" xmlns:viewmodel="clr-namespace:PPH_153P_Configurator.ViewModel"
         mc:Ignorable="d"
-        Title="ППХ-153Р Конфигуратор" Height="720" Width="1280"
+        Title="ППХ-153Р Конфигуратор" Height="720" Width="1280" ResizeMode="NoResize" Icon="/Images/шестерня.png"
+        MouseDown="RedirectFocus"
         >
+    <Window.DataContext>
+        <viewmodel:ViewModel/>
+    </Window.DataContext>
+    
     <Window.Resources>
-        
+    
         <Style x:Key="ScrollBarThumbStyleRed" TargetType="{x:Type Thumb}">
             <Setter Property="IsTabStop" Value="False"/>
             <Setter Property="Focusable" Value="False"/>
@@ -79,7 +84,7 @@
         </Style>
     </Window.Resources>
 
-    <Grid Background="#4CC77D39" Opacity="1">
+    <Grid Background="#4CC77D39" Opacity="1" x:Name="MainGrid"  Focusable="True">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="1.5*"/>
@@ -91,12 +96,7 @@
             <RowDefinition Height="2*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ScrollBar 
-            x:Name="scroll" 
-            Grid.Column="1" 
-            Grid.Row="2"
-            Maximum="100" SmallChange="1" Value="20" Orientation="Horizontal" 
-            />
+
         <Border x:Name="Histogram" 
             Width="auto"  
             Height="auto" 
@@ -415,12 +415,13 @@
                     />
                 <TextBox
                     Grid.Column="1"
+                    Text="{Binding SomeValue}"
                     Grid.ColumnSpan="2"
                     Grid.Row="0"
                     Margin="10" 
                     FontSize="20"
                     HorizontalContentAlignment="Center" 
-                    VerticalContentAlignment="Center"
+                    VerticalContentAlignment="Center" PreviewTextInput="CheckIntNumberInput"
                     />
                 <TextBox
                     Grid.Column="1"
@@ -429,21 +430,21 @@
                     Margin="10" 
                     FontSize="20"
                     HorizontalContentAlignment="Center" 
-                    VerticalContentAlignment="Center"
+                    VerticalContentAlignment="Center" PreviewTextInput="CheckIntNumberInput"
                     />
                 <TextBox
                     Grid.Column="1"
                     Grid.Row="1"
                     Margin="10" 
                     HorizontalContentAlignment="Center" 
-                    VerticalContentAlignment="Center" FontSize="20"
+                    VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="CheckIntNumberInput"
                     />
                 <TextBox
                     Grid.Column="2"
                     Grid.Row="1"
                     Margin="10" 
                     HorizontalContentAlignment="Center" 
-                    VerticalContentAlignment="Center" FontSize="20"
+                    VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="CheckIntNumberInput"
                     />
             </Grid>
         </Border>
@@ -538,14 +539,21 @@
                             Grid.Column="1"
                             Margin="15 3"
                             HorizontalContentAlignment="Center" 
-                            VerticalContentAlignment="Center" FontSize="20"
+                            VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="CheckFloatNumberInput"
                             />
-                        <TextBox
+                        <ComboBox
                             Grid.Column="2"
                             Margin="20 3"
+                            Background="White"
                             HorizontalContentAlignment="Center" 
-                            VerticalContentAlignment="Center" FontSize="20"
-                            />
+                            VerticalContentAlignment="Center" 
+                            FontSize="20" SelectedIndex="0" BorderBrush="{x:Null}" Foreground="Black"
+                            >
+                            <ComboBoxItem Content="1%"/>
+                            <ComboBoxItem Content="2%"/>
+                            <ComboBoxItem Content="3%"/>
+                            <ComboBoxItem Content="4%"/>
+                        </ComboBox>
                         <CheckBox
                             Grid.Column="3"
                             HorizontalAlignment="Center" 
@@ -598,14 +606,21 @@
                             Grid.Column="1"
                             Margin="15 3"
                             HorizontalContentAlignment="Center" 
-                            VerticalContentAlignment="Center" FontSize="20"
+                            VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="CheckFloatNumberInput"
                             />
-                        <TextBox
+                        <ComboBox
                             Grid.Column="2"
                             Margin="20 3"
+                            Background="White"
                             HorizontalContentAlignment="Center" 
-                            VerticalContentAlignment="Center" FontSize="20"
-                            />
+                            VerticalContentAlignment="Center" 
+                            FontSize="20" SelectedIndex="0"
+                            >
+                            <ComboBoxItem Content="1%"/>
+                            <ComboBoxItem Content="2%"/>
+                            <ComboBoxItem Content="3%"/>
+                            <ComboBoxItem Content="4%"/>
+                        </ComboBox>
                         <CheckBox
                             Grid.Column="3"
                             HorizontalAlignment="Center" 
@@ -658,14 +673,21 @@
                             Grid.Column="1"
                             Margin="15 3"
                             HorizontalContentAlignment="Center" 
-                            VerticalContentAlignment="Center" FontSize="20"
+                            VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="CheckFloatNumberInput"
                             />
-                        <TextBox
+                        <ComboBox
                             Grid.Column="2"
                             Margin="20 3"
+                            Background="White"
                             HorizontalContentAlignment="Center" 
-                            VerticalContentAlignment="Center" FontSize="20"
-                            />
+                            VerticalContentAlignment="Center" 
+                            FontSize="20" SelectedIndex="0"
+                            >
+                            <ComboBoxItem Content="1%"/>
+                            <ComboBoxItem Content="2%"/>
+                            <ComboBoxItem Content="3%"/>
+                            <ComboBoxItem Content="4%"/>
+                        </ComboBox>
                         <CheckBox
                             Grid.Column="3"
                             HorizontalAlignment="Center" 
@@ -718,14 +740,21 @@
                             Grid.Column="1"
                             Margin="15 3"
                             HorizontalContentAlignment="Center" 
-                            VerticalContentAlignment="Center" FontSize="20"
+                            VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="CheckFloatNumberInput"
                             />
-                        <TextBox
+                        <ComboBox
                             Grid.Column="2"
                             Margin="20 3"
+                            Background="White"
                             HorizontalContentAlignment="Center" 
-                            VerticalContentAlignment="Center" FontSize="20"
-                            />
+                            VerticalContentAlignment="Center" 
+                            FontSize="20" SelectedIndex="0"
+                            >
+                            <ComboBoxItem Content="1%"/>
+                            <ComboBoxItem Content="2%"/>
+                            <ComboBoxItem Content="3%"/>
+                            <ComboBoxItem Content="4%"/>
+                        </ComboBox>
                         <CheckBox
                             Grid.Column="3"
                             HorizontalAlignment="Center" 
@@ -779,6 +808,27 @@
             Background="#fff" 
             FontSize="16"
             
+            />
+        <Slider 
+            x:Name="scroll"
+            Grid.Column="1" 
+                Margin="0,118,0,0" Grid.Row="2" Maximum="100" SmallChange="1" TickPlacement="TopLeft" Value="20" TickFrequency="0" />
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="163,-190,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+        <TextBlock 
+            Grid.Column="1" 
+            HorizontalAlignment="Left" 
+            Margin="195,81,0,0" Grid.Row="2" 
+            TextWrapping="Wrap" 
+            Text="{Binding MyProperty, StringFormat=Text {0}}" 
+            VerticalAlignment="Top"
+            FontSize="20" Width="112"/>
+        <TextBox 
+            Grid.Column="2" 
+            HorizontalAlignment="Left" 
+            Margin="127,81,0,0" Grid.Row="2" 
+            TextWrapping="Wrap"
+            VerticalAlignment="Top" Width="120"
+            Text="{Binding MyProperty, Mode=TwoWay, UpdateSourceTrigger=Default}"
             />
     </Grid>
 </Window>

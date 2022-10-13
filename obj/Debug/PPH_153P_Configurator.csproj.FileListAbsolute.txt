@@ -14,3 +14,4 @@ C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\PPH_153P_Configurator
 C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\PPH_153P_Configurator.csproj.CoreCompileInputs.cache
 C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\PPH_153P_Configurator.exe
 C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\PPH_153P_Configurator.pdb
+C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\GeneratedInternalTypeHelper.g.cs

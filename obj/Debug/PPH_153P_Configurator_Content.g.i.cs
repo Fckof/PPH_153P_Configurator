@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("ui.xml")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("%d1%88%d0%b5%d1%81%d1%82%d0%b5%d1%80%d0%bd%d1%8f.png")]
 
 

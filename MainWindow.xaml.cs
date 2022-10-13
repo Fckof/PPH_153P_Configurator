@@ -23,6 +23,29 @@ namespace PPH_153P_Configurator
         public MainWindow()
         {
             InitializeComponent();
+            
+        }
+        private void CheckFloatNumberInput(object sender, TextCompositionEventArgs e)
+        {
+            var textBox = (TextBox)sender;
+            if (!(Char.IsDigit(e.Text, 0) || (e.Text == ".")
+               && (!textBox.Text.Contains(".")
+               && textBox.Text.Length != 0)))
+            {
+                e.Handled = true;
+            }
+
+        }
+        private void CheckIntNumberInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Char.IsDigit(e.Text, 0))
+            {
+                e.Handled = true;
+            }
+        }
+        private void RedirectFocus(object sender, MouseButtonEventArgs e)
+        {
+            MainGrid.Focus();
         }
     }
 }
