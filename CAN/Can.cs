@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
 
-namespace CAN_Simulator
+namespace PPH_153P_Configurator
 {
   public partial class Can : IDisposable
   {

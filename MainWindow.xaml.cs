@@ -12,12 +12,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
 namespace PPH_153P_Configurator
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
+    
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -46,6 +46,12 @@ namespace PPH_153P_Configurator
         private void RedirectFocus(object sender, MouseButtonEventArgs e)
         {
             MainGrid.Focus();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var dat1 = (Controller)DataContext;
+            dat1.MainData.Clone(dat1.SecondaryData);
         }
     }
 }

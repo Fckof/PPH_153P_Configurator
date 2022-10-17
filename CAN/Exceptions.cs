@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CAN_Simulator
+namespace PPH_153P_Configurator
 {
   class CanUnknownException : Exception
   {

@@ -1,17 +1,16 @@
-﻿<Window x:Class="PPH_153P_Configurator.MainWindow"
+﻿<Window Name="MainWindow1" x:Class="PPH_153P_Configurator.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PPH_153P_Configurator" xmlns:viewmodel="clr-namespace:PPH_153P_Configurator.ViewModel"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:vm="clr-namespace:PPH_153P_Configurator"
         mc:Ignorable="d"
         Title="ППХ-153Р Конфигуратор" Height="720" Width="1280" ResizeMode="NoResize" Icon="/Images/шестерня.png"
         MouseDown="RedirectFocus"
         >
     <Window.DataContext>
-        <viewmodel:ViewModel/>
+        <vm:Controller/>
     </Window.DataContext>
-    
     <Window.Resources>
     
         <Style x:Key="ScrollBarThumbStyleRed" TargetType="{x:Type Thumb}">
@@ -110,7 +109,7 @@
             BorderBrush="#000"
             >
             <Grid>
-                <Label Content="{Binding Value, ElementName=scroll}"
+                <Label Content="{Binding Source = MainData, Path=Value}"
                        HorizontalAlignment="Left"
                        Margin="0 20 0 0"
                        />
@@ -135,7 +134,7 @@
                     VerticalAlignment="Bottom"
                     Margin="150 0 0 0"/>
                 <ProgressBar 
-                    Value="{Binding Value, ElementName=scroll}"
+                    Value="{Binding SecondaryData.Value}"
                     Maximum="100"
                 Margin="0 32"
                 Width="40" 
@@ -806,20 +805,27 @@
             VerticalAlignment="Top"
             Margin="5 5 5 0"
             Background="#fff" 
-            FontSize="16"
+            FontSize="16" Click="Button_Click"
             
             />
         <Slider 
             x:Name="scroll"
             Grid.Column="1" 
-                Margin="0,118,0,0" Grid.Row="2" Maximum="100" SmallChange="1" TickPlacement="TopLeft" Value="20" TickFrequency="0" />
+                Margin="0,118,0,0"
+            Grid.Row="2"
+            Maximum="100"
+            SmallChange="1"
+            TickPlacement="TopLeft"
+            Value="{Binding SecondaryData.Value}"
+            TickFrequency="0"
+            />
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="163,-190,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
         <TextBlock 
             Grid.Column="1" 
             HorizontalAlignment="Left" 
             Margin="195,81,0,0" Grid.Row="2" 
             TextWrapping="Wrap" 
-            Text="{Binding MyProperty, StringFormat=Text {0}}" 
+            Text="{Binding MainData.Value, StringFormat=Text {0}}" 
             VerticalAlignment="Top"
             FontSize="20" Width="112"/>
         <TextBox 
@@ -828,7 +834,7 @@
             Margin="127,81,0,0" Grid.Row="2" 
             TextWrapping="Wrap"
             VerticalAlignment="Top" Width="120"
-            Text="{Binding MyProperty, Mode=TwoWay, UpdateSourceTrigger=Default}"
+            Text="{Binding SecondaryData.Value, Mode=TwoWay}"
             />
     </Grid>
 </Window>
