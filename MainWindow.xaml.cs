@@ -48,10 +48,5 @@ namespace PPH_153P_Configurator
             MainGrid.Focus();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            var dat1 = (Controller)DataContext;
-            dat1.MainData.Clone(dat1.SecondaryData);
-        }
     }
 }

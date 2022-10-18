@@ -26,60 +26,138 @@ namespace PPH_153P_Configurator
     }
     public class DataModel: ObservableObject
     {
-        public int NodeId { get; private set; }
-        public double MinSignalRange { get; private set; }
-        public double MaxSignalRange { get; private set; }
-        public double Averaging { get; private set; }
-        public byte DeviceStatus { get; private set; }
-        public byte InputSignalCode { get; private set; }
+        private int _nodeId;
+        public int NodeId
+        {
+            get { return _nodeId; }
+            set { _nodeId = value;
+                OnPropertyChanged("NodeId");
+            }
+        }
+
+
+        private int _minSignalRange;
+        public int MinSignalRange
+        {
+            get { return _minSignalRange; }
+            set { _minSignalRange = value;
+                OnPropertyChanged("MaxSignalRange");
+            }
+        }
+
+
+        private int _maxSignalRange;
+        public int MaxSignalRange
+        {
+            get { return _maxSignalRange; }
+            set { _maxSignalRange = value;
+                OnPropertyChanged("MaxSignalRange");
+            }
+        }
+
+
+        private int _averaging;
+
+        public int Averaging
+        {
+            get { return _averaging; }
+            set { _averaging = value;
+                OnPropertyChanged("Averaging");
+            }
+        }
+
+
+        private int _deviceStatus;
+        public int DeviceStatus
+        {
+            get { return _deviceStatus; }
+            set { 
+                _deviceStatus = value;
+                OnPropertyChanged("DeviceStatus");
+            }
+        }
+
+        private int _inputSignalCode;
+        public int InputSignalCode
+        {
+            get { return _inputSignalCode; }
+            set { 
+                _inputSignalCode = value;
+                OnPropertyChanged("InputSignalCode");
+            }
+        }
+
+
         private double _value;
         public double Value { get { return _value; } 
             set {
                 _value = value;
                 OnPropertyChanged("Value");
                 } }
-        Setting TopAZ = new Setting(SettingType.TopAZ,1,true, false);
-        Setting TopPS = new Setting(SettingType.TopPS, 1, true, false);
-        Setting BottomPS = new Setting(SettingType.BottomPS, 1, true, false);
-        Setting BottomAZ = new Setting(SettingType.BottomAZ, 1, true, false);
-        public void Clone(DataModel newData)
-        {
-            NodeId = newData.NodeId;
-            MinSignalRange = newData.MinSignalRange;
-            MaxSignalRange = newData.MaxSignalRange;
-            Averaging = newData.Averaging;
-            TopAZ.Clone(newData.TopAZ);
-            TopPS.Clone(newData.TopPS);
-            BottomPS.Clone(newData.BottomPS);
-            BottomAZ.Clone(newData.BottomAZ);
-        }
-        public void UpdateData()
-        {
 
+        public Setting TopAZ { get; private set; }
+        public Setting TopPS { get; private set; }
+        public Setting BottomPS { get; private set; }
+        public Setting BottomAZ { get; private set; }
+        public DataModel()
+        {
+            TopAZ = new Setting(SettingType.TopAZ);
+            TopPS = new Setting(SettingType.TopPS);
+            BottomPS = new Setting(SettingType.BottomPS);
+            BottomAZ = new Setting(SettingType.BottomAZ);
         }
         
+        
     }
-    public class Setting
+    public class Setting:ObservableObject
     {
-        public Setting(SettingType type, int histeresis, bool isSet, bool settingSetter)
+        public Setting(SettingType type)
         {
             Type = type;
-            Histeresis = histeresis;
-            IsSet = isSet;
-            SettingSetter = settingSetter;
+            Histeresis = 0;
+            IsSet = true;
+            SettingSetter = false;
         }
-        public SettingType Type { get; private set; }
-        public double Value { get; private set; }
-        public int Histeresis { get; private set; }
-        public bool IsSet { get; private set; }
-        public bool SettingSetter { get; private set; }
-        public void Clone(Setting copy)
+
+        private SettingType _type;
+        public SettingType Type { 
+            get { return _type; } 
+            set { _type = value;
+                OnPropertyChanged("Type");
+            } 
+        }
+        private int _value;
+        public int Value { 
+            get { return _value; }
+            set { _value= value;
+                OnPropertyChanged("Value");
+            }    
+        }
+        private int _histeresis;
+        public int Histeresis { 
+            get { return _histeresis; }
+            set { _histeresis = value;
+                OnPropertyChanged("Histeresis");
+            } 
+        }
+        private bool _isSet;
+
+        public bool IsSet
         {
-            Type=copy.Type;
-            Histeresis=copy.Histeresis;
-            Value=copy.Value;
-            IsSet=copy.IsSet;
-            SettingSetter=copy.SettingSetter;
+            get { return _isSet; }
+            set { _isSet = value;
+                OnPropertyChanged("IsSet");
+            }
         }
+        private bool _settingSetter;
+
+        public bool SettingSetter
+        {
+            get { return _settingSetter; }
+            set { _settingSetter = value;
+                OnPropertyChanged("SettingSetter");
+            }
+        }
+
     }
 }

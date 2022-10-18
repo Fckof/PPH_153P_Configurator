@@ -12,7 +12,7 @@
         <vm:Controller/>
     </Window.DataContext>
     <Window.Resources>
-    
+
         <Style x:Key="ScrollBarThumbStyleRed" TargetType="{x:Type Thumb}">
             <Setter Property="IsTabStop" Value="False"/>
             <Setter Property="Focusable" Value="False"/>
@@ -119,7 +119,7 @@
                     Margin="40 0 0 0"
                     />
                 <Label 
-                    Content="100"
+                    Content="{Binding MainData.MaxSignalRange}"
                     FontSize="20"
                     Margin="150 0 0 0"/>
                 <Label 
@@ -129,53 +129,64 @@
                     Margin="40 0 0 0"
                     />
                 <Label 
-                    Content="0"
+                    Content="{Binding MainData.MinSignalRange}"
                     FontSize="20"
                     VerticalAlignment="Bottom"
                     Margin="150 0 0 0"/>
                 <ProgressBar 
-                    Value="{Binding SecondaryData.Value}"
-                    Maximum="100"
+                    Value="{Binding InputData.Value}"
+                    Minimum="{Binding MainData.MinSignalRange}"
+                    Maximum="{Binding MainData.MaxSignalRange}"
                 Margin="0 32"
                 Width="40" 
-                Orientation="Vertical" BorderBrush="{x:Null}" Background="{x:Null}"
+                Orientation="Vertical" 
+                    BorderBrush="{x:Null}" 
+                    Background="{x:Null}"
                     />
                 <ScrollBar
                     x:Name="BottomAZ"
                     Width="60" 
-                    Maximum="100"
+                    Minimum="{Binding MainData.MinSignalRange}"
+                    Maximum="{Binding MainData.MaxSignalRange}"
                     BorderBrush="{x:Null}" 
                     Background="{x:Null}"
                     Margin="0 30" SmallChange="1"
-                    Style="{StaticResource ResourceKey=RedScrollbar}" Value="15"
+                    Style="{StaticResource ResourceKey=RedScrollbar}" 
+                    Value="{Binding MainData.BottomAZ.Value}"
                     />
                 <ScrollBar
                     x:Name="BottomPS"
                     Width="60" 
-                    Maximum="100"
+                    Minimum="{Binding MainData.MinSignalRange}"
+                    Maximum="{Binding MainData.MaxSignalRange}"
                     BorderBrush="{x:Null}" 
                     Background="{x:Null}"
-                    Margin="0 30" SmallChange="1" Value="35"
+                    Margin="0 30" SmallChange="1" 
+                    Value="{Binding MainData.BottomPS.Value}"
                     Style="{StaticResource ResourceKey=YellowScrollbar}"
                     IsEnabled="False"
                     />
                 <ScrollBar
                     x:Name="TopPS"
                     Width="60" 
-                    Maximum="100"
+                    Minimum="{Binding MainData.MinSignalRange}"
+                    Maximum="{Binding MainData.MaxSignalRange}"
                     BorderBrush="{x:Null}" 
                     Background="{x:Null}"
-                    Margin="0 30" SmallChange="1" Value="75"
+                    Margin="0 30" SmallChange="1" 
+                    Value="{Binding MainData.TopPS.Value}"
                     Style="{StaticResource ResourceKey=YellowScrollbar}"
                     IsEnabled="False"
                     />
                 <ScrollBar
                     x:Name="TopAZ"
                     Width="60" 
-                    Maximum="100"
+                    Minimum="{Binding MainData.MinSignalRange}"
+                    Maximum="{Binding MainData.MaxSignalRange}"
                     BorderBrush="{x:Null}" 
                     Background="{x:Null}"
-                    Margin="0 30" SmallChange="1" Value="90"
+                    Margin="0 30" SmallChange="1" 
+                    Value="{Binding MainData.TopAZ.Value}"
                     Style="{StaticResource ResourceKey=RedScrollbar}" 
                     IsEnabled="False"
                     />
@@ -231,7 +242,7 @@
                     Grid.Column="0"
                     />
                 <Label x:Name="InputSignalCode"
-                    Content="0"
+                    Content="{Binding MainData.InputSignalCode}"
                     FontSize="20"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
@@ -239,7 +250,7 @@
                     Grid.Column="1"
                     />
                 <Label x:Name="DeviceStatus"
-                    Content="0"
+                    Content="{Binding MainData.DeviceStatus}"
                     FontSize="20"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
@@ -247,7 +258,7 @@
                     Grid.Column="1"
                     />
                 <Label x:Name="InputValue"
-                    Content="0"
+                    Content="{Binding MainData.Value}"
                     FontSize="20"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
@@ -414,7 +425,7 @@
                     />
                 <TextBox
                     Grid.Column="1"
-                    Text="{Binding SomeValue}"
+                    Text="{Binding InputData.NodeId}"
                     Grid.ColumnSpan="2"
                     Grid.Row="0"
                     Margin="10" 
@@ -426,6 +437,7 @@
                     Grid.Column="1"
                     Grid.ColumnSpan="2"
                     Grid.Row="2"
+                    Text="{Binding InputData.Averaging}"
                     Margin="10" 
                     FontSize="20"
                     HorizontalContentAlignment="Center" 
@@ -435,12 +447,14 @@
                     Grid.Column="1"
                     Grid.Row="1"
                     Margin="10" 
+                    Text="{Binding InputData.MinSignalRange}"
                     HorizontalContentAlignment="Center" 
                     VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="CheckIntNumberInput"
                     />
                 <TextBox
                     Grid.Column="2"
                     Grid.Row="1"
+                    Text="{Binding InputData.MaxSignalRange}"
                     Margin="10" 
                     HorizontalContentAlignment="Center" 
                     VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="CheckIntNumberInput"
@@ -537,6 +551,7 @@
                         <TextBox
                             Grid.Column="1"
                             Margin="15 3"
+                            Text="{Binding InputData.TopAZ.Value}"
                             HorizontalContentAlignment="Center" 
                             VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="CheckFloatNumberInput"
                             />
@@ -546,7 +561,9 @@
                             Background="White"
                             HorizontalContentAlignment="Center" 
                             VerticalContentAlignment="Center" 
-                            FontSize="20" SelectedIndex="0" BorderBrush="{x:Null}" Foreground="Black"
+                            FontSize="20" 
+                            SelectedIndex="{Binding InputData.TopAZ.Histeresis}" 
+                            BorderBrush="{x:Null}" Foreground="Black"
                             >
                             <ComboBoxItem Content="1%"/>
                             <ComboBoxItem Content="2%"/>
@@ -555,6 +572,7 @@
                         </ComboBox>
                         <CheckBox
                             Grid.Column="3"
+                            IsChecked="{Binding InputData.TopAZ.IsSet}"
                             HorizontalAlignment="Center" 
                             VerticalAlignment="Center" 
                             VerticalContentAlignment="Center" 
@@ -566,6 +584,7 @@
                         </CheckBox>
                         <CheckBox
                             Grid.Column="4"
+                            IsChecked="{Binding InputData.TopAZ.SettingSetter}"
                             HorizontalAlignment="Center" 
                             VerticalAlignment="Center" 
                             VerticalContentAlignment="Center" 
@@ -604,6 +623,7 @@
                         <TextBox
                             Grid.Column="1"
                             Margin="15 3"
+                            Text="{Binding InputData.TopPS.Histeresis}"
                             HorizontalContentAlignment="Center" 
                             VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="CheckFloatNumberInput"
                             />
@@ -613,7 +633,8 @@
                             Background="White"
                             HorizontalContentAlignment="Center" 
                             VerticalContentAlignment="Center" 
-                            FontSize="20" SelectedIndex="0"
+                            FontSize="20" 
+                            SelectedIndex="{Binding InputData.TopPS.Value}"
                             >
                             <ComboBoxItem Content="1%"/>
                             <ComboBoxItem Content="2%"/>
@@ -622,6 +643,7 @@
                         </ComboBox>
                         <CheckBox
                             Grid.Column="3"
+                            IsChecked="{Binding InputData.TopPS.IsSet}"
                             HorizontalAlignment="Center" 
                             VerticalAlignment="Center" 
                             VerticalContentAlignment="Center" 
@@ -633,6 +655,7 @@
                         </CheckBox>
                         <CheckBox
                             Grid.Column="4"
+                            IsChecked="{Binding InputData.TopPS.SettingSetter}"
                             HorizontalAlignment="Center" 
                             VerticalAlignment="Center" 
                             VerticalContentAlignment="Center" 
@@ -662,7 +685,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Label
-                            Content="АЗ↑"
+                            Content="ПС↓"
                             FontSize="20"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
@@ -671,6 +694,7 @@
                         <TextBox
                             Grid.Column="1"
                             Margin="15 3"
+                            Text="{Binding InputData.BottomPS.Value}"
                             HorizontalContentAlignment="Center" 
                             VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="CheckFloatNumberInput"
                             />
@@ -680,7 +704,8 @@
                             Background="White"
                             HorizontalContentAlignment="Center" 
                             VerticalContentAlignment="Center" 
-                            FontSize="20" SelectedIndex="0"
+                            FontSize="20" 
+                            SelectedIndex="{Binding InputData.BottomPS.Histeresis}"
                             >
                             <ComboBoxItem Content="1%"/>
                             <ComboBoxItem Content="2%"/>
@@ -689,6 +714,7 @@
                         </ComboBox>
                         <CheckBox
                             Grid.Column="3"
+                            IsChecked="{Binding InputData.BottomPS.IsSet}"
                             HorizontalAlignment="Center" 
                             VerticalAlignment="Center" 
                             VerticalContentAlignment="Center" 
@@ -700,6 +726,7 @@
                         </CheckBox>
                         <CheckBox
                             Grid.Column="4"
+                            IsChecked="{Binding InputData.BottomPS.SettingSetter}"
                             HorizontalAlignment="Center" 
                             VerticalAlignment="Center" 
                             VerticalContentAlignment="Center" 
@@ -729,7 +756,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Label
-                            Content="АЗ↑"
+                            Content="АЗ↓"
                             FontSize="20"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
@@ -738,6 +765,7 @@
                         <TextBox
                             Grid.Column="1"
                             Margin="15 3"
+                            Text="{Binding InputData.BottomAZ.Value}"
                             HorizontalContentAlignment="Center" 
                             VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="CheckFloatNumberInput"
                             />
@@ -747,7 +775,8 @@
                             Background="White"
                             HorizontalContentAlignment="Center" 
                             VerticalContentAlignment="Center" 
-                            FontSize="20" SelectedIndex="0"
+                            FontSize="20" 
+                            SelectedIndex="{Binding InputData.BottomAZ.Histeresis}"
                             >
                             <ComboBoxItem Content="1%"/>
                             <ComboBoxItem Content="2%"/>
@@ -756,6 +785,7 @@
                         </ComboBox>
                         <CheckBox
                             Grid.Column="3"
+                            IsChecked="{Binding InputData.BottomAZ.IsSet}"
                             HorizontalAlignment="Center" 
                             VerticalAlignment="Center" 
                             VerticalContentAlignment="Center" 
@@ -767,6 +797,7 @@
                         </CheckBox>
                         <CheckBox
                             Grid.Column="4"
+                            IsChecked="{Binding InputData.BottomAZ.SettingSetter}"
                             HorizontalAlignment="Center" 
                             VerticalAlignment="Center" 
                             VerticalContentAlignment="Center" 
@@ -805,8 +836,7 @@
             VerticalAlignment="Top"
             Margin="5 5 5 0"
             Background="#fff" 
-            FontSize="16" Click="Button_Click"
-            
+            FontSize="16" 
             />
         <Slider 
             x:Name="scroll"
@@ -816,25 +846,25 @@
             Maximum="100"
             SmallChange="1"
             TickPlacement="TopLeft"
-            Value="{Binding SecondaryData.Value}"
+            Value="{Binding InputData.TopAZ.Value}"
             TickFrequency="0"
             />
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="163,-190,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
         <TextBlock 
             Grid.Column="1" 
             HorizontalAlignment="Left" 
-            Margin="195,81,0,0" Grid.Row="2" 
+            Margin="57,30,0,0" Grid.Row="2" 
             TextWrapping="Wrap" 
-            Text="{Binding MainData.Value, StringFormat=Text {0}}" 
+            Text="{Binding InputData.TopAZ.Value, StringFormat=Text {0}}" 
             VerticalAlignment="Top"
-            FontSize="20" Width="112"/>
+            FontSize="20" Width="250" Height="78"/>
         <TextBox 
             Grid.Column="2" 
             HorizontalAlignment="Left" 
             Margin="127,81,0,0" Grid.Row="2" 
             TextWrapping="Wrap"
             VerticalAlignment="Top" Width="120"
-            Text="{Binding SecondaryData.Value, Mode=TwoWay}"
+            Text="{Binding InputData.Value, Mode=TwoWay}"
             />
     </Grid>
 </Window>
