@@ -48,5 +48,9 @@ namespace PPH_153P_Configurator
             MainGrid.Focus();
         }
 
+        private void MainWindow1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            (this.DataContext as Controller).StopThread();
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -34,6 +35,15 @@ namespace PPH_153P_Configurator
                 OnPropertyChanged("NodeId");
             }
         }
+        private int[] _stateBitArray;
+
+        public int[] StateBitArray
+        {
+            get { return _stateBitArray; }
+            set { _stateBitArray = value;
+                OnPropertyChanged("StateBitArray");
+            }
+        }
 
 
         private int _minSignalRange;
@@ -67,8 +77,8 @@ namespace PPH_153P_Configurator
         }
 
 
-        private int _deviceStatus;
-        public int DeviceStatus
+        private byte _deviceStatus;
+        public byte DeviceStatus
         {
             get { return _deviceStatus; }
             set { 
