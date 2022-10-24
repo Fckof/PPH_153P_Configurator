@@ -52,5 +52,12 @@ namespace PPH_153P_Configurator
         {
             (this.DataContext as Controller).StopThread();
         }
+
+        private void MainWindow1_Loaded(object sender, RoutedEventArgs e)
+        {
+            var controller = (Controller)this.DataContext;
+            controller.InitInputData();
+                    
+        }
     }
 }

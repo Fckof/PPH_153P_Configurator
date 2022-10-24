@@ -45,9 +45,21 @@ namespace PPH_153P_Configurator
             }
         }
 
+        private int[] _analogStateBitArray;
 
-        private int _minSignalRange;
-        public int MinSignalRange
+        public int[] AnalogStateBitArray
+        {
+            get { return _analogStateBitArray; }
+            set
+            {
+                _analogStateBitArray = value;
+                OnPropertyChanged("AnalogStateBitArray");
+            }
+        }
+
+
+        private float _minSignalRange;
+        public float MinSignalRange
         {
             get { return _minSignalRange; }
             set { _minSignalRange = value;
@@ -56,8 +68,8 @@ namespace PPH_153P_Configurator
         }
 
 
-        private int _maxSignalRange;
-        public int MaxSignalRange
+        private float _maxSignalRange;
+        public float MaxSignalRange
         {
             get { return _maxSignalRange; }
             set { _maxSignalRange = value;
@@ -98,8 +110,8 @@ namespace PPH_153P_Configurator
         }
 
 
-        private double _value;
-        public double Value { get { return _value; } 
+        private float _value;
+        public float Value { get { return _value; } 
             set {
                 _value = value;
                 OnPropertyChanged("Value");
@@ -128,6 +140,7 @@ namespace PPH_153P_Configurator
             IsSet = true;
             SettingSetter = false;
         }
+        
 
         private SettingType _type;
         public SettingType Type { 
@@ -136,17 +149,17 @@ namespace PPH_153P_Configurator
                 OnPropertyChanged("Type");
             } 
         }
-        private int _value;
-        public int Value { 
+        private float _value;
+        public float Value { 
             get { return _value; }
             set { _value= value;
                 OnPropertyChanged("Value");
             }    
         }
-        private int _histeresis;
-        public int Histeresis { 
+        private float _histeresis;
+        public float Histeresis { 
             get { return _histeresis; }
-            set { _histeresis = value;
+            set { _histeresis = value-1;
                 OnPropertyChanged("Histeresis");
             } 
         }

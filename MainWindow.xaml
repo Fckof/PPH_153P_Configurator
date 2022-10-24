@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="ППХ-153Р Конфигуратор" Height="720" Width="1280" 
         ResizeMode="NoResize" Icon="/Images/шестерня.png"
-        MouseDown="RedirectFocus" Closing="MainWindow1_Closing"
+        MouseDown="RedirectFocus" Closing="MainWindow1_Closing" Loaded="MainWindow1_Loaded"
         >
     <Window.DataContext>
         <vm:Controller/>
@@ -140,50 +140,55 @@
                     Value="{Binding MainData.Value}"
                     Minimum="{Binding MainData.MinSignalRange}"
                     Maximum="{Binding MainData.MaxSignalRange}"
-                Margin="0 32"
-                Width="40" 
-                Orientation="Vertical" 
+                    Margin="0 32"
+                    Width="40" 
+                    Orientation="Vertical" 
                     BorderBrush="{x:Null}" 
-                    Background="{x:Null}"
+                    Background="{x:Null}" 
+                    Foreground="{Binding ColorChange, Mode=OneWay}"
                     />
                 <ScrollBar
                     x:Name="BottomAZ"
                     Width="60" 
+                    Visibility="{Binding BottomAZVisibility}"
                     Minimum="{Binding MainData.MinSignalRange}"
                     Maximum="{Binding MainData.MaxSignalRange}"
                     BorderBrush="{x:Null}" 
                     Background="{x:Null}"
                     Margin="0 30" SmallChange="1"
                     Style="{StaticResource ResourceKey=RedScrollbar}" 
-                    Value="{Binding MainData.BottomAZ.Value}"
+                    Value="{Binding MainData.BottomAZ.Value,Mode=OneWay}"
                     />
                 <ScrollBar
                     x:Name="BottomPS"
                     Width="60" 
+                    Visibility="{Binding BottomPSVisibility}"
                     Minimum="{Binding MainData.MinSignalRange}"
                     Maximum="{Binding MainData.MaxSignalRange}"
                     BorderBrush="{x:Null}" 
                     Background="{x:Null}"
                     Margin="0 30" SmallChange="1" 
-                    Value="{Binding MainData.BottomPS.Value}"
+                    Value="{Binding MainData.BottomPS.Value,Mode=OneWay}"
                     Style="{StaticResource ResourceKey=YellowScrollbar}"
                     IsEnabled="False"
                     />
                 <ScrollBar
                     x:Name="TopPS"
+                    Visibility="{Binding TopPSVisibility}"
                     Width="60" 
                     Minimum="{Binding MainData.MinSignalRange}"
                     Maximum="{Binding MainData.MaxSignalRange}"
                     BorderBrush="{x:Null}" 
                     Background="{x:Null}"
                     Margin="0 30" SmallChange="1" 
-                    Value="{Binding MainData.TopPS.Value}"
+                    Value="{Binding MainData.TopPS.Value,Mode=OneWay}"
                     Style="{StaticResource ResourceKey=YellowScrollbar}"
                     IsEnabled="False"
                     />
                 <ScrollBar
                     x:Name="TopAZ"
                     Width="60" 
+                    Visibility="{Binding TopAZVisibility}"
                     Minimum="{Binding MainData.MinSignalRange}"
                     Maximum="{Binding MainData.MaxSignalRange}"
                     BorderBrush="{x:Null}" 
@@ -352,7 +357,7 @@
                     Grid.Column="1"
                     />
                 <Label 
-                    Content="{Binding MainData.StateBitArray[5]}"
+                    Content="{Binding MainData.AnalogStateBitArray[5]}"
                     FontSize="20"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
@@ -360,7 +365,7 @@
                     Grid.Column="1"
                     />
                 <Label 
-                    Content="{Binding MainData.StateBitArray[2]}"
+                    Content="{Binding MainData.AnalogStateBitArray[2]}"
                     FontSize="20"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
@@ -368,7 +373,7 @@
                     Grid.Column="1"
                     />
                 <Label 
-                    Content="{Binding MainData.StateBitArray[1]}"
+                    Content="{Binding MainData.AnalogStateBitArray[1]}"
                     FontSize="20"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
@@ -428,7 +433,7 @@
                     />
                 <TextBox
                     Grid.Column="1"
-                    Text="{Binding InputData.NodeId}"
+                    Text="{Binding InputData.NodeId, Mode=TwoWay}"
                     Grid.ColumnSpan="2"
                     Grid.Row="0"
                     Margin="10" 
@@ -626,7 +631,7 @@
                         <TextBox
                             Grid.Column="1"
                             Margin="15 3"
-                            Text="{Binding InputData.TopPS.Histeresis}"
+                            Text="{Binding InputData.TopPS.Value}"
                             HorizontalContentAlignment="Center" 
                             VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="CheckFloatNumberInput"
                             />
@@ -637,7 +642,7 @@
                             HorizontalContentAlignment="Center" 
                             VerticalContentAlignment="Center" 
                             FontSize="20" 
-                            SelectedIndex="{Binding InputData.TopPS.Value}"
+                            SelectedIndex="{Binding InputData.TopPS.Histeresis}"
                             >
                             <ComboBoxItem Content="1%"/>
                             <ComboBoxItem Content="2%"/>
@@ -841,33 +846,6 @@
             Background="#fff" 
             FontSize="16"
             />
-        <Slider 
-            x:Name="scroll"
-            Grid.Column="1" 
-                Margin="0,118,0,0"
-            Grid.Row="2"
-            Maximum="{Binding MainData.MaxSignalRange}"
-            SmallChange="1"
-            TickPlacement="TopLeft"
-            Value="{Binding InputData.TopAZ.Value}"
-            TickFrequency="0"
-            />
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="163,-190,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
-        <TextBlock 
-            Grid.Column="1" 
-            HorizontalAlignment="Left" 
-            Margin="57,30,0,0" Grid.Row="2" 
-            TextWrapping="Wrap" 
-            Text="{Binding InputData.TopAZ.Value, StringFormat=Text {0}}" 
-            VerticalAlignment="Top"
-            FontSize="20" Width="250" Height="78"/>
-        <TextBox 
-            Grid.Column="2" 
-            HorizontalAlignment="Left" 
-            Margin="127,81,0,0" Grid.Row="2" 
-            TextWrapping="Wrap"
-            VerticalAlignment="Top" Width="120"
-            Text="{Binding InputData.Value, Mode=TwoWay}"
-            />
     </Grid>
 </Window>
