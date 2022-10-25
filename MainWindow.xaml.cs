@@ -59,5 +59,18 @@ namespace PPH_153P_Configurator
             controller.InitInputData();
                     
         }
+
+
+        private void ButtonClickRefreshInputData(object sender, RoutedEventArgs e)
+        {
+            var controller = (Controller)this.DataContext;
+            controller.InitInputData();
+        }
+
+        private void ButtonClickSendData(object sender, RoutedEventArgs e)
+        {
+            var controller = (Controller)this.DataContext;
+            controller.SendData(controller.CompareDataToSend(controller.InputData));
+        }
     }
 }

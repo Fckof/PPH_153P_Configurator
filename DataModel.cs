@@ -27,8 +27,8 @@ namespace PPH_153P_Configurator
     }
     public class DataModel: ObservableObject
     {
-        private int _nodeId;
-        public int NodeId
+        private byte _nodeId;
+        public byte NodeId
         {
             get { return _nodeId; }
             set { _nodeId = value;
@@ -62,8 +62,8 @@ namespace PPH_153P_Configurator
         public float MinSignalRange
         {
             get { return _minSignalRange; }
-            set { _minSignalRange = value;
-                OnPropertyChanged("MaxSignalRange");
+            set {_minSignalRange = value;
+                OnPropertyChanged("MinSignalRange");
             }
         }
 
@@ -156,10 +156,10 @@ namespace PPH_153P_Configurator
                 OnPropertyChanged("Value");
             }    
         }
-        private float _histeresis;
-        public float Histeresis { 
+        private int _histeresis;
+        public int Histeresis { 
             get { return _histeresis; }
-            set { _histeresis = value-1;
+            set { _histeresis = value;
                 OnPropertyChanged("Histeresis");
             } 
         }

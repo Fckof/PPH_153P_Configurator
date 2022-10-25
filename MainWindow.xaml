@@ -140,7 +140,7 @@
                     Value="{Binding MainData.Value}"
                     Minimum="{Binding MainData.MinSignalRange}"
                     Maximum="{Binding MainData.MaxSignalRange}"
-                    Margin="0 32"
+                    Margin="0 31"
                     Width="40" 
                     Orientation="Vertical" 
                     BorderBrush="{x:Null}" 
@@ -155,9 +155,10 @@
                     Maximum="{Binding MainData.MaxSignalRange}"
                     BorderBrush="{x:Null}" 
                     Background="{x:Null}"
-                    Margin="0 30" SmallChange="1"
+                    Margin="0 30" SmallChange="0.01"
                     Style="{StaticResource ResourceKey=RedScrollbar}" 
                     Value="{Binding MainData.BottomAZ.Value,Mode=OneWay}"
+                    IsEnabled="False"
                     />
                 <ScrollBar
                     x:Name="BottomPS"
@@ -167,7 +168,7 @@
                     Maximum="{Binding MainData.MaxSignalRange}"
                     BorderBrush="{x:Null}" 
                     Background="{x:Null}"
-                    Margin="0 30" SmallChange="1" 
+                    Margin="0 30" SmallChange="0.01" 
                     Value="{Binding MainData.BottomPS.Value,Mode=OneWay}"
                     Style="{StaticResource ResourceKey=YellowScrollbar}"
                     IsEnabled="False"
@@ -180,7 +181,7 @@
                     Maximum="{Binding MainData.MaxSignalRange}"
                     BorderBrush="{x:Null}" 
                     Background="{x:Null}"
-                    Margin="0 30" SmallChange="1" 
+                    Margin="0 30" SmallChange="0.01" 
                     Value="{Binding MainData.TopPS.Value,Mode=OneWay}"
                     Style="{StaticResource ResourceKey=YellowScrollbar}"
                     IsEnabled="False"
@@ -193,7 +194,7 @@
                     Maximum="{Binding MainData.MaxSignalRange}"
                     BorderBrush="{x:Null}" 
                     Background="{x:Null}"
-                    Margin="0 30" SmallChange="1" 
+                    Margin="0 30" SmallChange="0.01" 
                     Value="{Binding MainData.TopAZ.Value}"
                     Style="{StaticResource ResourceKey=RedScrollbar}" 
                     IsEnabled="False"
@@ -457,7 +458,7 @@
                     Margin="10" 
                     Text="{Binding InputData.MinSignalRange}"
                     HorizontalContentAlignment="Center" 
-                    VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="CheckIntNumberInput"
+                    VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="CheckFloatNumberInput"
                     />
                 <TextBox
                     Grid.Column="2"
@@ -465,7 +466,7 @@
                     Text="{Binding InputData.MaxSignalRange}"
                     Margin="10" 
                     HorizontalContentAlignment="Center" 
-                    VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="CheckIntNumberInput"
+                    VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="CheckFloatNumberInput"
                     />
             </Grid>
         </Border>
@@ -573,6 +574,7 @@
                             SelectedIndex="{Binding InputData.TopAZ.Histeresis}" 
                             BorderBrush="{x:Null}" Foreground="Black"
                             >
+                            <ComboBoxItem Content="0%"/>
                             <ComboBoxItem Content="1%"/>
                             <ComboBoxItem Content="2%"/>
                             <ComboBoxItem Content="3%"/>
@@ -644,6 +646,7 @@
                             FontSize="20" 
                             SelectedIndex="{Binding InputData.TopPS.Histeresis}"
                             >
+                            <ComboBoxItem Content="0%"/>
                             <ComboBoxItem Content="1%"/>
                             <ComboBoxItem Content="2%"/>
                             <ComboBoxItem Content="3%"/>
@@ -715,6 +718,7 @@
                             FontSize="20" 
                             SelectedIndex="{Binding InputData.BottomPS.Histeresis}"
                             >
+                            <ComboBoxItem Content="0%"/>
                             <ComboBoxItem Content="1%"/>
                             <ComboBoxItem Content="2%"/>
                             <ComboBoxItem Content="3%"/>
@@ -786,6 +790,7 @@
                             FontSize="20" 
                             SelectedIndex="{Binding InputData.BottomAZ.Histeresis}"
                             >
+                            <ComboBoxItem Content="0%"/>
                             <ComboBoxItem Content="1%"/>
                             <ComboBoxItem Content="2%"/>
                             <ComboBoxItem Content="3%"/>
@@ -844,8 +849,29 @@
             VerticalAlignment="Top"
             Margin="5 5 5 0"
             Background="#fff" 
-            FontSize="16"
+            FontSize="16" Click="ButtonClickSendData"
+            />
+        <Button 
+            Width="auto"
+            Height="50"
+            Grid.Column="3"
+            Grid.Row="3"
+            Content="Сбросить ввод"
+            VerticalAlignment="Top"
+            Margin="5 65 5 0"
+            Background="#fff" 
+            FontSize="16" 
+            Click="ButtonClickRefreshInputData"
             />
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="163,-190,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+        <ScrollBar Grid.Column="2" 
+                   x:Name="scr"
+                   HorizontalAlignment="Left" 
+                   Margin="54,82,0,0" Grid.Row="2" 
+                   VerticalAlignment="Top" Orientation="Horizontal"
+                   Maximum="{Binding MainData.MaxSignalRange}"
+                   Width="300"
+                   Value="{Binding MainData.Value}"
+                   />
     </Grid>
 </Window>
