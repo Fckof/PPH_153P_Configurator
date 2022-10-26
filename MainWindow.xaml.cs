@@ -70,7 +70,7 @@ namespace PPH_153P_Configurator
         private void ButtonClickSendData(object sender, RoutedEventArgs e)
         {
             var controller = (Controller)this.DataContext;
-            controller.SendData(controller.CompareDataToSend(controller.InputData));
+            controller.SendData(controller.CompareDataToSend(controller.InputData, controller.MainData));
         }
     }
 }

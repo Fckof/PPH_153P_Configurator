@@ -163,12 +163,24 @@ namespace PPH_153P_Configurator
                 OnPropertyChanged("Histeresis");
             } 
         }
+        public byte isSetValue;
         private bool _isSet;
-
         public bool IsSet
         {
             get { return _isSet; }
             set { _isSet = value;
+                if (value)
+                {
+                    switch (_type)
+                    {
+                        case SettingType.TopAZ:case SettingType.TopPS:
+                            isSetValue = 2;
+                            break;
+                        case SettingType.BottomAZ:case SettingType.BottomPS:
+                            isSetValue = 3;
+                            break;
+                    }
+                }else isSetValue = 0;
                 OnPropertyChanged("IsSet");
             }
         }

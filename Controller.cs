@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Input;
 using System.Collections;
+using System.IO;
 
 namespace PPH_153P_Configurator
 {
@@ -102,62 +103,80 @@ namespace PPH_153P_Configurator
             }
             
         }
-        public CanMessage[] CompareDataToSend(DataModel item)
+        private void ParseWriteErrors(CanMessage[] err)
         {
-            byte[] writeMaxSignalRange = (new byte[] { 0x22, 0x23, 0x61, 0x1 }).Concat(BitConverter.GetBytes(item.MaxSignalRange)).ToArray();
-            byte[] writeMinSignalRange = (new byte[] { 0x22, 0x21, 0x61, 0x1 }).Concat(BitConverter.GetBytes(item.MinSignalRange)).ToArray();
-            byte[] writeAveraging = (new byte[] { 0x22, 0xA1, 0x61, 0x1 }).Concat(BitConverter.GetBytes(item.Averaging)).ToArray();
-            byte[] writeNodeId = (new byte[] { 0x22, 0x00, 0x20, 0x1 }).Concat(BitConverter.GetBytes(item.NodeId)).ToArray();
+            
+            foreach (var item in err)
+            {
+                switch (item.Data[0])
+                {
+                    case 0x80:
+                        string index=$"{BitConverter.ToInt16(item.Data, 1):X}";
+                        var errorCode= $"{BitConverter.ToInt32(item.Data, 4):X}";
+                        
+                        string error = "Index: "+index+" | ErrorCode: "+errorCode;
+                        File.WriteAllText("C:\\Users\\User\\source\\repos\\PPH_153P_Configurator\\bin\\Debug\\log.txt", error);
+                        break;
+                }
+            }
+        }
+        public CanMessage[] CompareDataToSend(DataModel input, DataModel main)
+        {
+            byte[] writeMaxSignalRange = (new byte[] { 0x22, 0x23, 0x61, 0x1 }).Concat(BitConverter.GetBytes(input.MaxSignalRange)).ToArray();
+            byte[] writeMinSignalRange = (new byte[] { 0x22, 0x21, 0x61, 0x1 }).Concat(BitConverter.GetBytes(input.MinSignalRange)).ToArray();
+            byte[] writeAveraging = (new byte[] { 0x22, 0xA1, 0x61, 0x1 }).Concat(BitConverter.GetBytes(input.Averaging)).ToArray();
+            byte[] writeNodeId = new byte[] { 0x22, 0x00, 0x20, 0x0, input.NodeId };
 
-            byte[] writeTopAZHisteresis = (new byte[] { 0x22, 0x0B, 0x65, 0x1 }).Concat(BitConverter.GetBytes(item.TopAZ.Histeresis)).ToArray();
-            byte[] writeTopPSHisteresis = (new byte[] { 0x22, 0x1B, 0x65, 0x1 }).Concat(BitConverter.GetBytes(item.TopPS.Histeresis)).ToArray();
-            byte[] writeBottomPSHisteresis = (new byte[] { 0x22, 0x2B, 0x65, 0x1 }).Concat(BitConverter.GetBytes(item.BottomPS.Histeresis)).ToArray();
-            byte[] writeBottomAZHisteresis = (new byte[] { 0x22, 0x3B, 0x65, 0x1 }).Concat(BitConverter.GetBytes(item.BottomAZ.Histeresis)).ToArray();
+            byte[] writeTopAZHisteresis = (new byte[] { 0x22, 0x0B, 0x65, 0x1 }).Concat(BitConverter.GetBytes(Convert.ToSingle(input.TopAZ.Histeresis))).ToArray();
+            byte[] writeTopPSHisteresis = (new byte[] { 0x22, 0x1B, 0x65, 0x1 }).Concat(BitConverter.GetBytes(Convert.ToSingle(input.TopPS.Histeresis))).ToArray();
+            byte[] writeBottomPSHisteresis = (new byte[] { 0x22, 0x2B, 0x65, 0x1 }).Concat(BitConverter.GetBytes(Convert.ToSingle(input.BottomPS.Histeresis))).ToArray();
+            byte[] writeBottomAZHisteresis = (new byte[] { 0x22, 0x3B, 0x65, 0x1 }).Concat(BitConverter.GetBytes(Convert.ToSingle(input.BottomAZ.Histeresis))).ToArray();
 
-            byte[] writeTopAZIsSet = (new byte[] { 0x22, 0x08, 0x65, 0x1 }).Concat(BitConverter.GetBytes(item.TopAZ.IsSet)).ToArray();
-            byte[] writeTopPSIsSet = (new byte[] { 0x22, 0x18, 0x65, 0x1 }).Concat(BitConverter.GetBytes(item.TopPS.IsSet)).ToArray();
-            byte[] writeBottomPSIsSet = (new byte[] { 0x22, 0x28, 0x65, 0x1 }).Concat(BitConverter.GetBytes(item.BottomPS.IsSet)).ToArray();
-            byte[] writeBottomAZIsSet = (new byte[] { 0x22, 0x38, 0x65, 0x1 }).Concat(BitConverter.GetBytes(item.BottomAZ.IsSet)).ToArray();
+            byte[] writeTopAZIsSet = (new byte[] { 0x22, 0x08, 0x65, 0x1 }).Concat(BitConverter.GetBytes(input.TopAZ.isSetValue)).ToArray();
+            byte[] writeTopPSIsSet = (new byte[] { 0x22, 0x18, 0x65, 0x1 }).Concat(BitConverter.GetBytes(input.TopPS.isSetValue)).ToArray();
+            byte[] writeBottomPSIsSet = (new byte[] { 0x22, 0x28, 0x65, 0x1 }).Concat(BitConverter.GetBytes(input.BottomPS.isSetValue)).ToArray();
+            byte[] writeBottomAZIsSet = (new byte[] { 0x22, 0x38, 0x65, 0x1 }).Concat(BitConverter.GetBytes(input.BottomAZ.isSetValue)).ToArray();
 
-            byte[] writeTopAZSettingSetter = (new byte[] { 0x22, 0x0F, 0x65, 0x1 }).Concat(BitConverter.GetBytes(item.TopAZ.SettingSetter)).ToArray();
-            byte[] writeTopPSSettingSetter = (new byte[] { 0x22, 0x1F, 0x65, 0x1 }).Concat(BitConverter.GetBytes(item.TopPS.SettingSetter)).ToArray();
-            byte[] writeBottomPSSettingSetter = (new byte[] { 0x22, 0x2F, 0x65, 0x1 }).Concat(BitConverter.GetBytes(item.BottomPS.SettingSetter)).ToArray();
-            byte[] writeBottomAZSettingSetter = (new byte[] { 0x22, 0x3F, 0x65, 0x1 }).Concat(BitConverter.GetBytes(item.BottomAZ.SettingSetter)).ToArray();
+            byte[] writeTopAZSettingSetter = (new byte[] { 0x22, 0x0F, 0x65, 0x1 }).Concat(BitConverter.GetBytes(Convert.ToInt32(input.TopAZ.SettingSetter))).ToArray();
+            byte[] writeTopPSSettingSetter = (new byte[] { 0x22, 0x1F, 0x65, 0x1 }).Concat(BitConverter.GetBytes(Convert.ToInt32(input.TopPS.SettingSetter))).ToArray();
+            byte[] writeBottomPSSettingSetter = (new byte[] { 0x22, 0x2F, 0x65, 0x1 }).Concat(BitConverter.GetBytes(Convert.ToInt32(input.BottomPS.SettingSetter))).ToArray();
+            byte[] writeBottomAZSettingSetter = (new byte[] { 0x22, 0x3F, 0x65, 0x1 }).Concat(BitConverter.GetBytes(Convert.ToInt32(input.BottomAZ.SettingSetter))).ToArray();
 
-            byte[] writeTopAZValue = (new byte[] { 0x22, 0x0A, 0x65, 0x1 }).Concat(BitConverter.GetBytes(item.TopAZ.Value)).ToArray();
-            byte[] writeTopPSValue = (new byte[] { 0x22, 0x1A, 0x65, 0x1 }).Concat(BitConverter.GetBytes(item.TopPS.Value)).ToArray();
-            byte[] writeBottomPSValue = (new byte[] { 0x22, 0x2A, 0x65, 0x1 }).Concat(BitConverter.GetBytes(item.BottomPS.Value)).ToArray();
-            byte[] writeBottomAZValue = (new byte[] { 0x22, 0x3A, 0x65, 0x1 }).Concat(BitConverter.GetBytes(item.BottomAZ.Value)).ToArray();
+            byte[] writeTopAZValue = (new byte[] { 0x22, 0x0A, 0x65, 0x1 }).Concat(BitConverter.GetBytes(input.TopAZ.Value)).ToArray();
+            byte[] writeTopPSValue = (new byte[] { 0x22, 0x1A, 0x65, 0x1 }).Concat(BitConverter.GetBytes(input.TopPS.Value)).ToArray();
+            byte[] writeBottomPSValue = (new byte[] { 0x22, 0x2A, 0x65, 0x1 }).Concat(BitConverter.GetBytes(input.BottomPS.Value)).ToArray();
+            byte[] writeBottomAZValue = (new byte[] { 0x22, 0x3A, 0x65, 0x1 }).Concat(BitConverter.GetBytes(input.BottomAZ.Value)).ToArray();
 
 
             return new CanMessage[] {
-                new CanMessage { Id = 0x0, Data = new byte[] { 0x80, (byte)MainData.NodeId },Size=(byte)2 },
-                new CanMessage { Id = (uint)(0x600 + item.NodeId), Data = writeMaxSignalRange, Size=(byte)writeMaxSignalRange.Length},
-                new CanMessage { Id = (uint)(0x600 + item.NodeId), Data = writeMinSignalRange},
-                new CanMessage { Id = (uint)(0x600 + item.NodeId), Data = writeAveraging},
-                new CanMessage { Id = (uint)(0x600 + item.NodeId), Data = writeNodeId},
+                new CanMessage { Id = 0x0, Data = new byte[] { 0x80, (byte)main.NodeId },Size=(byte)2 },
+                new CanMessage { Id = (uint)(0x600 + main.NodeId), Data = writeNodeId, Size=(byte)writeNodeId.Length},
+                new CanMessage { Id = (uint)(0x600 + main.NodeId), Data = writeMaxSignalRange, Size=(byte)writeMaxSignalRange.Length},
+                new CanMessage { Id = (uint)(0x600 + main.NodeId), Data = writeMinSignalRange, Size=(byte)writeMinSignalRange.Length},
+                new CanMessage { Id = (uint)(0x600 + main.NodeId), Data = writeAveraging, Size=(byte)writeAveraging.Length},
 
-                new CanMessage { Id = (uint)(0x600 + item.NodeId), Data = writeTopAZHisteresis},
-                new CanMessage { Id = (uint)(0x600 + item.NodeId), Data = writeTopPSHisteresis},
-                new CanMessage { Id = (uint)(0x600 + item.NodeId), Data = writeBottomPSHisteresis},
-                new CanMessage { Id = (uint)(0x600 + item.NodeId), Data = writeBottomAZHisteresis},
+                new CanMessage { Id = (uint)(0x600 + main.NodeId), Data = writeTopAZHisteresis, Size=(byte)writeTopAZHisteresis.Length},
+                new CanMessage { Id = (uint)(0x600 + main.NodeId), Data = writeTopPSHisteresis, Size=(byte)writeTopPSHisteresis.Length},
+                new CanMessage { Id = (uint)(0x600 + main.NodeId), Data = writeBottomPSHisteresis, Size=(byte)writeBottomPSHisteresis.Length},
+                new CanMessage { Id = (uint)(0x600 + main.NodeId), Data = writeBottomAZHisteresis, Size=(byte)writeBottomAZHisteresis.Length},
 
-                new CanMessage { Id = (uint)(0x600 + item.NodeId), Data = writeTopAZIsSet},
-                new CanMessage { Id = (uint)(0x600 + item.NodeId), Data = writeTopPSIsSet},
-                new CanMessage { Id = (uint)(0x600 + item.NodeId), Data = writeBottomPSIsSet},
-                new CanMessage { Id = (uint)(0x600 + item.NodeId), Data = writeBottomAZIsSet},
+                new CanMessage { Id = (uint)(0x600 + main.NodeId), Data = writeTopAZIsSet, Size=(byte)writeTopAZIsSet.Length},
+                new CanMessage { Id = (uint)(0x600 + main.NodeId), Data = writeTopPSIsSet, Size=(byte)writeTopPSIsSet.Length},
+                new CanMessage { Id = (uint)(0x600 + main.NodeId), Data = writeBottomPSIsSet, Size=(byte)writeBottomPSIsSet.Length},
+                new CanMessage { Id = (uint)(0x600 + main.NodeId), Data = writeBottomAZIsSet, Size=(byte)writeBottomAZIsSet.Length},
 
-                new CanMessage { Id = (uint)(0x600 + item.NodeId), Data = writeTopAZSettingSetter},
-                new CanMessage { Id = (uint)(0x600 + item.NodeId), Data = writeTopPSSettingSetter},
-                new CanMessage { Id = (uint)(0x600 + item.NodeId), Data = writeBottomPSSettingSetter},
-                new CanMessage { Id = (uint)(0x600 + item.NodeId), Data = writeBottomAZSettingSetter},
+                new CanMessage { Id = (uint)(0x600 + main.NodeId), Data = writeTopAZSettingSetter, Size=(byte)writeTopAZSettingSetter.Length},
+                new CanMessage { Id = (uint)(0x600 + main.NodeId), Data = writeTopPSSettingSetter, Size=(byte)writeTopPSSettingSetter.Length},
+                new CanMessage { Id = (uint)(0x600 + main.NodeId), Data = writeBottomPSSettingSetter, Size=(byte)writeBottomPSSettingSetter.Length},
+                new CanMessage { Id = (uint)(0x600 + main.NodeId), Data = writeBottomAZSettingSetter, Size=(byte)writeBottomAZSettingSetter.Length},
 
-                new CanMessage { Id = (uint)(0x600 + item.NodeId), Data = writeTopAZValue},
-                new CanMessage { Id = (uint)(0x600 + item.NodeId), Data = writeTopPSValue},
-                new CanMessage { Id = (uint)(0x600 + item.NodeId), Data = writeBottomPSValue},
-                new CanMessage { Id = (uint)(0x600 + item.NodeId), Data = writeBottomAZValue},
-                new CanMessage { Id = (uint)(0x600 + item.NodeId), Data = saveReq, Size=(byte)saveReq.Length},
-                new CanMessage { Id = 0x0, Data = new byte[] { 0x01, (byte)item.NodeId}, Size=(byte)2 }
+                new CanMessage { Id = (uint)(0x600 + main.NodeId), Data = writeTopAZValue, Size=(byte)writeTopAZValue.Length},
+                new CanMessage { Id = (uint)(0x600 + main.NodeId), Data = writeTopPSValue, Size=(byte)writeTopPSValue.Length},
+                new CanMessage { Id = (uint)(0x600 + main.NodeId), Data = writeBottomPSValue, Size=(byte)writeBottomPSValue.Length},
+                new CanMessage { Id = (uint)(0x600 + main.NodeId), Data = writeBottomAZValue, Size=(byte)writeBottomAZValue.Length},
+                
+                new CanMessage { Id = (uint)(0x600 + main.NodeId), Data = saveReq, Size=(byte)saveReq.Length},
+                new CanMessage { Id = 0x0, Data = new byte[] { 0x01, (byte)main.NodeId}, Size=(byte)2 }
             };
         }
         public void SendData(CanMessage[] messages)
@@ -166,11 +185,13 @@ namespace PPH_153P_Configurator
             foreach (CanMessage message in messages)
             {
                 channel.Write(message);
-                var j = channel.ReadAll();
+                ParseWriteErrors(channel.ReadAll());
             }
             threadCloser = true;
             thread = new Thread(RecieveCanMessage);
             thread.Start();
+            Thread.Sleep(100);
+            InitInputData();
         }
         private void ParseData(CanMessage[] arr)
         {
