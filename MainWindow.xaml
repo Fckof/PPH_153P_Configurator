@@ -466,7 +466,9 @@
                     Text="{Binding InputData.MaxSignalRange}"
                     Margin="10" 
                     HorizontalContentAlignment="Center" 
-                    VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="CheckFloatNumberInput"
+                    VerticalContentAlignment="Center" 
+                    FontSize="20" 
+                    PreviewTextInput="CheckFloatNumberInput"
                     />
             </Grid>
         </Border>
@@ -838,15 +840,15 @@
             Background="#4CFFFFFF"
             BorderBrush="#000"
             >
-
+            <ListView/>
         </Border>
         <Button 
             Width="auto"
             Height="50"
-            Grid.Column="3"
+            Grid.Column="1"
             Grid.Row="3"
             Content="Загрузить конфигурацию"
-            VerticalAlignment="Top"
+            VerticalAlignment="Center"
             Margin="5 5 5 0"
             Background="#fff" 
             FontSize="16" Click="ButtonClickSendData"
@@ -854,24 +856,54 @@
         <Button 
             Width="auto"
             Height="50"
-            Grid.Column="3"
+            Grid.Column="2"
             Grid.Row="3"
             Content="Сбросить ввод"
-            VerticalAlignment="Top"
-            Margin="5 65 5 0"
+            VerticalAlignment="Center"
+            Margin="5 5 5 0"
             Background="#fff" 
             FontSize="16" 
             Click="ButtonClickRefreshInputData"
             />
+        <Border x:Name="ListOperators" 
+            Width="auto"  
+            Height="auto" 
+            Grid.Row="2"
+            Grid.Column="3"
+            Margin="5 10 5 5"
+            CornerRadius="5"
+            BorderThickness="1" 
+            Background="#4CFFFFFF"
+            BorderBrush="#000"
+            >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+           <Button 
+            Width="auto"
+            Height="50"
+            Grid.Row="0"
+            Content="Открыть из файла"
+            VerticalAlignment="Center"
+            Margin="5 5 5 0"
+            Background="#fff" 
+            FontSize="16"
+            />
+                <Button 
+            Width="auto"
+            Height="50"
+            Grid.Row="1"
+            Content="Сохранить конфигурацию"
+            VerticalAlignment="Center"
+            Margin="5 5 5 0"
+            Background="#fff" 
+            FontSize="16"
+            />
+            </Grid>
+        </Border>
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="163,-190,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
-        <ScrollBar Grid.Column="2" 
-                   x:Name="scr"
-                   HorizontalAlignment="Left" 
-                   Margin="54,82,0,0" Grid.Row="2" 
-                   VerticalAlignment="Top" Orientation="Horizontal"
-                   Maximum="{Binding MainData.MaxSignalRange}"
-                   Width="300"
-                   Value="{Binding MainData.Value}"
-                   />
+       
     </Grid>
 </Window>

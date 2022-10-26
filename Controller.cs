@@ -14,11 +14,13 @@ using System.IO;
 
 namespace PPH_153P_Configurator
 {
-    
+    [Serializable]
     public class Controller:ObservableObject
     {
         public DataModel MainData { get; private set; }
         public DataModel InputData { get; private set; }
+        public PresetsCollection PresetsList { get; private set; }
+
         private Can channel=new Can(0);
         private Thread thread;
         private bool threadCloser = true;
@@ -42,7 +44,7 @@ namespace PPH_153P_Configurator
             channel.Start();
             MainData = new DataModel();
             InputData= new DataModel();
-            
+            PresetsList=new PresetsCollection();
             ColorChange = new SolidColorBrush(Color.FromRgb(6, 176, 37));
             thread = new Thread(RecieveCanMessage);
             thread.Start();
@@ -103,22 +105,20 @@ namespace PPH_153P_Configurator
             }
             
         }
-        private void ParseWriteErrors(CanMessage[] err)
+        public void SendData(CanMessage[] messages)
         {
-            
-            foreach (var item in err)
+            PresetsList.Presets.Add(new Preset(InputData));
+            threadCloser = false;
+            foreach (CanMessage message in messages)
             {
-                switch (item.Data[0])
-                {
-                    case 0x80:
-                        string index=$"{BitConverter.ToInt16(item.Data, 1):X}";
-                        var errorCode= $"{BitConverter.ToInt32(item.Data, 4):X}";
-                        
-                        string error = "Index: "+index+" | ErrorCode: "+errorCode;
-                        File.WriteAllText("C:\\Users\\User\\source\\repos\\PPH_153P_Configurator\\bin\\Debug\\log.txt", error);
-                        break;
-                }
+                channel.Write(message);
+                ParseWriteErrors(channel.ReadAll());
             }
+            threadCloser = true;
+            thread = new Thread(RecieveCanMessage);
+            thread.Start();
+            Thread.Sleep(100);
+            Copier.CopyValues(InputData, MainData);
         }
         public CanMessage[] CompareDataToSend(DataModel input, DataModel main)
         {
@@ -179,19 +179,28 @@ namespace PPH_153P_Configurator
                 new CanMessage { Id = 0x0, Data = new byte[] { 0x01, (byte)main.NodeId}, Size=(byte)2 }
             };
         }
-        public void SendData(CanMessage[] messages)
+        
+        private void ParseWriteErrors(CanMessage[] err)
         {
-            threadCloser = false;
-            foreach (CanMessage message in messages)
+
+            foreach (var item in err)
             {
-                channel.Write(message);
-                ParseWriteErrors(channel.ReadAll());
+                string index = $"{BitConverter.ToInt16(item.Data, 1):X}";
+                switch (item.Data[0])
+                {
+                    case 0x80:
+                        
+                        var errorCode = $"{BitConverter.ToInt32(item.Data, 4):X}";
+
+                        string error = DateTime.Now+ "\t| Index: " + index + " | ErrorCode: " + errorCode+"\n";
+                        File.AppendAllText(@"errorsLog.txt", error);
+                        break;
+                    case 0x60:
+                        string success = DateTime.Now + "\t| Object Index: " + index + " Written\n";
+                        File.AppendAllText(@"writeLog.txt", success);
+                        break;
+                }
             }
-            threadCloser = true;
-            thread = new Thread(RecieveCanMessage);
-            thread.Start();
-            Thread.Sleep(100);
-            InitInputData();
         }
         private void ParseData(CanMessage[] arr)
         {
@@ -310,33 +319,6 @@ namespace PPH_153P_Configurator
                 }
 
             }
-        }
-        public void InitInputData()
-        {
-            InputData.NodeId = MainData.NodeId;
-            InputData.TopAZ.Value=MainData.TopAZ.Value;
-            InputData.TopPS.Value = MainData.TopPS.Value;
-            InputData.BottomPS.Value = MainData.BottomPS.Value;
-            InputData.BottomAZ.Value = MainData.BottomAZ.Value;
-            InputData.MinSignalRange = MainData.MinSignalRange;
-            InputData.MaxSignalRange = MainData.MaxSignalRange;
-            InputData.Averaging=MainData.Averaging;
-
-            InputData.TopAZ.Histeresis=MainData.TopAZ.Histeresis;
-            InputData.TopPS.Histeresis = MainData.TopPS.Histeresis;
-            InputData.BottomPS.Histeresis =MainData.BottomPS.Histeresis;
-            InputData.BottomAZ.Histeresis = MainData.BottomAZ.Histeresis;
-            
-
-            InputData.TopAZ.IsSet=MainData.TopAZ.IsSet;
-            InputData.TopPS.IsSet=MainData.TopPS.IsSet;
-            InputData.BottomPS.IsSet=MainData.BottomPS.IsSet;
-            InputData.BottomAZ.IsSet = MainData.BottomAZ.IsSet;
-
-            InputData.TopAZ.SettingSetter=MainData.TopAZ.SettingSetter;
-            InputData.TopPS.SettingSetter=MainData.TopPS.SettingSetter;
-            InputData.BottomPS.SettingSetter = MainData.BottomPS.SettingSetter;
-            InputData.BottomAZ.SettingSetter = MainData.BottomAZ.SettingSetter;
         }
         private int[] FromByteToBitArray(byte value)
         {

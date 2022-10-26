@@ -16,7 +16,7 @@ namespace PPH_153P_Configurator
         BottomPS,
         BottomAZ
     }
-
+    [Serializable]
     public class ObservableObject : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
@@ -25,6 +25,7 @@ namespace PPH_153P_Configurator
             if (PropertyChanged != null) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
     }
+    [Serializable]
     public class DataModel: ObservableObject
     {
         private byte _nodeId;
@@ -78,9 +79,9 @@ namespace PPH_153P_Configurator
         }
 
 
-        private int _averaging;
+        private Int16 _averaging;
 
-        public int Averaging
+        public Int16 Averaging
         {
             get { return _averaging; }
             set { _averaging = value;
@@ -117,10 +118,10 @@ namespace PPH_153P_Configurator
                 OnPropertyChanged("Value");
                 } }
 
-        public Setting TopAZ { get; private set; }
-        public Setting TopPS { get; private set; }
-        public Setting BottomPS { get; private set; }
-        public Setting BottomAZ { get; private set; }
+        public Setting TopAZ { get; set; }
+        public Setting TopPS { get;  set; }
+        public Setting BottomPS { get;  set; }
+        public Setting BottomAZ { get;  set; }
         public DataModel()
         {
             TopAZ = new Setting(SettingType.TopAZ);
@@ -131,6 +132,7 @@ namespace PPH_153P_Configurator
         
         
     }
+    [Serializable]
     public class Setting:ObservableObject
     {
         public Setting(SettingType type)

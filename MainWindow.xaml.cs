@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,9 +15,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 namespace PPH_153P_Configurator
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     
     public partial class MainWindow : Window
     {
@@ -56,15 +54,14 @@ namespace PPH_153P_Configurator
         private void MainWindow1_Loaded(object sender, RoutedEventArgs e)
         {
             var controller = (Controller)this.DataContext;
-            controller.InitInputData();
-                    
+            Copier.CopyValues(controller.InputData, controller.MainData);
         }
 
 
         private void ButtonClickRefreshInputData(object sender, RoutedEventArgs e)
         {
             var controller = (Controller)this.DataContext;
-            controller.InitInputData();
+            Copier.CopyValues(controller.InputData, controller.MainData);
         }
 
         private void ButtonClickSendData(object sender, RoutedEventArgs e)
