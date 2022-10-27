@@ -19,3 +19,5 @@ C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\PPH_153P_Configurator
 C:\Users\User\source\repos\PPH_153P_Configurator\bin\Debug\Newtonsoft.Json.dll
 C:\Users\User\source\repos\PPH_153P_Configurator\bin\Debug\Newtonsoft.Json.xml
 C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\PPH_153P_Configurator.csproj.CopyComplete
+C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\EnterPresetName.g.cs
+C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\EnterPresetName.baml

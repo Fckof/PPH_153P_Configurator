@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace PPH_153P_Configurator
 {
@@ -36,8 +37,9 @@ namespace PPH_153P_Configurator
                 OnPropertyChanged("NodeId");
             }
         }
+        [NonSerialized]
         private int[] _stateBitArray;
-
+        [XmlIgnore]
         public int[] StateBitArray
         {
             get { return _stateBitArray; }
@@ -45,9 +47,9 @@ namespace PPH_153P_Configurator
                 OnPropertyChanged("StateBitArray");
             }
         }
-
+        [NonSerialized]
         private int[] _analogStateBitArray;
-
+        [XmlIgnore]
         public int[] AnalogStateBitArray
         {
             get { return _analogStateBitArray; }
@@ -89,8 +91,9 @@ namespace PPH_153P_Configurator
             }
         }
 
-
+        [NonSerialized]
         private byte _deviceStatus;
+        [XmlIgnore]
         public byte DeviceStatus
         {
             get { return _deviceStatus; }
@@ -99,8 +102,9 @@ namespace PPH_153P_Configurator
                 OnPropertyChanged("DeviceStatus");
             }
         }
-
+        [NonSerialized]
         private int _inputSignalCode;
+        [XmlIgnore]
         public int InputSignalCode
         {
             get { return _inputSignalCode; }
@@ -110,8 +114,9 @@ namespace PPH_153P_Configurator
             }
         }
 
-
+        [NonSerialized]
         private float _value;
+        [XmlIgnore]
         public float Value { get { return _value; } 
             set {
                 _value = value;
@@ -124,27 +129,29 @@ namespace PPH_153P_Configurator
         public Setting BottomAZ { get;  set; }
         public DataModel()
         {
-            TopAZ = new Setting(SettingType.TopAZ);
+            /*TopAZ = new Setting(SettingType.TopAZ);
             TopPS = new Setting(SettingType.TopPS);
             BottomPS = new Setting(SettingType.BottomPS);
-            BottomAZ = new Setting(SettingType.BottomAZ);
+            BottomAZ = new Setting(SettingType.BottomAZ);*/
+            TopAZ = new Setting() { Type= SettingType.TopAZ };
+            TopPS = new Setting() { Type = SettingType.TopPS };
+            BottomPS = new Setting() { Type = SettingType.BottomPS };
+            BottomAZ = new Setting() { Type = SettingType.BottomAZ };
         }
-        
-        
+
+
     }
     [Serializable]
     public class Setting:ObservableObject
     {
-        public Setting(SettingType type)
+        /*public Setting(SettingType type)
         {
             Type = type;
-            Histeresis = 0;
-            IsSet = true;
-            SettingSetter = false;
-        }
-        
+        }*/
 
+        [XmlIgnore]
         private SettingType _type;
+        [XmlIgnore]
         public SettingType Type { 
             get { return _type; } 
             set { _type = value;
@@ -165,6 +172,7 @@ namespace PPH_153P_Configurator
                 OnPropertyChanged("Histeresis");
             } 
         }
+        [XmlIgnore]
         public byte isSetValue;
         private bool _isSet;
         public bool IsSet

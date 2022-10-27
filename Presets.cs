@@ -19,38 +19,15 @@ namespace PPH_153P_Configurator
     [Serializable]
     public class Preset
     {
-        public Preset(DataModel source)
+        public Preset()
         {
-            TopAZ=new Setting(SettingType.TopAZ);
-            TopPS = new Setting(SettingType.TopPS);
-            BottomPS = new Setting(SettingType.BottomPS);
-            BottomAZ = new Setting(SettingType.BottomAZ);
-
-            NodeId = source.NodeId;
-            TopAZ.Value = source.TopAZ.Value;
-            TopPS.Value = source.TopPS.Value;
-            BottomPS.Value = source.BottomPS.Value;
-            BottomAZ.Value = source.BottomAZ.Value;
-            MinSignalRange = source.MinSignalRange;
-            MaxSignalRange = source.MaxSignalRange;
-            Averaging = source.Averaging;
-
-            TopAZ.Histeresis = source.TopAZ.Histeresis;
-            TopPS.Histeresis = source.TopPS.Histeresis;
-            BottomPS.Histeresis = source.BottomPS.Histeresis;
-            BottomAZ.Histeresis = source.BottomAZ.Histeresis;
-
-            TopAZ.IsSet = source.TopAZ.IsSet;
-            TopPS.IsSet = source.TopPS.IsSet;
-            BottomPS.IsSet = source.BottomPS.IsSet;
-            BottomAZ.IsSet = source.BottomAZ.IsSet;
-
-            TopAZ.SettingSetter = source.TopAZ.SettingSetter;
-            TopPS.SettingSetter = source.TopPS.SettingSetter;
-            BottomPS.SettingSetter = source.BottomPS.SettingSetter;
-            BottomAZ.SettingSetter = source.BottomAZ.SettingSetter;
+            TopAZ = new Setting() { Type = SettingType.TopAZ };
+            TopPS = new Setting() { Type = SettingType.TopPS };
+            BottomPS = new Setting() { Type = SettingType.BottomPS };
+            BottomAZ = new Setting() { Type = SettingType.BottomAZ };
         }
-        public int NodeId { get; set; }
+        public string PresetName { get; set; }
+        public byte NodeId { get; set; }
         public Int16 Averaging { get; set; }
         public float MinSignalRange { get; set; }
         public float MaxSignalRange { get; set; }

@@ -107,7 +107,6 @@ namespace PPH_153P_Configurator
         }
         public void SendData(CanMessage[] messages)
         {
-            PresetsList.Presets.Add(new Preset(InputData));
             threadCloser = false;
             foreach (CanMessage message in messages)
             {
@@ -118,7 +117,6 @@ namespace PPH_153P_Configurator
             thread = new Thread(RecieveCanMessage);
             thread.Start();
             Thread.Sleep(100);
-            Copier.CopyValues(InputData, MainData);
         }
         public CanMessage[] CompareDataToSend(DataModel input, DataModel main)
         {

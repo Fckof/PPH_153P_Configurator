@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="ППХ-153Р Конфигуратор" Height="720" Width="1280" 
         ResizeMode="NoResize" Icon="/Images/шестерня.png"
-        MouseDown="RedirectFocus" Closing="MainWindow1_Closing" Loaded="MainWindow1_Loaded"
+        MouseDown="RedirectFocus" Closing="MainWindow1_Closing" Loaded="MainWindow1_Loaded" WindowStartupLocation="CenterScreen"
         >
     <Window.DataContext>
         <vm:Controller/>
@@ -840,7 +840,11 @@
             Background="#4CFFFFFF"
             BorderBrush="#000"
             >
-            <ListView/>
+            <ListView
+                x:Name="PresetLst" 
+                SelectionChanged="DisplayConfig"
+                FontSize="18"
+                />
         </Border>
         <Button 
             Width="auto"
@@ -858,7 +862,7 @@
             Height="50"
             Grid.Column="2"
             Grid.Row="3"
-            Content="Сбросить ввод"
+            Content="Обновить поля"
             VerticalAlignment="Center"
             Margin="5 5 5 0"
             Background="#fff" 
@@ -884,23 +888,24 @@
            <Button 
             Width="auto"
             Height="50"
-            Grid.Row="0"
+            Grid.Row="1"
             Content="Открыть из файла"
             VerticalAlignment="Center"
             Margin="5 5 5 0"
             Background="#fff" 
-            FontSize="16"
+            FontSize="16" Click="OpenFromFile"
             />
                 <Button 
             Width="auto"
             Height="50"
-            Grid.Row="1"
+            Grid.Row="0"
             Content="Сохранить конфигурацию"
             VerticalAlignment="Center"
             Margin="5 5 5 0"
             Background="#fff" 
-            FontSize="16"
+            FontSize="16" Click="CallEnterNameForm"
             />
+                
             </Grid>
         </Border>
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="163,-190,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
