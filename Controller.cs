@@ -19,7 +19,8 @@ namespace PPH_153P_Configurator
     {
         public DataModel MainData { get; private set; }
         public DataModel InputData { get; private set; }
-        public PresetsCollection PresetsList { get; private set; }
+        public ChannelsCollection ChannelsList { get; private set; }
+        public Channel PresetsList { get; private set; }
 
         private Can channel=new Can(0);
         private Thread thread;
@@ -29,26 +30,7 @@ namespace PPH_153P_Configurator
         private SolidColorBrush _redColor= new SolidColorBrush(Color.FromRgb(226, 22, 12));
         private SolidColorBrush _yellowColor = new SolidColorBrush(Color.FromRgb(249, 240, 12));
         private SolidColorBrush _greenColor = new SolidColorBrush(Color.FromRgb(6, 176, 37));
-        public SolidColorBrush ColorChange
-        {
-            get { return _colorChange; }
-            set { _colorChange = value;
-                OnPropertyChanged("ColorChange");
-            }
-        }
-
-        public Controller()
-        {
-            channel.Open(CanOpenFlag.Can11 | CanOpenFlag.Can29) ;
-            channel.SetBaud(CanBaudRate.BCI_1M);
-            channel.Start();
-            MainData = new DataModel();
-            InputData= new DataModel();
-            PresetsList=new PresetsCollection();
-            ColorChange = new SolidColorBrush(Color.FromRgb(6, 176, 37));
-            thread = new Thread(RecieveCanMessage);
-            thread.Start();
-        }
+        
         private Visibility _topAZVisibility;
         public Visibility TopAZVisibility
         {
@@ -88,6 +70,28 @@ namespace PPH_153P_Configurator
                 OnPropertyChanged("BottomAZVisibility");
             }
         }
+        public SolidColorBrush ColorChange
+        {
+            get { return _colorChange; }
+            set { _colorChange = value;
+                OnPropertyChanged("ColorChange");
+            }
+        }
+
+        public Controller()
+        {
+            channel.Open(CanOpenFlag.Can11 | CanOpenFlag.Can29) ;
+            channel.SetBaud(CanBaudRate.BCI_1M);
+            channel.Start();
+            MainData = new DataModel();
+            InputData= new DataModel();
+            PresetsList=new Channel();
+            ColorChange = new SolidColorBrush(Color.FromRgb(6, 176, 37));
+            thread = new Thread(RecieveCanMessage);
+            thread.Start();
+        }
+
+        
 
         private void RecieveCanMessage()
         {
@@ -117,6 +121,7 @@ namespace PPH_153P_Configurator
             thread = new Thread(RecieveCanMessage);
             thread.Start();
             Thread.Sleep(100);
+            Copier.CopyValues(InputData,MainData);
         }
         public CanMessage[] CompareDataToSend(DataModel input, DataModel main)
         {
@@ -125,10 +130,10 @@ namespace PPH_153P_Configurator
             byte[] writeAveraging = (new byte[] { 0x22, 0xA1, 0x61, 0x1 }).Concat(BitConverter.GetBytes(input.Averaging)).ToArray();
             byte[] writeNodeId = new byte[] { 0x22, 0x00, 0x20, 0x0, input.NodeId };
 
-            byte[] writeTopAZHisteresis = (new byte[] { 0x22, 0x0B, 0x65, 0x1 }).Concat(BitConverter.GetBytes(Convert.ToSingle(input.TopAZ.Histeresis))).ToArray();
-            byte[] writeTopPSHisteresis = (new byte[] { 0x22, 0x1B, 0x65, 0x1 }).Concat(BitConverter.GetBytes(Convert.ToSingle(input.TopPS.Histeresis))).ToArray();
-            byte[] writeBottomPSHisteresis = (new byte[] { 0x22, 0x2B, 0x65, 0x1 }).Concat(BitConverter.GetBytes(Convert.ToSingle(input.BottomPS.Histeresis))).ToArray();
-            byte[] writeBottomAZHisteresis = (new byte[] { 0x22, 0x3B, 0x65, 0x1 }).Concat(BitConverter.GetBytes(Convert.ToSingle(input.BottomAZ.Histeresis))).ToArray();
+            byte[] writeTopAZHisteresis = (new byte[] { 0x22, 0x0B, 0x65, 0x1 }).Concat(BitConverter.GetBytes(Transform.ToAbsValue(input.TopAZ.Histeresis, InputData.MaxSignalRange, InputData.MinSignalRange))).ToArray();
+            byte[] writeTopPSHisteresis = (new byte[] { 0x22, 0x1B, 0x65, 0x1 }).Concat(BitConverter.GetBytes(Transform.ToAbsValue(input.TopPS.Histeresis, InputData.MaxSignalRange, InputData.MinSignalRange))).ToArray();
+            byte[] writeBottomPSHisteresis = (new byte[] { 0x22, 0x2B, 0x65, 0x1 }).Concat(BitConverter.GetBytes(Transform.ToAbsValue(input.BottomPS.Histeresis, InputData.MaxSignalRange, InputData.MinSignalRange))).ToArray();
+            byte[] writeBottomAZHisteresis = (new byte[] { 0x22, 0x3B, 0x65, 0x1 }).Concat(BitConverter.GetBytes(Transform.ToAbsValue(input.BottomAZ.Histeresis, InputData.MaxSignalRange, InputData.MinSignalRange))).ToArray();
 
             byte[] writeTopAZIsSet = (new byte[] { 0x22, 0x08, 0x65, 0x1 }).Concat(BitConverter.GetBytes(input.TopAZ.isSetValue)).ToArray();
             byte[] writeTopPSIsSet = (new byte[] { 0x22, 0x18, 0x65, 0x1 }).Concat(BitConverter.GetBytes(input.TopPS.isSetValue)).ToArray();
@@ -177,7 +182,6 @@ namespace PPH_153P_Configurator
                 new CanMessage { Id = 0x0, Data = new byte[] { 0x01, (byte)main.NodeId}, Size=(byte)2 }
             };
         }
-        
         private void ParseWriteErrors(CanMessage[] err)
         {
 
@@ -258,6 +262,11 @@ namespace PPH_153P_Configurator
                 new CanMessage { Id = (uint)(0x600 + item.NodeId), Data = new byte[] { 0x40, 0x3F, 0x65, 0x1 },Size=0x4 }
             };
         }
+       
+        
+       
+
+
         private void DefineObjectViaFunctionCode(CanMessage mes)
         {
             if (mes.Data[0] == 0x42)
@@ -275,16 +284,16 @@ namespace PPH_153P_Configurator
                         MainData.Averaging = BitConverter.ToInt16(mes.Data, 4);
                         break;
                     case 0x650B:
-                        MainData.TopAZ.Histeresis = Convert.ToInt32(BitConverter.ToSingle(mes.Data, 4));
+                        MainData.TopAZ.Histeresis = Transform.ToPercent(BitConverter.ToSingle(mes.Data, 4), MainData.MaxSignalRange, MainData.MinSignalRange);
                         break;
                     case 0x651B:
-                        MainData.TopPS.Histeresis = Convert.ToInt32(BitConverter.ToSingle(mes.Data, 4));
+                        MainData.TopPS.Histeresis = Transform.ToPercent(BitConverter.ToSingle(mes.Data, 4), MainData.MaxSignalRange, MainData.MinSignalRange);
                         break;
                     case 0x652B:
-                        MainData.BottomPS.Histeresis = Convert.ToInt32(BitConverter.ToSingle(mes.Data, 4));
+                        MainData.BottomPS.Histeresis = Transform.ToPercent(BitConverter.ToSingle(mes.Data, 4), MainData.MaxSignalRange, MainData.MinSignalRange);
                         break;
                     case 0x653B:
-                        MainData.BottomAZ.Histeresis = Convert.ToInt32(BitConverter.ToSingle(mes.Data, 4));
+                        MainData.BottomAZ.Histeresis = Transform.ToPercent(BitConverter.ToSingle(mes.Data, 4), MainData.MaxSignalRange, MainData.MinSignalRange);
                         break;
                     case 0x6508:
                         MainData.TopAZ.IsSet = BitConverter.ToBoolean(mes.Data, 4);

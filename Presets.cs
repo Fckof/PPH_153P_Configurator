@@ -11,9 +11,16 @@ using System.Threading.Tasks;
 namespace PPH_153P_Configurator
 {
     [Serializable]
-    public class PresetsCollection
+    public class ChannelsCollection
     {
-        public List<Preset> Presets{ get;set;} = new List<Preset>() ;
+        public List<Channel> Channels { get; set; } = new List<Channel>();
+    }
+
+    [Serializable]
+    public class Channel
+    {
+        public string ChannelName { get; set; }
+        public List<Preset> Presets{ get;set;} = new List<Preset>();
     }
 
     [Serializable]
@@ -26,7 +33,7 @@ namespace PPH_153P_Configurator
             BottomPS = new Setting() { Type = SettingType.BottomPS };
             BottomAZ = new Setting() { Type = SettingType.BottomAZ };
         }
-        public string PresetName { get; set; }
+        public string Name { get; set; }
         public byte NodeId { get; set; }
         public Int16 Averaging { get; set; }
         public float MinSignalRange { get; set; }

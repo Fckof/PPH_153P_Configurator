@@ -25,9 +25,12 @@ namespace PPH_153P_Configurator
         {
             InitializeComponent();
             pathToPresets = "Presets.xml";
-            DisplayConfigList(PresetLst, pathToPresets);
+            collection = new ChannelsCollection();
+            collection=DefineCollection(pathToPresets);
+            DisplayChannelList(ChannelLst, pathToPresets);
             
         }
+        ChannelsCollection collection;
         string pathToPresets;
         private void CheckFloatNumberInput(object sender, TextCompositionEventArgs e)
         {
@@ -38,7 +41,6 @@ namespace PPH_153P_Configurator
             {
                 e.Handled = true;
             }
-
         }
         private void CheckIntNumberInput(object sender, TextCompositionEventArgs e)
         {
@@ -64,7 +66,6 @@ namespace PPH_153P_Configurator
             Copier.CopyValues(controller.InputData, controller.MainData);
         }
 
-
         private void ButtonClickRefreshInputData(object sender, RoutedEventArgs e)
         {
             var controller = (Controller)this.DataContext;
@@ -82,80 +83,148 @@ namespace PPH_153P_Configurator
             OpenFileDialog dialog = new OpenFileDialog();
             if (dialog.ShowDialog() == true)
             {
-                DisplayConfigList(PresetLst,dialog.FileName);
+                DisplayChannelList(ChannelLst,dialog.FileName);
             }
         }
-        private void AddPreset(Preset preset, ListView target)
+        private void AddPresetToListView(Preset preset, ListView target)
         {
             ListViewItem item = new ListViewItem();
-            item.Content = $"{preset.PresetName}";
+            item.Content = $"{preset.Name}";
             item.Tag = preset;
             target.Items.Add(item);
         }
-        private void SerializeXML(PresetsCollection items, string path)
+        private void AddChannelToListView(Channel channel, ListView target)
         {
-            XmlSerializer xml = new XmlSerializer(typeof(PresetsCollection));
+            ListViewItem item = new ListViewItem();
+            item.Content = channel.ChannelName;
+            item.Tag = channel;
+            target.Items.Add(item);
+        }
+        private void SerializeXML(ChannelsCollection items, string path)
+        {
+            XmlSerializer xml = new XmlSerializer(typeof(ChannelsCollection));
             using(FileStream file = new FileStream(path, FileMode.OpenOrCreate))
             {
                 xml.Serialize(file, items);
             }
         }
-        private PresetsCollection DeserializeXML(string path)
+        private ChannelsCollection DeserializeXML(string path)
         {
-            XmlSerializer xml = new XmlSerializer(typeof(PresetsCollection));
+            XmlSerializer xml = new XmlSerializer(typeof(ChannelsCollection));
             using (FileStream file = new FileStream(path, FileMode.OpenOrCreate))
             {
-                return (PresetsCollection)xml.Deserialize(file);
+                return (ChannelsCollection)xml.Deserialize(file);
             }
         }
-        private void DisplayConfigList(ListView view, string path)
+        private void DisplayConfigList(ListView view, Channel configs)
+        {
+                if (configs != null) view.Items.Clear();
+                foreach (var cfg in configs.Presets)
+                {
+                    AddPresetToListView(cfg, view);
+                }
+            
+        }
+        private ChannelsCollection DefineCollection( string path)
         {
             try
             {
-                PresetsCollection list = DeserializeXML(path);
-                if(list != null) view.Items.Clear();
-                foreach (var cfg in list.Presets)
+                return DeserializeXML(path);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Конфигурационный файл не найден или имеет некорректный формат");
+                return null;
+            }
+        }
+        private void DisplayChannelList(ListView view, string path)
+        {
+            try
+            {
+                ChannelsCollection list = DeserializeXML(path);
+                if (list != null) view.Items.Clear();
+                foreach (var cfg in list.Channels)
                 {
-                    AddPreset(cfg, view);
+                    AddChannelToListView(cfg, view);
                 }
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show("Конфигурационный файл не найден или имеет некорректный формат");
             }
-            
+
 
         }
         private void CallEnterNameForm(object sender, RoutedEventArgs e)
         {
-            EnterPresetName name = new EnterPresetName();
-            name.Owner = this;
-            name.Submit.Click += SaveConfig;
-            name.Show();
-        }
-        private void SaveConfig(object sender, RoutedEventArgs e)
-        {
-            Button btn = sender as Button;
-            string name = btn.Tag.ToString();
-            if (name.Length != 0)
+            EnterPresetName modal = new EnterPresetName();
+            
+            try
             {
+                modal.chans= DeserializeXML(pathToPresets);
+            }catch (Exception ex)
+            {
+                MessageBox.Show("Файл пуст или задан некорректно");
+            }
+            modal.ShowDialog();
+            if (modal.DialogResult == true)
+            {
+                SaveConfig(modal.chn, modal.prest);
+            }
+        }
+        private void SaveConfig( Channel channel, Preset preset)
+        {
                 var ctrl = (Controller)this.DataContext;
-                Preset newCfg = new Preset();
-                newCfg.PresetName = name+" - "+DateTime.Now;
-                Copier.CopyValues(newCfg, ctrl.InputData);
-                AddPreset(newCfg, PresetLst);
-                PresetsCollection collection = new PresetsCollection();
-                foreach (ListViewItem item in PresetLst.Items)
+                bool toAdd=true;
+                Copier.CopyValues(preset, ctrl.InputData);
+                AddPresetToListView(preset, PresetLst);
+
+                    foreach (ListViewItem item in PresetLst.Items)
+                    {
+                      if (item.Tag != null)
+                            channel.Presets.Add((Preset)item.Tag);
+
+                    }
+            if (collection != null)
+            {
+                foreach(Channel ch in collection.Channels)
+            {
+                if (ch.ChannelName == channel.ChannelName)
                 {
-                    if (item.Tag != null)
-                        collection.Presets.Add((Preset)item.Tag);
-
+                    collection.Channels[collection.Channels.IndexOf(ch)] = channel;
+                    toAdd = false;
+                    break;
                 }
-                SerializeXML(collection, pathToPresets);
-                
-            }else MessageBox.Show("Конфигурация не может быть сохранена под пустым названием");
+            }
+                if (toAdd)
+            {
+                collection.Channels.Add(channel);
+            }
 
+            }
+            else
+            {
+                collection = new ChannelsCollection();
+                collection.Channels.Add(channel);
+            }
+                
+            
+
+                      
+                
+                SerializeXML(collection, pathToPresets);
+             
         }
 
+        private void DisplayChannel(object sender, SelectionChangedEventArgs e)
+        {
+            if (ChannelLst.SelectedItems.Count == 1)
+            {
+                Channel cfg = (Channel)ChannelLst.SelectedItems.Cast<ListViewItem>().First().Tag;
+                DisplayConfigList(PresetLst, cfg);
+            }
+
+        }
         private void DisplayConfig(object sender, SelectionChangedEventArgs e)
         {
             var ctrl = (Controller)this.DataContext;
@@ -163,11 +232,11 @@ namespace PPH_153P_Configurator
             if (PresetLst.SelectedItems.Count == 1)
             {
                 Preset cfg = (Preset)PresetLst.SelectedItems.Cast<ListViewItem>().First().Tag;
-                Copier.CopyValues(ctrl.InputData,cfg);
+                Copier.CopyValues(ctrl.InputData, cfg);
             }
-            
+
         }
 
-        
+
     }
 }

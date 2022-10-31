@@ -86,7 +86,7 @@ namespace PPH_153P_Configurator
         public Int16 Averaging
         {
             get { return _averaging; }
-            set { _averaging = value;
+            set { _averaging = Convert.ToInt16(Math.Round(value/16f)*16);
                 OnPropertyChanged("Averaging");
             }
         }
@@ -117,7 +117,7 @@ namespace PPH_153P_Configurator
         [NonSerialized]
         private float _value;
         [XmlIgnore]
-        public float Value { get { return _value; } 
+        public float Value { get { return Convert.ToSingle(Math.Round(_value, 2)); } 
             set {
                 _value = value;
                 OnPropertyChanged("Value");
@@ -129,10 +129,6 @@ namespace PPH_153P_Configurator
         public Setting BottomAZ { get;  set; }
         public DataModel()
         {
-            /*TopAZ = new Setting(SettingType.TopAZ);
-            TopPS = new Setting(SettingType.TopPS);
-            BottomPS = new Setting(SettingType.BottomPS);
-            BottomAZ = new Setting(SettingType.BottomAZ);*/
             TopAZ = new Setting() { Type= SettingType.TopAZ };
             TopPS = new Setting() { Type = SettingType.TopPS };
             BottomPS = new Setting() { Type = SettingType.BottomPS };
@@ -144,10 +140,6 @@ namespace PPH_153P_Configurator
     [Serializable]
     public class Setting:ObservableObject
     {
-        /*public Setting(SettingType type)
-        {
-            Type = type;
-        }*/
 
         [XmlIgnore]
         private SettingType _type;
@@ -160,13 +152,13 @@ namespace PPH_153P_Configurator
         }
         private float _value;
         public float Value { 
-            get { return _value; }
+            get { return Convert.ToSingle(Math.Round(_value,2)); }
             set { _value= value;
                 OnPropertyChanged("Value");
             }    
         }
-        private int _histeresis;
-        public int Histeresis { 
+        private float _histeresis;
+        public float Histeresis { 
             get { return _histeresis; }
             set { _histeresis = value;
                 OnPropertyChanged("Histeresis");

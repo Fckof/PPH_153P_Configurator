@@ -12,7 +12,7 @@
     <Window.DataContext>
         <vm:Controller/>
     </Window.DataContext>
-    
+
     <Window.Resources>
 
         <Style x:Key="ScrollBarThumbStyleRed" TargetType="{x:Type Thumb}">
@@ -425,7 +425,7 @@
                     Grid.Column="0"
                     />
                 <Label
-                    Content="Усреднение"
+                    Content="Усреднение, мс"
                     FontSize="20"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
@@ -564,24 +564,20 @@
                             Margin="15 3"
                             Text="{Binding InputData.TopAZ.Value}"
                             HorizontalContentAlignment="Center" 
-                            VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="CheckFloatNumberInput"
+                            VerticalContentAlignment="Center" FontSize="20" 
+                            PreviewTextInput="CheckFloatNumberInput"
                             />
-                        <ComboBox
+                        <TextBox
                             Grid.Column="2"
                             Margin="20 3"
                             Background="White"
                             HorizontalContentAlignment="Center" 
                             VerticalContentAlignment="Center" 
                             FontSize="20" 
-                            SelectedIndex="{Binding InputData.TopAZ.Histeresis}" 
+                            Text="{Binding InputData.TopAZ.Histeresis}" 
                             BorderBrush="{x:Null}" Foreground="Black"
-                            >
-                            <ComboBoxItem Content="0%"/>
-                            <ComboBoxItem Content="1%"/>
-                            <ComboBoxItem Content="2%"/>
-                            <ComboBoxItem Content="3%"/>
-                            <ComboBoxItem Content="4%"/>
-                        </ComboBox>
+                            PreviewTextInput="CheckFloatNumberInput"
+                            />
                         <CheckBox
                             Grid.Column="3"
                             IsChecked="{Binding InputData.TopAZ.IsSet}"
@@ -639,21 +635,17 @@
                             HorizontalContentAlignment="Center" 
                             VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="CheckFloatNumberInput"
                             />
-                        <ComboBox
+                        <TextBox
                             Grid.Column="2"
                             Margin="20 3"
                             Background="White"
                             HorizontalContentAlignment="Center" 
                             VerticalContentAlignment="Center" 
                             FontSize="20" 
-                            SelectedIndex="{Binding InputData.TopPS.Histeresis}"
-                            >
-                            <ComboBoxItem Content="0%"/>
-                            <ComboBoxItem Content="1%"/>
-                            <ComboBoxItem Content="2%"/>
-                            <ComboBoxItem Content="3%"/>
-                            <ComboBoxItem Content="4%"/>
-                        </ComboBox>
+                            Text="{Binding InputData.TopPS.Histeresis}" 
+                            BorderBrush="{x:Null}" Foreground="Black"
+                            PreviewTextInput="CheckFloatNumberInput"
+                            />
                         <CheckBox
                             Grid.Column="3"
                             IsChecked="{Binding InputData.TopPS.IsSet}"
@@ -711,21 +703,17 @@
                             HorizontalContentAlignment="Center" 
                             VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="CheckFloatNumberInput"
                             />
-                        <ComboBox
+                        <TextBox
                             Grid.Column="2"
                             Margin="20 3"
                             Background="White"
                             HorizontalContentAlignment="Center" 
                             VerticalContentAlignment="Center" 
                             FontSize="20" 
-                            SelectedIndex="{Binding InputData.BottomPS.Histeresis}"
-                            >
-                            <ComboBoxItem Content="0%"/>
-                            <ComboBoxItem Content="1%"/>
-                            <ComboBoxItem Content="2%"/>
-                            <ComboBoxItem Content="3%"/>
-                            <ComboBoxItem Content="4%"/>
-                        </ComboBox>
+                            Text="{Binding InputData.BottomPS.Histeresis}" 
+                            BorderBrush="{x:Null}" Foreground="Black"
+                            PreviewTextInput="CheckFloatNumberInput"
+                            />
                         <CheckBox
                             Grid.Column="3"
                             IsChecked="{Binding InputData.BottomPS.IsSet}"
@@ -783,21 +771,17 @@
                             HorizontalContentAlignment="Center" 
                             VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="CheckFloatNumberInput"
                             />
-                        <ComboBox
+                        <TextBox
                             Grid.Column="2"
                             Margin="20 3"
                             Background="White"
                             HorizontalContentAlignment="Center" 
                             VerticalContentAlignment="Center" 
                             FontSize="20" 
-                            SelectedIndex="{Binding InputData.BottomAZ.Histeresis}"
-                            >
-                            <ComboBoxItem Content="0%"/>
-                            <ComboBoxItem Content="1%"/>
-                            <ComboBoxItem Content="2%"/>
-                            <ComboBoxItem Content="3%"/>
-                            <ComboBoxItem Content="4%"/>
-                        </ComboBox>
+                            Text="{Binding InputData.BottomAZ.Histeresis}" 
+                            BorderBrush="{x:Null}" Foreground="Black"
+                            PreviewTextInput="CheckFloatNumberInput"
+                            />
                         <CheckBox
                             Grid.Column="3"
                             IsChecked="{Binding InputData.BottomAZ.IsSet}"
@@ -828,17 +812,52 @@
             </Grid>
         </Border>
 
-        <Border x:Name="ChannelChoose" 
+        
+            <Grid
+                Grid.Column="3"
+                Grid.Row="0"
+                Width="auto"  
+                Height="auto"
+                Margin="5 5 5 10"
+                >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.15*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock
+                    Text="Выбор канала:"
+                    FontSize="18"
+                    />
+            <Border x:Name="ChannelChoose" 
             Width="auto"  
             Height="auto" 
-            Grid.Row="0"
-            Grid.Column="3"
-            Grid.RowSpan="2"
-            Margin="5 10 5 5"
+            Grid.Row="1"
             CornerRadius="5"
             BorderThickness="1" 
             Background="#4CFFFFFF"
             BorderBrush="#000"
+            >
+                <ListView
+                x:Name="ChannelLst" 
+                SelectionChanged="DisplayChannel"
+                FontSize="18"
+                >
+                    <ListViewItem/>
+                </ListView>
+            </Border>
+        </Grid>
+        
+        <Border x:Name="PresetChoose" 
+            Width="auto"  
+            Height="auto" 
+            Grid.Row="1"
+            Grid.Column="3"
+            Margin="5 5 5 5"
+            CornerRadius="5"
+            BorderThickness="1" 
+            Background="#4CFFFFFF"
+            BorderBrush="#000"
+            
             >
             <ListView
                 x:Name="PresetLst" 
@@ -885,7 +904,7 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-           <Button 
+                <Button 
             Width="auto"
             Height="50"
             Grid.Row="1"
@@ -905,10 +924,10 @@
             Background="#fff" 
             FontSize="16" Click="CallEnterNameForm"
             />
-                
+
             </Grid>
         </Border>
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="163,-190,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
-       
+
     </Grid>
 </Window>
