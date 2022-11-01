@@ -86,7 +86,7 @@ namespace PPH_153P_Configurator
         public Int16 Averaging
         {
             get { return _averaging; }
-            set { _averaging = Convert.ToInt16(Math.Round(value/16f)*16);
+            set { _averaging = value<=(255*16) ? Convert.ToInt16(Math.Round(value/16f)*16) : (short)(255 * 16);
                 OnPropertyChanged("Averaging");
             }
         }

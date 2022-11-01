@@ -25,12 +25,9 @@ namespace PPH_153P_Configurator
         {
             InitializeComponent();
             pathToPresets = "Presets.xml";
-            collection = new ChannelsCollection();
-            collection=DefineCollection(pathToPresets);
             DisplayChannelList(ChannelLst, pathToPresets);
             
         }
-        ChannelsCollection collection;
         string pathToPresets;
         private void CheckFloatNumberInput(object sender, TextCompositionEventArgs e)
         {
@@ -53,6 +50,7 @@ namespace PPH_153P_Configurator
         {
             MainGrid.Focus();
             PresetLst.SelectedItem = null;
+            ChannelLst.SelectedItem = null;
         }
 
         private void MainWindow1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -118,24 +116,12 @@ namespace PPH_153P_Configurator
         }
         private void DisplayConfigList(ListView view, Channel configs)
         {
-                if (configs != null) view.Items.Clear();
+            chName.Text = configs.ChannelName;
+            if (configs != null) view.Items.Clear();
                 foreach (var cfg in configs.Presets)
                 {
                     AddPresetToListView(cfg, view);
                 }
-            
-        }
-        private ChannelsCollection DefineCollection( string path)
-        {
-            try
-            {
-                return DeserializeXML(path);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Конфигурационный файл не найден или имеет некорректный формат");
-                return null;
-            }
         }
         private void DisplayChannelList(ListView view, string path)
         {
@@ -150,80 +136,17 @@ namespace PPH_153P_Configurator
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Конфигурационный файл не найден или имеет некорректный формат");
-            }
-
-
-        }
-        private void CallEnterNameForm(object sender, RoutedEventArgs e)
-        {
-            EnterPresetName modal = new EnterPresetName();
-            
-            try
-            {
-                modal.chans= DeserializeXML(pathToPresets);
-            }catch (Exception ex)
-            {
-                MessageBox.Show("Файл пуст или задан некорректно");
-            }
-            modal.ShowDialog();
-            if (modal.DialogResult == true)
-            {
-                SaveConfig(modal.chn, modal.prest);
+                MessageBox.Show($"Конфигурационный файл не найден или имеет некорректный формат");
             }
         }
-        private void SaveConfig( Channel channel, Preset preset)
-        {
-                var ctrl = (Controller)this.DataContext;
-                bool toAdd=true;
-                Copier.CopyValues(preset, ctrl.InputData);
-                AddPresetToListView(preset, PresetLst);
-
-                    foreach (ListViewItem item in PresetLst.Items)
-                    {
-                      if (item.Tag != null)
-                            channel.Presets.Add((Preset)item.Tag);
-
-                    }
-            if (collection != null)
-            {
-                foreach(Channel ch in collection.Channels)
-            {
-                if (ch.ChannelName == channel.ChannelName)
-                {
-                    collection.Channels[collection.Channels.IndexOf(ch)] = channel;
-                    toAdd = false;
-                    break;
-                }
-            }
-                if (toAdd)
-            {
-                collection.Channels.Add(channel);
-            }
-
-            }
-            else
-            {
-                collection = new ChannelsCollection();
-                collection.Channels.Add(channel);
-            }
-                
-            
-
-                      
-                
-                SerializeXML(collection, pathToPresets);
-             
-        }
-
         private void DisplayChannel(object sender, SelectionChangedEventArgs e)
         {
             if (ChannelLst.SelectedItems.Count == 1)
             {
                 Channel cfg = (Channel)ChannelLst.SelectedItems.Cast<ListViewItem>().First().Tag;
+                chName.Text = cfg.ChannelName;
                 DisplayConfigList(PresetLst, cfg);
             }
-
         }
         private void DisplayConfig(object sender, SelectionChangedEventArgs e)
         {
@@ -234,9 +157,63 @@ namespace PPH_153P_Configurator
                 Preset cfg = (Preset)PresetLst.SelectedItems.Cast<ListViewItem>().First().Tag;
                 Copier.CopyValues(ctrl.InputData, cfg);
             }
-
         }
 
+        private void CallEnterNameForm(object sender, RoutedEventArgs e)
+        {
+            EnterPresetName modal = new EnterPresetName();
+            try
+            {
+                modal.chans= DeserializeXML(pathToPresets);
+            }catch (Exception ex)
+            {
+            }
+            modal.ShowDialog();
+            if (modal.DialogResult == true)
+            {
+                SaveConfig(modal.chans,modal.chn, modal.prest);
+            }
+        }
+        private void SaveConfig(ChannelsCollection collection ,Channel channel, Preset preset)
+        {
+            var ctrl = (Controller)this.DataContext;
+            bool toAdd=true;
+            Copier.CopyValues(preset, ctrl.InputData);
+            channel.Presets.Add(preset);
+            DisplayConfigList(PresetLst, channel);
+            
+            if (collection != null)
+            {
+                foreach(Channel ch in collection.Channels)
+                {
+                    if (ch.ChannelName == channel.ChannelName)
+                    {
+                        collection.Channels[collection.Channels.IndexOf(ch)] = channel;
+                        toAdd = false;
+                        break;
+                    }
+                }
+                if (toAdd)
+                {
+                    collection.Channels.Add(channel);
+                }
+            }
+            else
+            {
+                collection = new ChannelsCollection();
+                collection.Channels.Add(channel);
+            }
+            SerializeXML(collection, pathToPresets);
+            DisplayChannelList(ChannelLst, pathToPresets);
+        }
 
+        private void CheckValue(object sender, RoutedEventArgs e)
+        {
+            var textbox = (TextBox)sender;
+            if (textbox.Text.Length == 0)
+            {
+                textbox.Text = "0";
+            }
+        }
     }
 }

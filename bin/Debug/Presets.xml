@@ -2,10 +2,10 @@
 <ChannelsCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Channels>
     <Channel>
-      <ChannelName>Канал 1</ChannelName>
+      <ChannelName>канал_1</ChannelName>
       <Presets>
         <Preset>
-          <Name>конф 1</Name>
+          <Name>конфа_1.1</Name>
           <NodeId>1</NodeId>
           <Averaging>96</Averaging>
           <MinSignalRange>0</MinSignalRange>
@@ -14,60 +14,60 @@
             <Value>86.02</Value>
             <Histeresis>5</Histeresis>
             <IsSet>true</IsSet>
-            <SettingSetter>true</SettingSetter>
+            <SettingSetter>false</SettingSetter>
           </TopAZ>
           <TopPS>
             <Value>40.01</Value>
             <Histeresis>2.5</Histeresis>
             <IsSet>true</IsSet>
-            <SettingSetter>true</SettingSetter>
+            <SettingSetter>false</SettingSetter>
           </TopPS>
           <BottomPS>
-            <Value>0</Value>
-            <Histeresis>1</Histeresis>
-            <IsSet>false</IsSet>
+            <Value>25</Value>
+            <Histeresis>1.2</Histeresis>
+            <IsSet>true</IsSet>
             <SettingSetter>false</SettingSetter>
           </BottomPS>
           <BottomAZ>
-            <Value>0</Value>
-            <Histeresis>1</Histeresis>
-            <IsSet>false</IsSet>
+            <Value>18</Value>
+            <Histeresis>1.5</Histeresis>
+            <IsSet>true</IsSet>
             <SettingSetter>false</SettingSetter>
           </BottomAZ>
         </Preset>
         <Preset>
-          <Name>конф 1</Name>
+          <Name>конфа_1.2</Name>
           <NodeId>1</NodeId>
           <Averaging>96</Averaging>
           <MinSignalRange>0</MinSignalRange>
           <MaxSignalRange>100</MaxSignalRange>
           <TopAZ>
-            <Value>86.02</Value>
-            <Histeresis>5</Histeresis>
-            <IsSet>true</IsSet>
+            <Value>0</Value>
+            <Histeresis>1</Histeresis>
+            <IsSet>false</IsSet>
             <SettingSetter>true</SettingSetter>
           </TopAZ>
           <TopPS>
-            <Value>40.01</Value>
-            <Histeresis>2.5</Histeresis>
-            <IsSet>true</IsSet>
+            <Value>0</Value>
+            <Histeresis>1</Histeresis>
+            <IsSet>false</IsSet>
             <SettingSetter>true</SettingSetter>
           </TopPS>
           <BottomPS>
-            <Value>0</Value>
-            <Histeresis>1</Histeresis>
-            <IsSet>false</IsSet>
+            <Value>25</Value>
+            <Histeresis>1.2</Histeresis>
+            <IsSet>true</IsSet>
             <SettingSetter>false</SettingSetter>
           </BottomPS>
           <BottomAZ>
-            <Value>0</Value>
-            <Histeresis>1</Histeresis>
-            <IsSet>false</IsSet>
+            <Value>18</Value>
+            <Histeresis>1.5</Histeresis>
+            <IsSet>true</IsSet>
             <SettingSetter>false</SettingSetter>
           </BottomAZ>
         </Preset>
         <Preset>
-          <Name>54985298</Name>
+          <Name>конфиг_456</Name>
           <NodeId>1</NodeId>
           <Averaging>96</Averaging>
           <MinSignalRange>0</MinSignalRange>
@@ -76,13 +76,13 @@
             <Value>86.02</Value>
             <Histeresis>5</Histeresis>
             <IsSet>true</IsSet>
-            <SettingSetter>true</SettingSetter>
+            <SettingSetter>false</SettingSetter>
           </TopAZ>
           <TopPS>
             <Value>40.01</Value>
             <Histeresis>2.5</Histeresis>
             <IsSet>true</IsSet>
-            <SettingSetter>true</SettingSetter>
+            <SettingSetter>false</SettingSetter>
           </TopPS>
           <BottomPS>
             <Value>0</Value>
@@ -100,10 +100,10 @@
       </Presets>
     </Channel>
     <Channel>
-      <ChannelName>Канал 2</ChannelName>
+      <ChannelName>канал_2</ChannelName>
       <Presets>
         <Preset>
-          <Name>конф 1</Name>
+          <Name>конфа_2.1</Name>
           <NodeId>1</NodeId>
           <Averaging>96</Averaging>
           <MinSignalRange>0</MinSignalRange>
@@ -112,153 +112,24 @@
             <Value>86.02</Value>
             <Histeresis>5</Histeresis>
             <IsSet>true</IsSet>
-            <SettingSetter>true</SettingSetter>
+            <SettingSetter>false</SettingSetter>
           </TopAZ>
           <TopPS>
             <Value>40.01</Value>
             <Histeresis>2.5</Histeresis>
-            <IsSet>true</IsSet>
+            <IsSet>false</IsSet>
             <SettingSetter>true</SettingSetter>
           </TopPS>
           <BottomPS>
             <Value>0</Value>
             <Histeresis>1</Histeresis>
             <IsSet>false</IsSet>
-            <SettingSetter>false</SettingSetter>
+            <SettingSetter>true</SettingSetter>
           </BottomPS>
           <BottomAZ>
             <Value>0</Value>
             <Histeresis>1</Histeresis>
-            <IsSet>false</IsSet>
-            <SettingSetter>false</SettingSetter>
-          </BottomAZ>
-        </Preset>
-        <Preset>
-          <Name>конф 2.1</Name>
-          <NodeId>1</NodeId>
-          <Averaging>96</Averaging>
-          <MinSignalRange>0</MinSignalRange>
-          <MaxSignalRange>100</MaxSignalRange>
-          <TopAZ>
-            <Value>86.02</Value>
-            <Histeresis>5</Histeresis>
             <IsSet>true</IsSet>
-            <SettingSetter>true</SettingSetter>
-          </TopAZ>
-          <TopPS>
-            <Value>40.01</Value>
-            <Histeresis>2.5</Histeresis>
-            <IsSet>true</IsSet>
-            <SettingSetter>true</SettingSetter>
-          </TopPS>
-          <BottomPS>
-            <Value>0</Value>
-            <Histeresis>1</Histeresis>
-            <IsSet>false</IsSet>
-            <SettingSetter>false</SettingSetter>
-          </BottomPS>
-          <BottomAZ>
-            <Value>0</Value>
-            <Histeresis>1</Histeresis>
-            <IsSet>false</IsSet>
-            <SettingSetter>false</SettingSetter>
-          </BottomAZ>
-        </Preset>
-      </Presets>
-    </Channel>
-    <Channel>
-      <ChannelName>канал 3 </ChannelName>
-      <Presets>
-        <Preset>
-          <Name>конф 1</Name>
-          <NodeId>1</NodeId>
-          <Averaging>96</Averaging>
-          <MinSignalRange>0</MinSignalRange>
-          <MaxSignalRange>100</MaxSignalRange>
-          <TopAZ>
-            <Value>86.02</Value>
-            <Histeresis>5</Histeresis>
-            <IsSet>true</IsSet>
-            <SettingSetter>true</SettingSetter>
-          </TopAZ>
-          <TopPS>
-            <Value>40.01</Value>
-            <Histeresis>2.5</Histeresis>
-            <IsSet>true</IsSet>
-            <SettingSetter>true</SettingSetter>
-          </TopPS>
-          <BottomPS>
-            <Value>0</Value>
-            <Histeresis>1</Histeresis>
-            <IsSet>false</IsSet>
-            <SettingSetter>false</SettingSetter>
-          </BottomPS>
-          <BottomAZ>
-            <Value>0</Value>
-            <Histeresis>1</Histeresis>
-            <IsSet>false</IsSet>
-            <SettingSetter>false</SettingSetter>
-          </BottomAZ>
-        </Preset>
-        <Preset>
-          <Name>конф 2.1</Name>
-          <NodeId>1</NodeId>
-          <Averaging>96</Averaging>
-          <MinSignalRange>0</MinSignalRange>
-          <MaxSignalRange>100</MaxSignalRange>
-          <TopAZ>
-            <Value>86.02</Value>
-            <Histeresis>5</Histeresis>
-            <IsSet>true</IsSet>
-            <SettingSetter>true</SettingSetter>
-          </TopAZ>
-          <TopPS>
-            <Value>40.01</Value>
-            <Histeresis>2.5</Histeresis>
-            <IsSet>true</IsSet>
-            <SettingSetter>true</SettingSetter>
-          </TopPS>
-          <BottomPS>
-            <Value>0</Value>
-            <Histeresis>1</Histeresis>
-            <IsSet>false</IsSet>
-            <SettingSetter>false</SettingSetter>
-          </BottomPS>
-          <BottomAZ>
-            <Value>0</Value>
-            <Histeresis>1</Histeresis>
-            <IsSet>false</IsSet>
-            <SettingSetter>false</SettingSetter>
-          </BottomAZ>
-        </Preset>
-        <Preset>
-          <Name>вапвы</Name>
-          <NodeId>1</NodeId>
-          <Averaging>96</Averaging>
-          <MinSignalRange>0</MinSignalRange>
-          <MaxSignalRange>100</MaxSignalRange>
-          <TopAZ>
-            <Value>86.02</Value>
-            <Histeresis>5</Histeresis>
-            <IsSet>true</IsSet>
-            <SettingSetter>true</SettingSetter>
-          </TopAZ>
-          <TopPS>
-            <Value>40.01</Value>
-            <Histeresis>2.5</Histeresis>
-            <IsSet>true</IsSet>
-            <SettingSetter>true</SettingSetter>
-          </TopPS>
-          <BottomPS>
-            <Value>0</Value>
-            <Histeresis>1</Histeresis>
-            <IsSet>false</IsSet>
-            <SettingSetter>false</SettingSetter>
-          </BottomPS>
-          <BottomAZ>
-            <Value>0</Value>
-            <Histeresis>1</Histeresis>
-            <IsSet>false</IsSet>
             <SettingSetter>false</SettingSetter>
           </BottomAZ>
         </Preset>

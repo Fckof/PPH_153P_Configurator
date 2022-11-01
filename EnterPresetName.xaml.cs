@@ -29,25 +29,32 @@ namespace PPH_153P_Configurator
             if(items != null)
             {
                 foreach (var channel in items.Channels)
-            {
-                if (channel != null)
                 {
-                    var item = new ComboBoxItem();
-                item.Content = channel.ChannelName;
-                item.Tag = channel;
-                list.Items.Add(item);
-
+                    if (channel != null)
+                    {
+                        var item = new ComboBoxItem();
+                        item.Content = channel.ChannelName;
+                        item.Tag = channel;
+                        list.Items.Add(item);
+                    }
                 }
             }
-
-            }
-            
+            else chans=new ChannelsCollection();
         }
-        public string PresetName { get { return config.Text; } }
-        public string ChannelName { get { return channel.Text; } }
+        public string PresetName { get { return config.Text.Trim(' ').ToLower().Replace(" ", "_"); } }
+        public string ChannelName { get { return channel.Text.Trim(' ').ToLower().Replace(" ","_"); } }
         public ChannelsCollection chans { get; set; }
         public Channel chn { get; set; }
         public Preset prest { get; set; }
+        private bool IsNameFree(string text, ChannelsCollection chns)
+        {
+            bool result = true;
+            foreach(var channel in chns.Channels)
+            {
+                if(channel.ChannelName == text) result = false;
+            }
+            return result;
+        }
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
             if (config.Text.Length != 0)
@@ -55,22 +62,29 @@ namespace PPH_153P_Configurator
                 
                 if((channelSel.SelectedIndex != -1 && channelSel.SelectedIndex != 0) && channel.Text.Length==0)
                 {
-                    //MessageBox.Show("1");
                     chn=(Channel)((ComboBoxItem)channelSel.SelectedItem).Tag;
                     prest = new Preset();
                     prest.Name = PresetName;
+                    MessageBox.Show($"Конфигурация {prest.Name} добавлена в канал: {chn.ChannelName}");
                     this.DialogResult = true;
                 }
                 else if(channel.Text.Length != 0)
                 {
-                    //MessageBox.Show("2");
-                    chn=new Channel();
-                    chn.ChannelName = ChannelName;
-                    prest = new Preset();
-                    prest.Name = PresetName;
-                    this.DialogResult = true;
-                }
+                    if (IsNameFree(ChannelName, chans))
+                    {
+                        chn=new Channel();
+                        chn.ChannelName = ChannelName;
+                        prest = new Preset();
+                        prest.Name = PresetName;
+                        MessageBox.Show($"Конфигурация {prest.Name} добавлена в новый канал: {chn.ChannelName}");
+                        this.DialogResult = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Имя канала {ChannelName} уже занято");
+                    }
                     
+                }
             }
             else MessageBox.Show("Поля не должны быть пустыми");
         }
