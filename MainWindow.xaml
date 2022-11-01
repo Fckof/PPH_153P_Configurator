@@ -440,7 +440,7 @@
                     Margin="10" 
                     FontSize="20"
                     HorizontalContentAlignment="Center" 
-                    VerticalContentAlignment="Center" PreviewTextInput="CheckIntNumberInput" LostFocus="CheckValue"
+                    VerticalContentAlignment="Center" PreviewTextInput="CheckIntNumberInput" LostFocus="CheckEmptyInput"
                     />
                 <TextBox
                     Grid.Column="1"
@@ -450,7 +450,7 @@
                     Margin="10" 
                     FontSize="20"
                     HorizontalContentAlignment="Center" 
-                    VerticalContentAlignment="Center" PreviewTextInput="CheckIntNumberInput" LostFocus="CheckValue"
+                    VerticalContentAlignment="Center" PreviewTextInput="CheckIntNumberInput" LostFocus="CheckEmptyInput"
                     />
                 <TextBox
                     Grid.Column="1"
@@ -458,7 +458,7 @@
                     Margin="10" 
                     Text="{Binding InputData.MinSignalRange}"
                     HorizontalContentAlignment="Center" 
-                    VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="CheckFloatNumberInput" LostFocus="CheckValue"
+                    VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="CheckFloatNumberInput" LostFocus="CheckEmptyInput"
                     />
                 <TextBox
                     Grid.Column="2"
@@ -468,7 +468,7 @@
                     HorizontalContentAlignment="Center" 
                     VerticalContentAlignment="Center" 
                     FontSize="20" 
-                    PreviewTextInput="CheckFloatNumberInput" LostFocus="CheckValue"
+                    PreviewTextInput="CheckFloatNumberInput" LostFocus="CheckEmptyInput"
                     />
             </Grid>
         </Border>
@@ -565,7 +565,7 @@
                             Text="{Binding InputData.TopAZ.Value}"
                             HorizontalContentAlignment="Center" 
                             VerticalContentAlignment="Center" FontSize="20" 
-                            PreviewTextInput="CheckFloatNumberInput" LostFocus="CheckValue"
+                            PreviewTextInput="CheckFloatNumberInput" LostFocus="CheckEmptyInput"
                             />
                         <TextBox
                             Grid.Column="2"
@@ -576,7 +576,7 @@
                             FontSize="20" 
                             Text="{Binding InputData.TopAZ.Histeresis}" 
                             BorderBrush="{x:Null}" Foreground="Black"
-                            PreviewTextInput="CheckFloatNumberInput" LostFocus="CheckValue"
+                            PreviewTextInput="CheckFloatNumberInput" LostFocus="CheckEmptyInput"
                             />
                         <CheckBox
                             Grid.Column="3"
@@ -633,7 +633,7 @@
                             Margin="15 3"
                             Text="{Binding InputData.TopPS.Value}"
                             HorizontalContentAlignment="Center" 
-                            VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="CheckFloatNumberInput" LostFocus="CheckValue"
+                            VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="CheckFloatNumberInput" LostFocus="CheckEmptyInput"
                             />
                         <TextBox
                             Grid.Column="2"
@@ -644,7 +644,7 @@
                             FontSize="20" 
                             Text="{Binding InputData.TopPS.Histeresis}" 
                             BorderBrush="{x:Null}" Foreground="Black"
-                            PreviewTextInput="CheckFloatNumberInput" LostFocus="CheckValue"
+                            PreviewTextInput="CheckFloatNumberInput" LostFocus="CheckEmptyInput"
                             />
                         <CheckBox
                             Grid.Column="3"
@@ -701,7 +701,7 @@
                             Margin="15 3"
                             Text="{Binding InputData.BottomPS.Value}"
                             HorizontalContentAlignment="Center" 
-                            VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="CheckFloatNumberInput" LostFocus="CheckValue"
+                            VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="CheckFloatNumberInput" LostFocus="CheckEmptyInput"
                             />
                         <TextBox
                             Grid.Column="2"
@@ -712,7 +712,7 @@
                             FontSize="20" 
                             Text="{Binding InputData.BottomPS.Histeresis}" 
                             BorderBrush="{x:Null}" Foreground="Black"
-                            PreviewTextInput="CheckFloatNumberInput" LostFocus="CheckValue"
+                            PreviewTextInput="CheckFloatNumberInput" LostFocus="CheckEmptyInput"
                             />
                         <CheckBox
                             Grid.Column="3"
@@ -769,7 +769,7 @@
                             Margin="15 3"
                             Text="{Binding InputData.BottomAZ.Value}"
                             HorizontalContentAlignment="Center" 
-                            VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="CheckFloatNumberInput" LostFocus="CheckValue"
+                            VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="CheckFloatNumberInput" LostFocus="CheckEmptyInput"
                             />
                         <TextBox
                             Grid.Column="2"
@@ -780,7 +780,7 @@
                             FontSize="20" 
                             Text="{Binding InputData.BottomAZ.Histeresis}" 
                             BorderBrush="{x:Null}" Foreground="Black"
-                            PreviewTextInput="CheckFloatNumberInput" LostFocus="CheckValue"
+                            PreviewTextInput="CheckFloatNumberInput" LostFocus="CheckEmptyInput"
                             />
                         <CheckBox
                             Grid.Column="3"

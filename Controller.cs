@@ -19,16 +19,15 @@ namespace PPH_153P_Configurator
     {
         public DataModel MainData { get; private set; }
         public DataModel InputData { get; private set; }
-        public ChannelsCollection ChannelsList { get; private set; }
-        public Channel PresetsList { get; private set; }
-
+        //public ChannelsCollection ChannelsList { get; private set; }
+       // public Channel PresetsList { get; private set; }
         private Can channel=new Can(0);
         private Thread thread;
         private bool threadCloser = true;
         private byte[] saveReq = { 0x22, 0x10, 0x10,0x01, 0x73, 0x61, 0x76, 0x65 };
         private SolidColorBrush _colorChange;
         private SolidColorBrush _redColor= new SolidColorBrush(Color.FromRgb(226, 22, 12));
-        private SolidColorBrush _yellowColor = new SolidColorBrush(Color.FromRgb(249, 240, 12));
+        private SolidColorBrush _yellowColor = new SolidColorBrush(Color.FromRgb(255, 216, 0));
         private SolidColorBrush _greenColor = new SolidColorBrush(Color.FromRgb(6, 176, 37));
         
         private Visibility _topAZVisibility;
@@ -85,13 +84,11 @@ namespace PPH_153P_Configurator
             channel.Start();
             MainData = new DataModel();
             InputData= new DataModel();
-            PresetsList=new Channel();
+            //PresetsList=new Channel();
             ColorChange = new SolidColorBrush(Color.FromRgb(6, 176, 37));
             thread = new Thread(RecieveCanMessage);
             thread.Start();
         }
-
-        
 
         private void RecieveCanMessage()
         {
@@ -256,6 +253,10 @@ namespace PPH_153P_Configurator
                 new CanMessage { Id = (uint)(0x600 + item.NodeId), Data = new byte[] { 0x40, 0x18, 0x65, 0x1 },Size=0x4 },
                 new CanMessage { Id = (uint)(0x600 + item.NodeId), Data = new byte[] { 0x40, 0x28, 0x65, 0x1 },Size=0x4 },
                 new CanMessage { Id = (uint)(0x600 + item.NodeId), Data = new byte[] { 0x40, 0x38, 0x65, 0x1 },Size=0x4 },
+                new CanMessage { Id = (uint)(0x600 + item.NodeId), Data = new byte[] { 0x40, 0x0A, 0x65, 0x1 },Size=0x4 },
+                new CanMessage { Id = (uint)(0x600 + item.NodeId), Data = new byte[] { 0x40, 0x1A, 0x65, 0x1 },Size=0x4 },
+                new CanMessage { Id = (uint)(0x600 + item.NodeId), Data = new byte[] { 0x40, 0x2A, 0x65, 0x1 },Size=0x4 },
+                new CanMessage { Id = (uint)(0x600 + item.NodeId), Data = new byte[] { 0x40, 0x3A, 0x65, 0x1 },Size=0x4 },
                 new CanMessage { Id = (uint)(0x600 + item.NodeId), Data = new byte[] { 0x40, 0x0F, 0x65, 0x1 },Size=0x4 },
                 new CanMessage { Id = (uint)(0x600 + item.NodeId), Data = new byte[] { 0x40, 0x1F, 0x65, 0x1 },Size=0x4 },
                 new CanMessage { Id = (uint)(0x600 + item.NodeId), Data = new byte[] { 0x40, 0x2F, 0x65, 0x1 },Size=0x4 },
@@ -263,10 +264,6 @@ namespace PPH_153P_Configurator
             };
         }
        
-        
-       
-
-
         private void DefineObjectViaFunctionCode(CanMessage mes)
         {
             if (mes.Data[0] == 0x42)
@@ -310,6 +307,18 @@ namespace PPH_153P_Configurator
                     case 0x6538:
                         MainData.BottomAZ.IsSet = BitConverter.ToBoolean(mes.Data, 4);
                         BottomAZVisibility = DisableScrloll(MainData.BottomAZ.IsSet);
+                        break;
+                    case 0x650A:
+                        MainData.TopAZ.Value = BitConverter.ToSingle(mes.Data, 4);
+                        break;
+                    case 0x651A:
+                        MainData.TopPS.Value = BitConverter.ToSingle(mes.Data, 4);
+                        break;
+                    case 0x652A:
+                        MainData.BottomPS.Value = BitConverter.ToSingle(mes.Data, 4);
+                        break;
+                    case 0x653A:
+                        MainData.BottomAZ.Value = BitConverter.ToSingle(mes.Data, 4);
                         break;
                     case 0x650F:
                         MainData.TopAZ.SettingSetter =  BitConverter.ToBoolean(mes.Data, 4);

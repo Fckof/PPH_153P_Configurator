@@ -58,7 +58,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ICustom.cs" />
     <Compile Include="Transform.cs" />
+    <Compile Include="XML.cs" />
     <Page Include="EnterPresetName.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

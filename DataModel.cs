@@ -23,11 +23,11 @@ namespace PPH_153P_Configurator
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string prop)
         {
-            if (PropertyChanged != null) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
     }
     [Serializable]
-    public class DataModel: ObservableObject
+    public class DataModel: ObservableObject, ICustom
     {
         private byte _nodeId;
         public byte NodeId

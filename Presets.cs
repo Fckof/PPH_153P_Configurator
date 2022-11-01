@@ -24,7 +24,7 @@ namespace PPH_153P_Configurator
     }
 
     [Serializable]
-    public class Preset
+    public class Preset:ICustom
     {
         public Preset()
         {
