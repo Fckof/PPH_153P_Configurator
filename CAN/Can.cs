@@ -59,6 +59,7 @@ namespace PPH_153P_Configurator
     private static Boolean initialized = false;
     public string WriteStatus{ get; private set; }
     public string DeviceStatus{ get; private set; }
+        public bool DeviceFound { get; private set; } = true;
     public Byte Channel { get { return this.channel; } }
 
     public Can(Byte Channel)
@@ -112,9 +113,9 @@ namespace PPH_153P_Configurator
             if (result < 0)
             {
                 //throw CreateException(result);
-                DeviceStatus = " - NoDeviceFound";
+                DeviceFound = false;
             }
-            else DeviceStatus = "";
+            else DeviceFound = true;
       SetEvents();
     }
 
@@ -123,7 +124,8 @@ namespace PPH_153P_Configurator
       Int16 result = CiClose(this.channel);
       if (result < 0)
       {
-        throw CreateException(result);
+        //throw CreateException(result);
+        DeviceFound=false;
       }
     }
 
@@ -134,7 +136,8 @@ namespace PPH_153P_Configurator
             {
               throw CreateException(result);
             }*/
-            if (result < 0) DeviceStatus = " - NoDeviceFound"; else DeviceStatus = "";
+            if (result < 0) DeviceFound=false;
+            else DeviceFound = true;
         }
 
     public void Stop()
@@ -142,7 +145,8 @@ namespace PPH_153P_Configurator
       Int16 result = CiStop(this.channel);
       if (result < 0)
       {
-        throw CreateException(result);
+        //throw CreateException(result);
+        DeviceFound = false;
       }
     }
 
@@ -162,7 +166,8 @@ namespace PPH_153P_Configurator
             {
               throw CreateException(result);
             }*/
-            if (result < 0) DeviceStatus = " - NoDeviceFound"; else DeviceStatus = "";
+            if (result < 0) DeviceFound = false;
+            else DeviceFound = true;
         }
 
     public void SetBaud(Int16 bt)
@@ -226,7 +231,14 @@ namespace PPH_153P_Configurator
     {
       Int32 cnt = CiRcGetCnt(this.channel);
       if (cnt < 0)
-        throw CreateException((Int16)cnt);
+            {
+                //throw CreateException((Int16)cnt);
+                DeviceFound = false;
+                cnt = 0;
+            }
+      else DeviceFound = true;
+        
+        
       return cnt;
     }
 
@@ -252,8 +264,10 @@ namespace PPH_153P_Configurator
       }
       else
       {
-        throw CreateException(result);
-      }
+        //throw CreateException(result);
+        DeviceFound=false;
+        return new CanMessage[0];
+            }
     }
 
     public CanMessage[] ReadAll()

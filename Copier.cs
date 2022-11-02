@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -11,6 +10,7 @@ namespace PPH_153P_Configurator
         
     public static class Copier
     {
+        //Копирование параметров объектов
         public static void CopyValues(ICustom target, ICustom source)
         {
             target.NodeId = source.NodeId;
@@ -37,6 +37,39 @@ namespace PPH_153P_Configurator
             target.BottomPS.SettingSetter = source.BottomPS.SettingSetter;
             target.BottomAZ.SettingSetter = source.BottomAZ.SettingSetter;
         }
-     
+
+        //Обнуление значений объекта
+        public static void SetToNull(DataModel target)
+        {
+            target.Value = 0;
+            target.NodeId = 0;
+            target.StateBitArray = null;
+            target.AnalogStateBitArray = null;
+            target.MinSignalRange = 0;
+            target.MaxSignalRange = 0;
+            target.Averaging = 0;
+            target.DeviceStatus = 0;
+            target.InputSignalCode = 0;
+
+            target.TopAZ.Value = 0;
+            target.TopPS.Value = 0;
+            target.BottomPS.Value = 0;
+            target.BottomAZ.Value = 0;
+
+            target.TopAZ.Histeresis = 0;
+            target.TopPS.Histeresis = 0;
+            target.BottomPS.Histeresis = 0;
+            target.BottomAZ.Histeresis = 0;
+
+            target.TopAZ.IsSet = false;
+            target.TopPS.IsSet = false;
+            target.BottomPS.IsSet = false;
+            target.BottomAZ.IsSet = false;
+
+            target.TopAZ.SettingSetter = false;
+            target.TopPS.SettingSetter = false;
+            target.BottomPS.SettingSetter = false;
+            target.BottomAZ.SettingSetter = false;
+        }
     }
 }

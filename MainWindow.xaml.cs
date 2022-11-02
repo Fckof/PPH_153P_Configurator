@@ -58,6 +58,8 @@ namespace PPH_153P_Configurator
         private void MainWindow1_Loaded(object sender, RoutedEventArgs e)
         {
             var controller = (Controller)this.DataContext;
+            if (!controller.IsCANDeviceFound())
+                MessageBox.Show("Утройство CAN не найдено");
             Copier.CopyValues(controller.InputData, controller.MainData);
         }
         private void ButtonClickRefreshInputData(object sender, RoutedEventArgs e)
@@ -75,7 +77,9 @@ namespace PPH_153P_Configurator
             OpenFileDialog dialog = new OpenFileDialog();
             if (dialog.ShowDialog() == true)
             {
-                DisplayChannelList(ChannelLst,dialog.FileName);
+                pathToPresets = dialog.FileName;
+                DisplayChannelList(ChannelLst, pathToPresets);
+                PresetLst.Items.Clear();
             }
         }
         private void AddPresetToListView(Preset preset, ListView target)

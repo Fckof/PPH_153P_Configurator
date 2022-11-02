@@ -11,6 +11,7 @@ using System.Threading;
 using System.Windows.Input;
 using System.Collections;
 using System.IO;
+using System.Reflection;
 
 namespace PPH_153P_Configurator
 {
@@ -19,9 +20,7 @@ namespace PPH_153P_Configurator
     {
         public DataModel MainData { get; private set; }
         public DataModel InputData { get; private set; }
-        //public ChannelsCollection ChannelsList { get; private set; }
-       // public Channel PresetsList { get; private set; }
-        private Can channel=new Can(0);
+        private Can channel;
         private Thread thread;
         private bool threadCloser = true;
         private byte[] saveReq = { 0x22, 0x10, 0x10,0x01, 0x73, 0x61, 0x76, 0x65 };
@@ -30,6 +29,7 @@ namespace PPH_153P_Configurator
         private SolidColorBrush _yellowColor = new SolidColorBrush(Color.FromRgb(255, 216, 0));
         private SolidColorBrush _greenColor = new SolidColorBrush(Color.FromRgb(6, 176, 37));
         
+        //Видимость уровней уставок на ProgressBar
         private Visibility _topAZVisibility;
         public Visibility TopAZVisibility
         {
@@ -69,6 +69,8 @@ namespace PPH_153P_Configurator
                 OnPropertyChanged("BottomAZVisibility");
             }
         }
+        //
+        //Цвет ProgressBar
         public SolidColorBrush ColorChange
         {
             get { return _colorChange; }
@@ -76,28 +78,38 @@ namespace PPH_153P_Configurator
                 OnPropertyChanged("ColorChange");
             }
         }
-
         public Controller()
         {
-            channel.Open(CanOpenFlag.Can11 | CanOpenFlag.Can29) ;
-            channel.SetBaud(CanBaudRate.BCI_1M);
-            channel.Start();
             MainData = new DataModel();
             InputData= new DataModel();
-            //PresetsList=new Channel();
             ColorChange = new SolidColorBrush(Color.FromRgb(6, 176, 37));
+            channel = new Can(0);
+            channel.Open(CanOpenFlag.Can11 | CanOpenFlag.Can29);
+            channel.SetBaud(CanBaudRate.BCI_1M);
+            channel.Start();
             thread = new Thread(RecieveCanMessage);
             thread.Start();
+            
         }
 
+        public bool IsCANDeviceFound()
+        {
+            return channel.DeviceFound;
+        }
+        //Чтение CAN сообщений
         private void RecieveCanMessage()
         {
             while (threadCloser)
             {
-                ParseData(channel.ReadAll());
                 RequestData(CompareRequests(MainData));
+                if (!ParseData(channel.ReadAll()))
+                {
+                    Copier.SetToNull(MainData);
+                }
             }
         }
+
+        //Запрос данных через CAN сообщения
         private void RequestData(CanMessage[] reqs)
         {
             foreach(var item in reqs)
@@ -106,6 +118,8 @@ namespace PPH_153P_Configurator
             }
             
         }
+
+        //Отправляет CAN сообщения для записи в память устройства
         public void SendData(CanMessage[] messages)
         {
             threadCloser = false;
@@ -120,6 +134,8 @@ namespace PPH_153P_Configurator
             Thread.Sleep(100);
             Copier.CopyValues(InputData,MainData);
         }
+
+        //Возвращает массив CAN сообщений с данными для записи в устройство
         public CanMessage[] CompareDataToSend(DataModel input, DataModel main)
         {
             byte[] writeMaxSignalRange = (new byte[] { 0x22, 0x23, 0x61, 0x1 }).Concat(BitConverter.GetBytes(input.MaxSignalRange)).ToArray();
@@ -179,18 +195,17 @@ namespace PPH_153P_Configurator
                 new CanMessage { Id = 0x0, Data = new byte[] { 0x01, (byte)main.NodeId}, Size=(byte)2 }
             };
         }
+
+        //Ведение лога ошибок и записи
         private void ParseWriteErrors(CanMessage[] err)
         {
-
             foreach (var item in err)
             {
                 string index = $"{BitConverter.ToInt16(item.Data, 1):X}";
                 switch (item.Data[0])
                 {
                     case 0x80:
-                        
                         var errorCode = $"{BitConverter.ToInt32(item.Data, 4):X}";
-
                         string error = DateTime.Now+ "\t| Index: " + index + " | ErrorCode: " + errorCode+"\n";
                         File.AppendAllText(@"errorsLog.txt", error);
                         break;
@@ -201,8 +216,11 @@ namespace PPH_153P_Configurator
                 }
             }
         }
-        private void ParseData(CanMessage[] arr)
+
+        //Обработка основных CAN сообщений полученных без запроса
+        private bool ParseData(CanMessage[] arr)
         {
+            if (arr.Length == 0) return false;
             foreach (var item in arr)
             {
                 uint nodeId = arr[0].Id & 0x7F;
@@ -238,7 +256,10 @@ namespace PPH_153P_Configurator
                         break;
                 }
             }
+            return true;
         }
+
+        //Возвращает массив CAN сообщений для запроса данных с устройства
         private CanMessage[] CompareRequests(DataModel item)
         {
             return new CanMessage[] { 
@@ -263,7 +284,8 @@ namespace PPH_153P_Configurator
                 new CanMessage { Id = (uint)(0x600 + item.NodeId), Data = new byte[] { 0x40, 0x3F, 0x65, 0x1 },Size=0x4 }
             };
         }
-       
+        
+        //Обработка CAN сообщений полученных после запроса
         private void DefineObjectViaFunctionCode(CanMessage mes)
         {
             if (mes.Data[0] == 0x42)
@@ -336,6 +358,8 @@ namespace PPH_153P_Configurator
 
             }
         }
+
+        //Преобразует байт в интовый массив бит
         private int[] FromByteToBitArray(byte value)
         {
             int[] arr = new int[8];
@@ -349,10 +373,14 @@ namespace PPH_153P_Configurator
             }
             return arr;
         }
+
+        //Управляет видимостью ScrollBar
         private Visibility DisableScrloll(bool state)
         {
             return state ? Visibility.Visible : Visibility.Hidden;
         }
+
+        //Управляет цветом ProgressBar
         private SolidColorBrush ProgressBarColorChange(byte state)
         {
             switch (state)
@@ -364,6 +392,9 @@ namespace PPH_153P_Configurator
                 default: return _greenColor;
             }
         }
+
+        //Завершает выполнение потока отправки сообщения
+        //И закрывает CAN канал
         public void StopThread()
         {
             threadCloser = false;

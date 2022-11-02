@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -43,6 +42,4 @@ namespace PPH_153P_Configurator
         public Setting BottomPS { get; set; }
         public Setting BottomAZ { get; set; }
     }
-
-    
 }

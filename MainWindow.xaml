@@ -883,36 +883,252 @@
                 />
         </Border>
         </Grid>
-        
-        <Button 
-            Width="auto"
-            Height="50"
+        <Border
             Grid.Column="1"
             Grid.Row="3"
-            Content="Загрузить конфигурацию"
-            VerticalAlignment="Center"
-            Margin="5 5 5 0"
-            Background="#fff" 
-            FontSize="16" Click="ButtonClickSendData"
-            />
-        <Button 
-            Width="auto"
-            Height="50"
+            Width="auto"  
+            Height="auto"
+            Margin="5 5 5 10"
+            CornerRadius="5"
+            BorderThickness="1" 
+            Background="#4CFFFFFF"
+            BorderBrush="#000"
+            >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Border
+                    Grid.Row="0"
+                    BorderThickness="1"
+                    BorderBrush="#000"
+                    >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            Content="АЗ↑"
+                            FontSize="15"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Grid.Column="0"
+                            />
+                        <TextBlock
+                            Grid.Column="1"
+                            Margin="15 3"
+                            Text="{Binding MainData.TopAZ.Value}"
+                            FontSize="15" 
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            />
+                        <TextBlock
+                            Grid.Column="2"
+                            Margin="15 3"
+                            Text="{Binding MainData.TopAZ.Histeresis}"
+                            FontSize="15" 
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            />
+                        <TextBlock
+                            Grid.Column="3"
+                            Margin="15 3"
+                            Text="{Binding MainData.TopAZ.IsSet}"
+                            FontSize="15" 
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            />
+                        <TextBlock
+                            Grid.Column="4"
+                            Margin="15 3"
+                            Text="{Binding MainData.TopAZ.SettingSetter}"
+                            FontSize="15" 
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            />
+                    </Grid>
+                </Border>
+                <Border
+                    Grid.Row="1"
+                    BorderThickness="1"
+                    BorderBrush="#000"
+                    >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            Content="ПС↑"
+                            FontSize="15"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Grid.Column="0"
+                            />
+                        <TextBlock
+                            Grid.Column="1"
+                            Margin="15 3"
+                            Text="{Binding MainData.TopPS.Value}"
+                            FontSize="15" 
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            />
+                        <TextBlock
+                            Grid.Column="2"
+                            Margin="15 3"
+                            Text="{Binding MainData.TopPS.Histeresis}"
+                            FontSize="15" 
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            />
+                        <TextBlock
+                            Grid.Column="3"
+                            Margin="15 3"
+                            Text="{Binding MainData.TopPS.IsSet}"
+                            FontSize="15" 
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            />
+                        <TextBlock
+                            Grid.Column="4"
+                            Margin="15 3"
+                            Text="{Binding MainData.TopPS.SettingSetter}"
+                            FontSize="15" 
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            />
+                    </Grid>
+                </Border>
+                <Border
+                    Grid.Row="2"
+                    BorderThickness="1"
+                    BorderBrush="#000"
+                    >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            Content="ПС↓"
+                            FontSize="15"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Grid.Column="0"
+                            />
+                        <TextBlock
+                            Grid.Column="1"
+                            Margin="15 3"
+                            Text="{Binding MainData.BottomPS.Value}"
+                            FontSize="15" 
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            />
+                        <TextBlock
+                            Grid.Column="2"
+                            Margin="15 3"
+                            Text="{Binding MainData.BottomPS.Histeresis}"
+                            FontSize="15" 
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            />
+                        <TextBlock
+                            Grid.Column="3"
+                            Margin="15 3"
+                            Text="{Binding MainData.BottomPS.IsSet}"
+                            FontSize="15" 
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            />
+                        <TextBlock
+                            Grid.Column="4"
+                            Margin="15 3"
+                            Text="{Binding MainData.BottomPS.SettingSetter}"
+                            FontSize="15" 
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            />
+                    </Grid>
+                </Border>
+                <Border
+                    Grid.Row="3"
+                    BorderThickness="1"
+                    BorderBrush="#000"
+                    >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            Content="АЗ↓"
+                            FontSize="15"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Grid.Column="0"
+                            />
+                        <TextBlock
+                            Grid.Column="1"
+                            Margin="15 3"
+                            Text="{Binding MainData.BottomAZ.Value}"
+                            FontSize="15" 
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            />
+                        <TextBlock
+                            Grid.Column="2"
+                            Margin="15 3"
+                            Text="{Binding MainData.BottomAZ.Histeresis}"
+                            FontSize="15" 
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            />
+                        <TextBlock
+                            Grid.Column="3"
+                            Margin="15 3"
+                            Text="{Binding MainData.BottomAZ.IsSet}"
+                            FontSize="15" 
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            />
+                        <TextBlock
+                            Grid.Column="4"
+                            Margin="15 3"
+                            Text="{Binding MainData.BottomAZ.SettingSetter}"
+                            FontSize="15" 
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            />
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+        <Border
             Grid.Column="2"
             Grid.Row="3"
-            Content="Обновить поля"
-            VerticalAlignment="Center"
-            Margin="5 5 5 0"
-            Background="#fff" 
-            FontSize="16" 
-            Click="ButtonClickRefreshInputData"
-            />
-        <Border x:Name="ListOperators" 
             Width="auto"  
-            Height="auto" 
-            Grid.Row="2"
-            Grid.Column="3"
-            Margin="5 10 5 5"
+            Height="auto"
+            Margin="5 5 5 10"
             CornerRadius="5"
             BorderThickness="1" 
             Background="#4CFFFFFF"
@@ -927,22 +1143,78 @@
             Width="auto"
             Height="50"
             Grid.Row="1"
+            Content="Загрузить новую конфигурацию"
+            VerticalAlignment="Center"
+            Margin="5 5 5 0"
+            Background="#acf5ad" 
+            FontSize="16" Click="ButtonClickSendData"
+            />
+                <Button 
+            Width="auto"
+            Height="50"
+            Grid.Row="0"
+            VerticalAlignment="Center"
+            Margin="5 5 5 0"
+            Background="#f5abab" 
+            FontSize="16" 
+            Click="ButtonClickRefreshInputData"
+            >
+                    <TextBlock
+                        Text="Сбросить ввод к текущим значениям"
+                        TextAlignment="Center"
+                        TextWrapping="Wrap"
+                        />
+                    
+                </Button>
+            </Grid>
+        </Border>
+        
+        
+        
+        
+        <Border x:Name="ListOperators" 
+            Width="auto"  
+            Height="auto" 
+            Grid.Row="2"
+            Grid.Column="3"
+            Margin="5 5 5 10"
+            CornerRadius="5"
+            BorderThickness="1" 
+            Background="#4CFFFFFF"
+            BorderBrush="#000"
+            >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Button 
+            Width="auto"
+            Height="50"
+            Grid.Column="0"
+            Grid.Row="0"
+            VerticalAlignment="Center"
+            Margin="5 5 5 0"
+            Background="#fff" 
+            FontSize="16" Click="CallEnterNameForm"
+            >
+                <TextBlock
+                    TextWrapping="Wrap"
+                    TextAlignment="Center"
+                    Text="Сохранить шаблон конфигурации"
+                />
+            </Button>
+                <Button 
+            Width="auto"
+            Height="50"
+            Grid.Row="1"
             Content="Открыть из файла"
             VerticalAlignment="Center"
             Margin="5 5 5 0"
             Background="#fff" 
             FontSize="16" Click="OpenFromFile"
             />
-                <Button 
-            Width="auto"
-            Height="50"
-            Grid.Row="0"
-            Content="Сохранить конфигурацию"
-            VerticalAlignment="Center"
-            Margin="5 5 5 0"
-            Background="#fff" 
-            FontSize="16" Click="CallEnterNameForm"
-            />
+
 
             </Grid>
         </Border>

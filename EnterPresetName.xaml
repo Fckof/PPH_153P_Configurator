@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PPH_153P_Configurator"
         mc:Ignorable="d"
-        Title="Задайте имя:" Height="350" Width="300" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow" ResizeMode="NoResize" ShowInTaskbar="False" Loaded="Window_Loaded">
+        Title="Задайте имя:" Height="350" Width="300" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow" ResizeMode="NoResize" ShowInTaskbar="False" Loaded="Window_Loaded" Icon="/add_icon_129463.png">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />

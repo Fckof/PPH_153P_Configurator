@@ -26,6 +26,7 @@ namespace PPH_153P_Configurator
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
     }
+
     [Serializable]
     public class DataModel: ObservableObject, ICustom
     {
@@ -60,7 +61,6 @@ namespace PPH_153P_Configurator
             }
         }
 
-
         private float _minSignalRange;
         public float MinSignalRange
         {
@@ -80,9 +80,7 @@ namespace PPH_153P_Configurator
             }
         }
 
-
         private Int16 _averaging;
-
         public Int16 Averaging
         {
             get { return _averaging; }
@@ -134,13 +132,10 @@ namespace PPH_153P_Configurator
             BottomPS = new Setting() { Type = SettingType.BottomPS };
             BottomAZ = new Setting() { Type = SettingType.BottomAZ };
         }
-
-
     }
     [Serializable]
     public class Setting:ObservableObject
     {
-
         [XmlIgnore]
         private SettingType _type;
         [XmlIgnore]
@@ -187,7 +182,6 @@ namespace PPH_153P_Configurator
             }
         }
         private bool _settingSetter;
-
         public bool SettingSetter
         {
             get { return _settingSetter; }
