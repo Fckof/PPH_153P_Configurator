@@ -1214,8 +1214,6 @@
             Background="#fff" 
             FontSize="16" Click="OpenFromFile"
             />
-
-
             </Grid>
         </Border>
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="163,-190,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>

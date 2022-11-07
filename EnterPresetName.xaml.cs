@@ -24,6 +24,7 @@ namespace PPH_153P_Configurator
             InitializeComponent();
             
         }
+        //Выводит список существующих каналов в combobox
         private void InitChannels(ChannelsCollection items, ComboBox list)
         {
             if(items != null)
@@ -46,6 +47,8 @@ namespace PPH_153P_Configurator
         public ChannelsCollection chans { get; set; }
         public Channel chn { get; set; }
         public Preset prest { get; set; }
+
+        //Если имя канала не занято создает новый канал
         private bool IsNameFree(string text, ChannelsCollection chns)
         {
             bool result = true;
@@ -55,6 +58,8 @@ namespace PPH_153P_Configurator
             }
             return result;
         }
+
+        //Проверки ввода данных и добавление
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
             if (config.Text.Length != 0)
@@ -89,6 +94,7 @@ namespace PPH_153P_Configurator
             else MessageBox.Show("Поля не должны быть пустыми");
         }
 
+        //Инициализация данных
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             InitChannels(chans, channelSel);

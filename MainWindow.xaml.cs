@@ -28,6 +28,7 @@ namespace PPH_153P_Configurator
             DisplayChannelList(ChannelLst, pathToPresets);
         }
         string pathToPresets;
+        //Проверка ввода числа типа float
         private void CheckFloatNumberInput(object sender, TextCompositionEventArgs e)
         {
             var textBox = (TextBox)sender;
@@ -38,6 +39,8 @@ namespace PPH_153P_Configurator
                 e.Handled = true;
             }
         }
+
+        //Проверка ввода целого числа
         private void CheckIntNumberInput(object sender, TextCompositionEventArgs e)
         {
             if (!Char.IsDigit(e.Text, 0))
@@ -45,12 +48,16 @@ namespace PPH_153P_Configurator
                 e.Handled = true;
             }
         }
+
+        //Перенаправление фокуса с некоторых элементов
         private void RedirectFocus(object sender, MouseButtonEventArgs e)
         {
             MainGrid.Focus();
             PresetLst.SelectedItem = null;
             ChannelLst.SelectedItem = null;
         }
+
+        //Закрытие потока
         private void MainWindow1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             (this.DataContext as Controller).StopThread();
@@ -62,16 +69,22 @@ namespace PPH_153P_Configurator
                 MessageBox.Show("Утройство CAN не найдено");
             Copier.CopyValues(controller.InputData, controller.MainData);
         }
+
+        //Копирует в input текущие данные
         private void ButtonClickRefreshInputData(object sender, RoutedEventArgs e)
         {
             var controller = (Controller)this.DataContext;
             Copier.CopyValues(controller.InputData, controller.MainData);
         }
+
+        //Отправка данных для записи
         private void ButtonClickSendData(object sender, RoutedEventArgs e)
         {
             var controller = (Controller)this.DataContext;
             controller.SendData(controller.CompareDataToSend(controller.InputData, controller.MainData));
         }
+
+        //Открывает файл конфигурации и в дальнейшем записывает в него
         private void OpenFromFile(object sender, RoutedEventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
@@ -82,6 +95,9 @@ namespace PPH_153P_Configurator
                 PresetLst.Items.Clear();
             }
         }
+
+        //Вспомогательные функции
+        //Добавляют канал/конфиг в listvie
         private void AddPresetToListView(Preset preset, ListView target)
         {
             ListViewItem item = new ListViewItem();
@@ -96,7 +112,9 @@ namespace PPH_153P_Configurator
             item.Tag = channel;
             target.Items.Add(item);
         }
-        
+        //Вспомогательные функции
+
+        //Выводят список каналов/конфигов в заданный listview
         private void DisplayConfigList(ListView view, Channel configs)
         {
             chName.Text = configs.ChannelName;
@@ -122,6 +140,9 @@ namespace PPH_153P_Configurator
                 MessageBox.Show($"Конфигурационный файл не найден или имеет некорректный формат");
             }
         }
+        //
+
+        //Вывод списка конфигов выбранного канала
         private void DisplayChannel(object sender, SelectionChangedEventArgs e)
         {
             if (ChannelLst.SelectedItems.Count == 1)
@@ -131,6 +152,8 @@ namespace PPH_153P_Configurator
                 DisplayConfigList(PresetLst, cfg);
             }
         }
+
+        //Отображение значений конфигурации в полях ввода
         private void DisplayConfig(object sender, SelectionChangedEventArgs e)
         {
             var ctrl = (Controller)this.DataContext;
@@ -141,6 +164,8 @@ namespace PPH_153P_Configurator
                 Copier.CopyValues(ctrl.InputData, cfg);
             }
         }
+
+        //Вызов формы для добавления конфига/канала
         private void CallEnterNameForm(object sender, RoutedEventArgs e)
         {
             EnterPresetName modal = new EnterPresetName();
@@ -156,6 +181,8 @@ namespace PPH_153P_Configurator
                 SaveConfig(modal.chans,modal.chn, modal.prest);
             }
         }
+
+        //Проверки для сохранения конфигурации/канала
         private void SaveConfig(ChannelsCollection collection ,Channel channel, Preset preset)
         {
             var ctrl = (Controller)this.DataContext;
@@ -188,6 +215,8 @@ namespace PPH_153P_Configurator
             XML.SerializeXML(collection, pathToPresets);
             DisplayChannelList(ChannelLst, pathToPresets);
         }
+
+        //Если поля ввода пусты выводит 0
         private void CheckEmptyInput(object sender, RoutedEventArgs e)
         {
             var textbox = (TextBox)sender;
@@ -196,5 +225,6 @@ namespace PPH_153P_Configurator
                 textbox.Text = "0";
             }
         }
+
     }
 }

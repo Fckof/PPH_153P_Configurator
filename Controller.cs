@@ -91,7 +91,6 @@ namespace PPH_153P_Configurator
             thread.Start();
             
         }
-
         public bool IsCANDeviceFound()
         {
             return channel.DeviceFound;
