@@ -12,9 +12,9 @@ namespace PPH_153P_Configurator
         float MinSignalRange { get; set; }
         float MaxSignalRange { get; set; }
         Int16 Averaging { get; set; }
-        Setting TopAZ { get; set; }
-        Setting TopPS { get; set; }
-        Setting BottomPS { get; set; }
-        Setting BottomAZ { get; set; }
+        DataModel.Setting TopAZ { get; set; }
+        DataModel.Setting TopPS { get; set; }
+        DataModel.Setting BottomPS { get; set; }
+        DataModel.Setting BottomAZ { get; set; }
     }
 }

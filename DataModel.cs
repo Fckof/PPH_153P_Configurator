@@ -115,7 +115,7 @@ namespace PPH_153P_Configurator
         [NonSerialized]
         private float _value;
         [XmlIgnore]
-        public float Value { get { return Convert.ToSingle(Math.Round(_value, 2)); } 
+        public float Value { get { return Transform.ToFourDigits(_value); } 
             set {
                 _value = value;
                 OnPropertyChanged("Value");
@@ -132,8 +132,83 @@ namespace PPH_153P_Configurator
             BottomPS = new Setting() { Type = SettingType.BottomPS };
             BottomAZ = new Setting() { Type = SettingType.BottomAZ };
         }
+        [Serializable]
+        public class Setting : ObservableObject
+        {
+            [XmlIgnore]
+            private SettingType _type;
+            [XmlIgnore]
+            public SettingType Type
+            {
+                get { return _type; }
+                set
+                {
+                    _type = value;
+                    OnPropertyChanged("Type");
+                }
+            }
+            private float _value;
+            public float Value
+            {
+                get { return _value; }
+                set
+                {
+                    _value = Transform.ToFourDigits(value);
+                    OnPropertyChanged("Value");
+                }
+            }
+            private float _histeresis;
+            public float Histeresis
+            {
+                get { return _histeresis; }
+                set
+                {
+                    _histeresis = value;
+
+                    OnPropertyChanged("Histeresis");
+                }
+            }
+            [XmlIgnore]
+            public byte isSetValue;
+            private bool _isSet;
+            public bool IsSet
+            {
+                get { return _isSet; }
+                set
+                {
+                    _isSet = value;
+                    if (value)
+                    {
+                        switch (_type)
+                        {
+                            case SettingType.TopAZ:
+                            case SettingType.TopPS:
+                                isSetValue = 2;
+                                break;
+                            case SettingType.BottomAZ:
+                            case SettingType.BottomPS:
+                                isSetValue = 3;
+                                break;
+                        }
+                    }
+                    else isSetValue = 0;
+                    OnPropertyChanged("IsSet");
+                }
+            }
+            private bool _settingSetter;
+            public bool SettingSetter
+            {
+                get { return _settingSetter; }
+                set
+                {
+                    _settingSetter = value;
+                    OnPropertyChanged("SettingSetter");
+                }
+            }
+
+        }
     }
-    [Serializable]
+    /*[Serializable]
     public class Setting:ObservableObject
     {
         [XmlIgnore]
@@ -147,8 +222,8 @@ namespace PPH_153P_Configurator
         }
         private float _value;
         public float Value { 
-            get { return Convert.ToSingle(Math.Round(_value,2)); }
-            set { _value= value;
+            get { return _value; }
+            set { _value= Transform.ToFourDigits(value);
                 OnPropertyChanged("Value");
             }    
         }
@@ -156,6 +231,7 @@ namespace PPH_153P_Configurator
         public float Histeresis { 
             get { return _histeresis; }
             set { _histeresis = value;
+                
                 OnPropertyChanged("Histeresis");
             } 
         }
@@ -190,5 +266,5 @@ namespace PPH_153P_Configurator
             }
         }
 
-    }
+    }*/
 }

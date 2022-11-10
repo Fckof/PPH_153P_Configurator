@@ -27,19 +27,19 @@ namespace PPH_153P_Configurator
     {
         public Preset()
         {
-            TopAZ = new Setting() { Type = SettingType.TopAZ };
-            TopPS = new Setting() { Type = SettingType.TopPS };
-            BottomPS = new Setting() { Type = SettingType.BottomPS };
-            BottomAZ = new Setting() { Type = SettingType.BottomAZ };
+            TopAZ = new DataModel.Setting() { Type = SettingType.TopAZ };
+            TopPS = new DataModel.Setting() { Type = SettingType.TopPS };
+            BottomPS = new DataModel.Setting() { Type = SettingType.BottomPS };
+            BottomAZ = new DataModel.Setting() { Type = SettingType.BottomAZ };
         }
         public string Name { get; set; }
         public byte NodeId { get; set; }
         public Int16 Averaging { get; set; }
         public float MinSignalRange { get; set; }
         public float MaxSignalRange { get; set; }
-        public Setting TopAZ { get; set; }
-        public Setting TopPS { get; set; }
-        public Setting BottomPS { get; set; }
-        public Setting BottomAZ { get; set; }
+        public DataModel.Setting TopAZ { get; set; }
+        public DataModel.Setting TopPS { get; set; }
+        public DataModel.Setting BottomPS { get; set; }
+        public DataModel.Setting BottomAZ { get; set; }
     }
 }
