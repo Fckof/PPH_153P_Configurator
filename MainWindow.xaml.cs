@@ -1,9 +1,12 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -69,7 +72,13 @@ namespace PPH_153P_Configurator
                 MessageBox.Show("Утройство CAN не найдено");
             Copier.CopyValues(controller.InputData, controller.MainData);
         }
-
+        
+        //Перезапускает приложение
+        private void ButtonClickReconnect(object sender, RoutedEventArgs e)
+        {
+            Close();
+            Process.Start(Assembly.GetExecutingAssembly().Location);
+        }
         //Копирует в input текущие данные
         private void ButtonClickRefreshInputData(object sender, RoutedEventArgs e)
         {
@@ -168,7 +177,7 @@ namespace PPH_153P_Configurator
         //Вызов формы для добавления конфига/канала
         private void CallEnterNameForm(object sender, RoutedEventArgs e)
         {
-            EnterPresetName modal = new EnterPresetName();
+            ConfigEditor modal = new ConfigEditor();
             try
             {
                 modal.chans= XML.DeserializeXML(pathToPresets);
@@ -220,10 +229,9 @@ namespace PPH_153P_Configurator
         private void CheckEmptyInput(object sender, RoutedEventArgs e)
         {
             var textbox = (TextBox)sender;
-            if (textbox.Text.Length == 0)
-            {
-                textbox.Text = "0";
-            }
+            //Regex template = new Regex(@"(\d*\.?\d*){0}?");
+            string cleanText = textbox.Text.Replace(" ", string.Empty);
+            textbox.Text = cleanText.Length != 0 ? cleanText : "0";
         }
 
     }

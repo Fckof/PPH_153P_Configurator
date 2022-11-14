@@ -229,7 +229,7 @@ namespace PPH_153P_Configurator
                 {
                     case 0x180:
                         MainData.Value = BitConverter.ToSingle(item.Data, 0);
-                        MainData.InputSignalCode = BitConverter.ToInt16(item.Data, 4);
+                        MainData.InputSignalCode = BitConverter.ToInt16(item.Data, 4).ToString();
                         MainData.DeviceStatus = item.Data[6];
                         MainData.StateBitArray=FromByteToBitArray(item.Data[6]);
                         MainData.AnalogStateBitArray=FromByteToBitArray(item.Data[7]);

@@ -18,3 +18,5 @@ C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\GeneratedInternalType
 C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\PPH_153P_Configurator_MarkupCompile.lref
 C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\EnterPresetName.g.cs
 C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\EnterPresetName.baml
+C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\ConfigEditor.g.cs
+C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\ConfigEditor.baml

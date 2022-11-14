@@ -101,9 +101,9 @@ namespace PPH_153P_Configurator
             }
         }
         [NonSerialized]
-        private int _inputSignalCode;
+        private string _inputSignalCode;
         [XmlIgnore]
-        public int InputSignalCode
+        public string InputSignalCode
         {
             get { return _inputSignalCode; }
             set { 
@@ -164,7 +164,6 @@ namespace PPH_153P_Configurator
                 set
                 {
                     _histeresis = value;
-
                     OnPropertyChanged("Histeresis");
                 }
             }

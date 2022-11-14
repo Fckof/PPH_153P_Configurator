@@ -97,6 +97,37 @@
             <SettingSetter>false</SettingSetter>
           </BottomAZ>
         </Preset>
+        <Preset>
+          <Name>рапврнов</Name>
+          <NodeId>1</NodeId>
+          <Averaging>96</Averaging>
+          <MinSignalRange>0</MinSignalRange>
+          <MaxSignalRange>100</MaxSignalRange>
+          <TopAZ>
+            <Value>86.02</Value>
+            <Histeresis>5</Histeresis>
+            <IsSet>true</IsSet>
+            <SettingSetter>false</SettingSetter>
+          </TopAZ>
+          <TopPS>
+            <Value>40.01</Value>
+            <Histeresis>2.5</Histeresis>
+            <IsSet>true</IsSet>
+            <SettingSetter>false</SettingSetter>
+          </TopPS>
+          <BottomPS>
+            <Value>25</Value>
+            <Histeresis>1.2</Histeresis>
+            <IsSet>false</IsSet>
+            <SettingSetter>true</SettingSetter>
+          </BottomPS>
+          <BottomAZ>
+            <Value>18</Value>
+            <Histeresis>1.5</Histeresis>
+            <IsSet>false</IsSet>
+            <SettingSetter>false</SettingSetter>
+          </BottomAZ>
+        </Preset>
       </Presets>
     </Channel>
     <Channel>
@@ -351,6 +382,42 @@
           <BottomAZ>
             <Value>0</Value>
             <Histeresis>0</Histeresis>
+            <IsSet>false</IsSet>
+            <SettingSetter>false</SettingSetter>
+          </BottomAZ>
+        </Preset>
+      </Presets>
+    </Channel>
+    <Channel>
+      <ChannelName>канал</ChannelName>
+      <Presets>
+        <Preset>
+          <Name>уекрпарпа</Name>
+          <NodeId>1</NodeId>
+          <Averaging>96</Averaging>
+          <MinSignalRange>0</MinSignalRange>
+          <MaxSignalRange>100</MaxSignalRange>
+          <TopAZ>
+            <Value>86.02</Value>
+            <Histeresis>5</Histeresis>
+            <IsSet>true</IsSet>
+            <SettingSetter>false</SettingSetter>
+          </TopAZ>
+          <TopPS>
+            <Value>40.01</Value>
+            <Histeresis>2.5</Histeresis>
+            <IsSet>true</IsSet>
+            <SettingSetter>false</SettingSetter>
+          </TopPS>
+          <BottomPS>
+            <Value>25</Value>
+            <Histeresis>1.2</Histeresis>
+            <IsSet>false</IsSet>
+            <SettingSetter>true</SettingSetter>
+          </BottomPS>
+          <BottomAZ>
+            <Value>18</Value>
+            <Histeresis>1.5</Histeresis>
             <IsSet>false</IsSet>
             <SettingSetter>false</SettingSetter>
           </BottomAZ>

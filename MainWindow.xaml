@@ -6,7 +6,7 @@
         xmlns:vm="clr-namespace:PPH_153P_Configurator"
         mc:Ignorable="d"
         Title="ППХ-153Р Конфигуратор" Height="720" Width="1280" 
-        ResizeMode="NoResize" Icon="/Images/шестерня.png"
+        ResizeMode="CanMinimize" Icon="/Images/шестерня.png"
         MouseDown="RedirectFocus" Closing="MainWindow1_Closing" Loaded="MainWindow1_Loaded" WindowStartupLocation="CenterScreen"
         >
     <Window.DataContext>
@@ -239,7 +239,7 @@
                     FontSize="20"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
-                    Grid.Row="1"
+                    Grid.Row="2"
                     Grid.Column="0"
                     />
                 <Label
@@ -247,7 +247,7 @@
                     FontSize="20"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
-                    Grid.Row="2"
+                    Grid.Row="1"
                     Grid.Column="0"
                     />
                 <Label x:Name="InputSignalCode"
@@ -263,7 +263,7 @@
                     FontSize="20"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    Grid.Row="1"
+                    Grid.Row="2"
                     Grid.Column="1"
                     />
                 <Label x:Name="InputValue"
@@ -271,7 +271,7 @@
                     FontSize="20"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    Grid.Row="2"
+                    Grid.Row="1"
                     Grid.Column="1"
                     />
             </Grid>
@@ -503,6 +503,32 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
+                        <Button 
+                                Width="auto"
+            Height="50"
+            Grid.Row="0"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            Margin="10 5"
+            
+            Background="#fff" 
+            FontSize="16" 
+                          
+            Click="ButtonClickRefreshInputData"
+            >
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="5"/>
+                                </Style>
+                            </Button.Resources>
+                            <Image 
+                                Height="auto"
+                                Width="auto"
+                                Source="/refresh.png"
+                                
+                                />
+                        </Button>
+
                         <Label
                         Content="Уставки"
                         FontSize="20"
@@ -562,6 +588,7 @@
                         <TextBox
                             Grid.Column="1"
                             Margin="15 3"
+                            BorderBrush="{x:Null}"
                             Text="{Binding InputData.TopAZ.Value}"
                             HorizontalContentAlignment="Center" 
                             VerticalContentAlignment="Center" FontSize="20" 
@@ -631,6 +658,7 @@
                         <TextBox
                             Grid.Column="1"
                             Margin="15 3"
+                            BorderBrush="{x:Null}"
                             Text="{Binding InputData.TopPS.Value}"
                             HorizontalContentAlignment="Center" 
                             VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="CheckFloatNumberInput" LostFocus="CheckEmptyInput"
@@ -699,14 +727,15 @@
                         <TextBox
                             Grid.Column="1"
                             Margin="15 3"
+                            BorderBrush="{x:Null}"
                             Text="{Binding InputData.BottomPS.Value}"
                             HorizontalContentAlignment="Center" 
-                            VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="CheckFloatNumberInput" LostFocus="CheckEmptyInput"
+                            VerticalContentAlignment="Center" FontSize="20"
+                            PreviewTextInput="CheckFloatNumberInput" LostFocus="CheckEmptyInput"
                             />
                         <TextBox
                             Grid.Column="2"
                             Margin="20 3"
-                            Background="White"
                             HorizontalContentAlignment="Center" 
                             VerticalContentAlignment="Center" 
                             FontSize="20" 
@@ -767,6 +796,7 @@
                         <TextBox
                             Grid.Column="1"
                             Margin="15 3"
+                            BorderBrush="{x:Null}"
                             Text="{Binding InputData.BottomAZ.Value}"
                             HorizontalContentAlignment="Center" 
                             VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="CheckFloatNumberInput" LostFocus="CheckEmptyInput"
@@ -904,6 +934,7 @@
                 <Border
                     Grid.Row="0"
                     BorderThickness="1"
+                    
                     BorderBrush="#000"
                     >
                     <Grid>
@@ -938,22 +969,37 @@
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
                             />
-                        <TextBlock
+
+                        <CheckBox
                             Grid.Column="3"
-                            Margin="15 3"
-                            Text="{Binding MainData.TopAZ.IsSet}"
-                            FontSize="15" 
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Center"
-                            />
-                        <TextBlock
+                            IsChecked="{Binding MainData.TopAZ.IsSet}"
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center" 
+                            VerticalContentAlignment="Center" 
+                            HorizontalContentAlignment="Center" 
+                            BorderThickness="0,0,0,0"
+                            Background="#00000000" BorderBrush="#00707070" Focusable="False" IsHitTestVisible="False"
+                            >
+                            <CheckBox.LayoutTransform>
+                                <ScaleTransform ScaleX="2" ScaleY="2"/>
+                            </CheckBox.LayoutTransform>
+                        </CheckBox>
+                        <CheckBox
                             Grid.Column="4"
-                            Margin="15 3"
-                            Text="{Binding MainData.TopAZ.SettingSetter}"
-                            FontSize="15" 
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Center"
-                            />
+                            IsChecked="{Binding MainData.TopAZ.SettingSetter}"
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center" 
+                            VerticalContentAlignment="Center" 
+                            HorizontalContentAlignment="Center" 
+                            BorderThickness="0,0,0,0"
+                            Background="#00000000" 
+                            BorderBrush="#00707070" Focusable="False" 
+                            IsHitTestVisible="False"
+                            >
+                            <CheckBox.LayoutTransform>
+                                <ScaleTransform ScaleX="2" ScaleY="2"/>
+                            </CheckBox.LayoutTransform>
+                        </CheckBox>
                     </Grid>
                 </Border>
                 <Border
@@ -993,22 +1039,38 @@
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
                             />
-                        <TextBlock
+                        <CheckBox
                             Grid.Column="3"
-                            Margin="15 3"
-                            Text="{Binding MainData.TopPS.IsSet}"
-                            FontSize="15" 
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Center"
-                            />
-                        <TextBlock
+                            IsChecked="{Binding MainData.TopPS.IsSet}"
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center" 
+                            VerticalContentAlignment="Center" 
+                            HorizontalContentAlignment="Center" 
+                            BorderThickness="0,0,0,0"
+                            Background="#00000000" 
+                            BorderBrush="#00707070" Focusable="False" 
+                            IsHitTestVisible="False"
+                            >
+                            <CheckBox.LayoutTransform>
+                                <ScaleTransform ScaleX="2" ScaleY="2"/>
+                            </CheckBox.LayoutTransform>
+                        </CheckBox>
+                        <CheckBox
                             Grid.Column="4"
-                            Margin="15 3"
-                            Text="{Binding MainData.TopPS.SettingSetter}"
-                            FontSize="15" 
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Center"
-                            />
+                            IsChecked="{Binding MainData.TopPS.SettingSetter}"
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center" 
+                            VerticalContentAlignment="Center" 
+                            HorizontalContentAlignment="Center" 
+                            BorderThickness="0,0,0,0"
+                            Background="#00000000" 
+                            BorderBrush="#00707070" Focusable="False" 
+                            IsHitTestVisible="False"
+                            >
+                            <CheckBox.LayoutTransform>
+                                <ScaleTransform ScaleX="2" ScaleY="2"/>
+                            </CheckBox.LayoutTransform>
+                        </CheckBox>
                     </Grid>
                 </Border>
                 <Border
@@ -1048,22 +1110,38 @@
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
                             />
-                        <TextBlock
+                        <CheckBox
                             Grid.Column="3"
-                            Margin="15 3"
-                            Text="{Binding MainData.BottomPS.IsSet}"
-                            FontSize="15" 
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Center"
-                            />
-                        <TextBlock
+                            IsChecked="{Binding MainData.BottomPS.IsSet}"
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center" 
+                            VerticalContentAlignment="Center" 
+                            HorizontalContentAlignment="Center" 
+                            BorderThickness="0,0,0,0"
+                            Background="#00000000" 
+                            BorderBrush="#00707070" Focusable="False" 
+                            IsHitTestVisible="False"
+                            >
+                            <CheckBox.LayoutTransform>
+                                <ScaleTransform ScaleX="2" ScaleY="2"/>
+                            </CheckBox.LayoutTransform>
+                        </CheckBox>
+                        <CheckBox
                             Grid.Column="4"
-                            Margin="15 3"
-                            Text="{Binding MainData.BottomPS.SettingSetter}"
-                            FontSize="15" 
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Center"
-                            />
+                            IsChecked="{Binding MainData.BottomPS.SettingSetter}"
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center" 
+                            VerticalContentAlignment="Center" 
+                            HorizontalContentAlignment="Center" 
+                            BorderThickness="0,0,0,0"
+                            Background="#00000000" 
+                            BorderBrush="#00707070" Focusable="False" 
+                            IsHitTestVisible="False"
+                            >
+                            <CheckBox.LayoutTransform>
+                                <ScaleTransform ScaleX="2" ScaleY="2"/>
+                            </CheckBox.LayoutTransform>
+                        </CheckBox>
                     </Grid>
                 </Border>
                 <Border
@@ -1103,22 +1181,38 @@
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
                             />
-                        <TextBlock
+                        <CheckBox
                             Grid.Column="3"
-                            Margin="15 3"
-                            Text="{Binding MainData.BottomAZ.IsSet}"
-                            FontSize="15" 
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Center"
-                            />
-                        <TextBlock
+                            IsChecked="{Binding MainData.BottomAZ.IsSet}"
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center" 
+                            VerticalContentAlignment="Center" 
+                            HorizontalContentAlignment="Center" 
+                            BorderThickness="0,0,0,0"
+                            Background="#00000000" 
+                            BorderBrush="#00707070" Focusable="False" 
+                            IsHitTestVisible="False"
+                            >
+                            <CheckBox.LayoutTransform>
+                                <ScaleTransform ScaleX="2" ScaleY="2"/>
+                            </CheckBox.LayoutTransform>
+                        </CheckBox>
+                        <CheckBox
                             Grid.Column="4"
-                            Margin="15 3"
-                            Text="{Binding MainData.BottomAZ.SettingSetter}"
-                            FontSize="15" 
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Center"
-                            />
+                            IsChecked="{Binding MainData.BottomAZ.SettingSetter}"
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center" 
+                            VerticalContentAlignment="Center" 
+                            HorizontalContentAlignment="Center" 
+                            BorderThickness="0,0,0,0"
+                            Background="#00000000" 
+                            BorderBrush="#00707070" Focusable="False" 
+                            IsHitTestVisible="False"
+                            >
+                            <CheckBox.LayoutTransform>
+                                <ScaleTransform ScaleX="2" ScaleY="2"/>
+                            </CheckBox.LayoutTransform>
+                        </CheckBox>
                     </Grid>
                 </Border>
             </Grid>
@@ -1136,35 +1230,39 @@
             >
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
+                    <RowDefinition Height="2*"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Button 
             Width="auto"
-            Height="50"
-            Grid.Row="1"
+            Height="auto"
+            Grid.Row="0"
             Content="Загрузить новую конфигурацию"
-            VerticalAlignment="Center"
-            Margin="5 5 5 0"
+            Margin="5 5 5 5"
             Background="#acf5ad" 
             FontSize="16" Click="ButtonClickSendData"
-            />
+            >
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
                 <Button 
             Width="auto"
-            Height="50"
-            Grid.Row="0"
-            VerticalAlignment="Center"
-            Margin="5 5 5 0"
+            Height="auto"
+            Grid.Row="2"
+            Content="Переподключение к устройству"
+            Margin="5 5 5 5"
             Background="#f5abab" 
-            FontSize="16" 
-            Click="ButtonClickRefreshInputData"
+            FontSize="16" Click="ButtonClickReconnect"
             >
-                    <TextBlock
-                        Text="Сбросить ввод к текущим значениям"
-                        TextAlignment="Center"
-                        TextWrapping="Wrap"
-                        />
-                    
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
                 </Button>
             </Grid>
         </Border>
@@ -1190,30 +1288,43 @@
                 </Grid.RowDefinitions>
                 <Button 
             Width="auto"
-            Height="50"
+            Height="auto"
             Grid.Column="0"
             Grid.Row="0"
-            VerticalAlignment="Center"
-            Margin="5 5 5 0"
+            Margin="5 5 5 5"
             Background="#fff" 
             FontSize="16" Click="CallEnterNameForm"
             >
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
                 <TextBlock
                     TextWrapping="Wrap"
                     TextAlignment="Center"
-                    Text="Сохранить шаблон конфигурации"
+                    Text="Изменить файл конфигураций"
                 />
             </Button>
                 <Button 
             Width="auto"
-            Height="50"
+            Height="auto"
             Grid.Row="1"
-            Content="Открыть из файла"
-            VerticalAlignment="Center"
-            Margin="5 5 5 0"
+            Margin="5 5 5 5"
             Background="#fff" 
             FontSize="16" Click="OpenFromFile"
-            />
+            >
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                    <TextBlock
+                    TextWrapping="Wrap"
+                    TextAlignment="Center"
+                    Text="Открыть файл конфигурации"
+                />
+                </Button>
             </Grid>
         </Border>
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="163,-190,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>

@@ -58,9 +58,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ConfigEditor.xaml.cs">
+      <DependentUpon>ConfigEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ICustom.cs" />
     <Compile Include="Transform.cs" />
     <Compile Include="XML.cs" />
+    <Page Include="ConfigEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EnterPresetName.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -118,6 +125,8 @@
     <Resource Include="Images\шестерня.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\refresh.png" />
+    <Resource Include="refresh.png" />
     <Resource Include="add_icon_129463.png" />
     <Content Include="chai.dll" />
     <Resource Include="livewallpaperconfig_93947.ico" />

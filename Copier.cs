@@ -49,7 +49,7 @@ namespace PPH_153P_Configurator
             target.MaxSignalRange = 0;
             target.Averaging = 0;
             target.DeviceStatus = 0;
-            target.InputSignalCode = 0;
+            target.InputSignalCode = "0";
 
             target.TopAZ.Value = 0;
             target.TopPS.Value = 0;
