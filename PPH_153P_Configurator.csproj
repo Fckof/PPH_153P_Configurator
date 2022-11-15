@@ -58,17 +58,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ConfigEditor.xaml.cs">
+    <Compile Include="Windows\ConfigEditor.xaml.cs">
       <DependentUpon>ConfigEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="ICustom.cs" />
-    <Compile Include="Transform.cs" />
-    <Compile Include="XML.cs" />
-    <Page Include="ConfigEditor.xaml">
+    <Compile Include="Windows\PromptWindow.xaml.cs">
+      <DependentUpon>PromptWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Transform.cs" />
+    <Compile Include="Services\XML.cs" />
+    <Page Include="Windows\ConfigEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="EnterPresetName.xaml">
+    <Page Include="Windows\EnterPresetName.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -84,18 +87,22 @@
     <Compile Include="CAN\Defines.cs" />
     <Compile Include="CAN\Exceptions.cs" />
     <Compile Include="Controller.cs" />
-    <Compile Include="Copier.cs" />
-    <Compile Include="EnterPresetName.xaml.cs">
+    <Compile Include="Services\Copier.cs" />
+    <Compile Include="Windows\EnterPresetName.xaml.cs">
       <DependentUpon>EnterPresetName.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Windows\PromptWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataModel.cs" />
-    <Compile Include="Presets.cs" />
+    <Compile Include="Services\Presets.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

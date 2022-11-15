@@ -57,7 +57,7 @@ namespace PPH_153P_Configurator
 
     private Byte channel;
     private static Boolean initialized = false;
-    public string WriteStatus{ get; private set; }
+    public bool WriteStatus{ get; private set; }
     public string DeviceStatus{ get; private set; }
         public bool DeviceFound { get; private set; } = true;
     public Byte Channel { get { return this.channel; } }
@@ -222,9 +222,9 @@ namespace PPH_153P_Configurator
             if (result < 0)
             {
                 //throw CreateException(result);
-                WriteStatus = " - Write Error";
+                WriteStatus = false;
             }
-            else WriteStatus = "";
+            else WriteStatus = true;
         }
 
     public int Count()
@@ -342,15 +342,15 @@ namespace PPH_153P_Configurator
     {
       ReceiveEventDelegate = new CallBackHandler(this.CallReciveEvent);
       Int16 result = CiSetCB(this.channel, (Byte)CanEventType.Receive, ReceiveEventDelegate);
-            if (result < 0) DeviceStatus = " - NoDeviceFound"; else DeviceStatus = "";//throw CreateException(result);
+            if (result < 0) DeviceFound=false; else DeviceStatus = "";//throw CreateException(result);
 
       TransferEventDelegate = new CallBackHandler(this.CallTransferEvent);
       result = CiSetCB(this.channel, (Byte)CanEventType.Transfer, TransferEventDelegate);
-      if (result < 0) DeviceStatus = " - NoDeviceFound"; else DeviceStatus = "";
+      if (result < 0) DeviceFound = false; else DeviceStatus = "";
 
       ErrorEventDelegate = new CallBackHandler(this.CallErrorEvent);
       result = CiSetCB(this.channel, (Byte)CanEventType.Error, ErrorEventDelegate);
-      if (result < 0) DeviceStatus = " - NoDeviceFound"; else DeviceStatus = "";
+      if (result < 0) DeviceFound = false; else DeviceStatus = "";
     }
 
     private void CallReciveEvent(Int16 Error)

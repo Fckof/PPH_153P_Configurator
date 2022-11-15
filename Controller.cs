@@ -103,8 +103,9 @@ namespace PPH_153P_Configurator
                 RequestData(CompareRequests(MainData));
                 if (!ParseData(channel.ReadAll()))
                 {
-                    Copier.SetToNull(MainData);
+                    //Copier.SetToNull(MainData);
                 }
+                thread.Join(50);
             }
         }
 
@@ -121,15 +122,12 @@ namespace PPH_153P_Configurator
         //Отправляет CAN сообщения для записи в память устройства
         public void SendData(CanMessage[] messages)
         {
-            threadCloser = false;
+            thread.Join(50);
             foreach (CanMessage message in messages)
             {
                 channel.Write(message);
                 ParseWriteErrors(channel.ReadAll());
             }
-            threadCloser = true;
-            thread = new Thread(RecieveCanMessage);
-            thread.Start();
             Thread.Sleep(100);
             Copier.CopyValues(InputData,MainData);
         }
@@ -200,17 +198,13 @@ namespace PPH_153P_Configurator
         {
             foreach (var item in err)
             {
-                string index = $"{BitConverter.ToInt16(item.Data, 1):X}";
+                uint index = err[0].Id & 0x7F;
+                uint msgId = item.Id & 0xffffff80; 
                 switch (item.Data[0])
                 {
                     case 0x80:
-                        var errorCode = $"{BitConverter.ToInt32(item.Data, 4):X}";
-                        string error = DateTime.Now+ "\t| Index: " + index + " | ErrorCode: " + errorCode+"\n";
+                        string error = DateTime.Now+ "\t| Index: " + index + " | ErrorCode: " + msgId + "\n";
                         File.AppendAllText(@"errorsLog.txt", error);
-                        break;
-                    case 0x60:
-                        string success = DateTime.Now + "\t| Object Index: " + index + " Written\n";
-                        File.AppendAllText(@"writeLog.txt", success);
                         break;
                 }
             }
@@ -220,6 +214,7 @@ namespace PPH_153P_Configurator
         private bool ParseData(CanMessage[] arr)
         {
             if (arr.Length == 0) return false;
+            
             foreach (var item in arr)
             {
                 uint nodeId = arr[0].Id & 0x7F;
@@ -253,6 +248,7 @@ namespace PPH_153P_Configurator
                     case 0x580:
                         DefineObjectViaFunctionCode(item);
                         break;
+                        
                 }
             }
             return true;

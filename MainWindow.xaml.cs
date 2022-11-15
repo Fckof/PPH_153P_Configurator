@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -91,6 +92,8 @@ namespace PPH_153P_Configurator
         {
             var controller = (Controller)this.DataContext;
             controller.SendData(controller.CompareDataToSend(controller.InputData, controller.MainData));
+            PromptWindow alert = new PromptWindow("Данные успешно записаны", 1000);
+            alert.ShowDialog();
         }
 
         //Открывает файл конфигурации и в дальнейшем записывает в него

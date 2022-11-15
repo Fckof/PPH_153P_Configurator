@@ -16,7 +16,9 @@ C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\PPH_153P_Configurator
 C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\PPH_153P_Configurator_Content.g.cs
 C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\PPH_153P_Configurator_MarkupCompile.lref
-C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\EnterPresetName.g.cs
-C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\EnterPresetName.baml
-C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\ConfigEditor.g.cs
-C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\ConfigEditor.baml
+C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\Windows\ConfigEditor.g.cs
+C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\Windows\EnterPresetName.g.cs
+C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\Windows\PromptWindow.g.cs
+C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\Windows\ConfigEditor.baml
+C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\Windows\EnterPresetName.baml
+C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\Windows\PromptWindow.baml

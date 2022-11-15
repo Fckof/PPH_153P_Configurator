@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\User\source\repos\PPH_153P_Configurator\App.xaml
-3-840047886
+4416044271
 1-314008671
-181691012174
+19-795088929
 13-1310406943
-ConfigEditor.xaml;EnterPresetName.xaml;MainWindow.xaml;
+Windows\ConfigEditor.xaml;Windows\EnterPresetName.xaml;MainWindow.xaml;Windows\PromptWindow.xaml;
 
-True
+False
 
