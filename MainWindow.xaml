@@ -5,9 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:vm="clr-namespace:PPH_153P_Configurator"
         mc:Ignorable="d"
-        Title="ППХ-153Р Конфигуратор" Height="720" Width="1280" 
-        ResizeMode="CanMinimize" Icon="/Images/шестерня.png"
-        MouseDown="RedirectFocus" Closing="MainWindow1_Closing" Loaded="MainWindow1_Loaded" WindowStartupLocation="CenterScreen"
+        Title="ППХ-153Р Конфигуратор" 
+        Height="720" 
+        Width="1280" 
+        ResizeMode="CanResize"
+        MouseDown="RedirectFocus" Closing="MainWindow1_Closing" 
+        Loaded="MainWindow1_Loaded" 
+        MinHeight="670"
+        MinWidth="1140"
+        WindowStartupLocation="CenterScreen"
         >
     <Window.DataContext>
         <vm:Controller/>
@@ -35,6 +41,18 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Thumb}">
                         <Rectangle Fill="#FFFFEA00" Height="4" Stroke="Black"></Rectangle>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ScrollBarThumbStyleBlack" TargetType="{x:Type Thumb}">
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                        <Rectangle Fill="#000000" Height="2" Stroke="Black"></Rectangle>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -76,12 +94,33 @@
                 <Rectangle Fill="#000" Width="80" Grid.Row="2"/>
             </Grid>
         </ControlTemplate>
+        <ControlTemplate x:Key="VerticalScrollBarBlack" TargetType="{x:Type ScrollBar}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition MaxHeight="2"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition MaxHeight="2"/>
+                </Grid.RowDefinitions>
+                <Rectangle Fill="#000" Width="80" Grid.Row="0"/>
+                <Track Name="PART_Track" Grid.Row="1" 
+                   >
+                    <Track.Thumb>
+                        <Thumb Style="{StaticResource ScrollBarThumbStyleBlack}">
+                        </Thumb>
+                    </Track.Thumb>
+                </Track>
+                <Rectangle Fill="#000" Width="80" Grid.Row="2"/>
+            </Grid>
+        </ControlTemplate>
 
         <Style x:Key="YellowScrollbar" TargetType="{x:Type ScrollBar}">
             <Setter Property="Template" Value="{StaticResource VerticalScrollBarYellow}"/>
         </Style>
         <Style x:Key="RedScrollbar" TargetType="{x:Type ScrollBar}">
             <Setter Property="Template" Value="{StaticResource VerticalScrollBarRed}"/>
+        </Style>
+        <Style x:Key="BlackScrollbar" TargetType="{x:Type ScrollBar}">
+            <Setter Property="Template" Value="{StaticResource VerticalScrollBarBlack}"/>
         </Style>
     </Window.Resources>
 
@@ -161,6 +200,18 @@
                     IsEnabled="False"
                     />
                 <ScrollBar
+                    x:Name="MiddleValue"
+                    Width="60" 
+                    Minimum="{Binding MainData.MinSignalRange}"
+                    Maximum="{Binding MainData.MaxSignalRange}"
+                    BorderBrush="{x:Null}" 
+                    Background="{x:Null}"
+                    Margin="0 30" SmallChange="0.01"
+                    Style="{StaticResource ResourceKey=BlackScrollbar}" 
+                    Value="{Binding MainData.HalfRangeValue,Mode=OneWay}"
+                    IsEnabled="False"
+                    />
+                <ScrollBar
                     x:Name="BottomPS"
                     Width="60" 
                     Visibility="{Binding BottomPSVisibility}"
@@ -226,9 +277,10 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <Label
-                    Content="Код вх.сигнала:"
+                <TextBlock
+                    Text="Код вх.сигнала:"
                     FontSize="20"
+                    TextWrapping="Wrap"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     Grid.Row="0"
@@ -325,20 +377,22 @@
                     Grid.Row="2"
                     Grid.Column="0"
                     />
-                <Label
-                    Content="Выход за нижний предел:"
+                <TextBlock
+                    Text="Выход за нижний предел:"
                     FontSize="20"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     Grid.Row="3"
+                    TextWrapping="Wrap"
                     Grid.Column="0"
                     />
-                <Label
-                    Content="Выход за верхний предел:"
+                <TextBlock
+                    Text="Выход за верхний предел:"
                     FontSize="20"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     Grid.Row="4"
+                    TextWrapping="Wrap"
                     Grid.Column="0"
                     />
                 <Label 
@@ -407,8 +461,8 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <Label
-                    Content="NodeID узла"
+                <TextBlock
+                    Text="NodeID узла"
                     FontSize="20"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
@@ -424,13 +478,14 @@
                     Grid.Row="1"
                     Grid.Column="0"
                     />
-                <Label
-                    Content="Усреднение, мс"
+                <TextBlock
+                    Text="Усреднение, мс"
                     FontSize="20"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Grid.Row="2"
                     Grid.Column="0"
+                    TextWrapping="Wrap"
                     />
                 <TextBox
                     Grid.Column="1"
@@ -536,9 +591,10 @@
                         HorizontalAlignment="Center"
                         Grid.Column="1"
                         />
-                        <Label
-                        Content="Гистерезис, %"
+                        <TextBlock
+                        Text="Гистерезис, %"
                         FontSize="20"
+                        TextWrapping="Wrap"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"
                         Grid.Column="2"
@@ -1237,7 +1293,6 @@
             Width="auto"
             Height="auto"
             Grid.Row="0"
-            Content="Загрузить новую конфигурацию"
             Margin="5 5 5 5"
             Background="#acf5ad" 
             FontSize="16" Click="ButtonClickSendData"
@@ -1247,13 +1302,15 @@
                             <Setter Property="CornerRadius" Value="5"/>
                         </Style>
                     </Button.Resources>
+                    <TextBlock
+                        Text="Загрузить новую конфигурацию"
+                        />
                 </Button>
 
                 <Button 
             Width="auto"
             Height="auto"
             Grid.Row="2"
-            Content="Переподключение к устройству"
             Margin="5 5 5 5"
             Background="#f5abab" 
             FontSize="16" Click="ButtonClickReconnect"
@@ -1263,6 +1320,9 @@
                             <Setter Property="CornerRadius" Value="5"/>
                         </Style>
                     </Button.Resources>
+                    <TextBlock
+                        Text="Переподключение к устройству"
+                        />
                 </Button>
             </Grid>
         </Border>

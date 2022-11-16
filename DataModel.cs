@@ -49,6 +49,18 @@ namespace PPH_153P_Configurator
             }
         }
         [NonSerialized]
+        private float _halfRangeValue;
+        [XmlIgnore]
+        public float HalfRangeValue
+        {
+            get { return _halfRangeValue; }
+            set
+            {
+                _halfRangeValue = (MaxSignalRange-MinSignalRange)/2f;
+                OnPropertyChanged("HalfRangeValue");
+            }
+        }
+        [NonSerialized]
         private int[] _analogStateBitArray;
         [XmlIgnore]
         public int[] AnalogStateBitArray

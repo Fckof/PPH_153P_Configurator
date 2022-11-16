@@ -19,14 +19,17 @@ namespace PPH_153P_Configurator
     /// </summary>
     public partial class ConfigEditor : Window
     {
+        public DataModel Model { get; private set; }
         public ConfigEditor()
         {
             InitializeComponent();
-            model = new DataModel();
+            Model = new DataModel();
+            this.DataContext = Model;
             pathToPresets = "Presets.xml";
             DisplayChannelList(ChannelLst, pathToPresets);
+            
         }
-        DataModel model;
+        
         string pathToPresets;
         private void AddPresetToListView(Preset preset, ListView target)
         {
@@ -75,6 +78,7 @@ namespace PPH_153P_Configurator
         //Вывод списка конфигов выбранного канала
         private void DisplayChannel(object sender, SelectionChangedEventArgs e)
         {
+            var df = (DataModel)this.DataContext;
             if (ChannelLst.SelectedItems.Count == 1)
             {
                 Channel cfg = (Channel)ChannelLst.SelectedItems.Cast<ListViewItem>().First().Tag;
@@ -86,12 +90,10 @@ namespace PPH_153P_Configurator
         //Отображение значений конфигурации в полях ввода
         private void DisplayConfig(object sender, SelectionChangedEventArgs e)
         {
-            var ctrl = (Controller)this.DataContext;
-
             if (PresetLst.SelectedItems.Count == 1)
             {
                 Preset cfg = (Preset)PresetLst.SelectedItems.Cast<ListViewItem>().First().Tag;
-                Copier.CopyValues(ctrl.InputData, cfg);
+                Copier.CopyValues(Model, cfg);
             }
         }
 
@@ -118,9 +120,9 @@ namespace PPH_153P_Configurator
         //Перенаправление фокуса с некоторых элементов
         private void RedirectFocus(object sender, MouseButtonEventArgs e)
         {
-            /*MainGrid.Focus();
+            MainGrid.Focus();
             PresetLst.SelectedItem = null;
-            ChannelLst.SelectedItem = null;*/
+            ChannelLst.SelectedItem = null;
         }
 
         //Если поля ввода пусты выводит 0
@@ -153,5 +155,10 @@ namespace PPH_153P_Configurator
         public ChannelsCollection chans { get; set; }
         public Channel chn { get; set; }
         public Preset prest { get; set; }
+
+        private void ResetFields(object sender, RoutedEventArgs e)
+        {
+            Copier.SetToNull(Model);
+        }
     }
 }

@@ -188,10 +188,6 @@ namespace PPH_153P_Configurator
             {
             }
             modal.ShowDialog();
-            if (modal.DialogResult == true)
-            {
-                SaveConfig(modal.chans,modal.chn, modal.prest);
-            }
         }
 
         //Проверки для сохранения конфигурации/канала
@@ -232,7 +228,6 @@ namespace PPH_153P_Configurator
         private void CheckEmptyInput(object sender, RoutedEventArgs e)
         {
             var textbox = (TextBox)sender;
-            //Regex template = new Regex(@"(\d*\.?\d*){0}?");
             string cleanText = textbox.Text.Replace(" ", string.Empty);
             textbox.Text = cleanText.Length != 0 ? cleanText : "0";
         }
