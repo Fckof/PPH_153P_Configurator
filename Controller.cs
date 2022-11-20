@@ -103,7 +103,7 @@ namespace PPH_153P_Configurator
                 RequestData(CompareRequests(MainData));
                 if (!ParseData(channel.ReadAll()))
                 {
-                    //Copier.SetToNull(MainData);
+                    Copier.ClearModelValues(MainData);
                 }
                 thread.Join(50);
             }

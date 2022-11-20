@@ -20,6 +20,7 @@ namespace PPH_153P_Configurator
     public partial class ConfigEditor : Window
     {
         public DataModel Model { get; private set; }
+        public ChannelsCollection ChansList { get; set; }
         public ConfigEditor()
         {
             InitializeComponent();
@@ -27,7 +28,6 @@ namespace PPH_153P_Configurator
             this.DataContext = Model;
             pathToPresets = "Presets.xml";
             DisplayChannelList(ChannelLst, pathToPresets);
-            
         }
         
         string pathToPresets;
@@ -50,7 +50,6 @@ namespace PPH_153P_Configurator
         //Выводят список каналов/конфигов в заданный listview
         private void DisplayConfigList(ListView view, Channel configs)
         {
-            chName.Text = configs.ChannelName;
             if (configs != null) view.Items.Clear();
             foreach (var cfg in configs.Presets)
             {
@@ -61,9 +60,9 @@ namespace PPH_153P_Configurator
         {
             try
             {
-                ChannelsCollection list = XML.DeserializeXML(path);
-                if (list != null) view.Items.Clear();
-                foreach (var cfg in list.Channels)
+                ChansList = XML.DeserializeXML(path);
+                if (ChansList != null) view.Items.Clear();
+                foreach (var cfg in ChansList.Channels)
                 {
                     AddChannelToListView(cfg, view);
                 }
@@ -74,28 +73,6 @@ namespace PPH_153P_Configurator
             }
         }
         //
-
-        //Вывод списка конфигов выбранного канала
-        private void DisplayChannel(object sender, SelectionChangedEventArgs e)
-        {
-            var df = (DataModel)this.DataContext;
-            if (ChannelLst.SelectedItems.Count == 1)
-            {
-                Channel cfg = (Channel)ChannelLst.SelectedItems.Cast<ListViewItem>().First().Tag;
-                chName.Text = cfg.ChannelName;
-                DisplayConfigList(PresetLst, cfg);
-            }
-        }
-
-        //Отображение значений конфигурации в полях ввода
-        private void DisplayConfig(object sender, SelectionChangedEventArgs e)
-        {
-            if (PresetLst.SelectedItems.Count == 1)
-            {
-                Preset cfg = (Preset)PresetLst.SelectedItems.Cast<ListViewItem>().First().Tag;
-                Copier.CopyValues(Model, cfg);
-            }
-        }
 
         private void CheckFloatNumberInput(object sender, TextCompositionEventArgs e)
         {
@@ -121,8 +98,8 @@ namespace PPH_153P_Configurator
         private void RedirectFocus(object sender, MouseButtonEventArgs e)
         {
             MainGrid.Focus();
-            PresetLst.SelectedItem = null;
-            ChannelLst.SelectedItem = null;
+            /*PresetLst.SelectedItem = null;
+            ChannelLst.SelectedItem = null;*/
         }
 
         //Если поля ввода пусты выводит 0
@@ -133,7 +110,7 @@ namespace PPH_153P_Configurator
             string cleanText = textbox.Text.Replace(" ", string.Empty);
             textbox.Text = cleanText.Length != 0 ? cleanText : "0";
         }
-        private void InitChannels(ChannelsCollection items, ComboBox list)
+        /*private void InitChannels(ChannelsCollection items, ComboBox list)
         {
             if (items != null)
             {
@@ -149,16 +126,71 @@ namespace PPH_153P_Configurator
                 }
             }
             else chans = new ChannelsCollection();
-        }
+        }*/
         //public string PresetName { get { return config.Text.Trim(' ').ToLower().Replace(" ", "_"); } }
         //public string ChannelName { get { return channel.Text.Trim(' ').ToLower().Replace(" ", "_"); } }
-        public ChannelsCollection chans { get; set; }
-        public Channel chn { get; set; }
-        public Preset prest { get; set; }
+        
 
         private void ResetFields(object sender, RoutedEventArgs e)
         {
-            Copier.SetToNull(Model);
+            Copier.ClearModelValues(Model);
+        }
+
+
+
+        private void DisplayChannelName(object sender, SelectionChangedEventArgs e)
+        {
+            var item = (Channel)ChannelLst.SelectedItems.Cast<ListViewItem>().First().Tag;
+            chName.Text = item.ChannelName;
+        }
+        private void DisplayPresetName(object sender, SelectionChangedEventArgs e)
+        {
+            var item = (Preset)PresetLst.SelectedItems.Cast<ListViewItem>().First().Tag;
+            cfgName.Text = item.Name;
+        }
+
+        //Отображение значений конфигурации в полях ввода
+        private void DisplayConfig(object sender, MouseButtonEventArgs e)
+        {
+            if (PresetLst.SelectedItems.Count == 1)
+            {
+                Preset cfg = (Preset)PresetLst.SelectedItems.Cast<ListViewItem>().First().Tag;
+                Copier.CopyValues(Model, cfg);
+                cfgName.Text = cfg.Name;
+            }
+        }
+        private void DisplayConfig(object sender, SelectionChangedEventArgs e)
+        {
+            if (PresetLst.SelectedItems.Count == 1)
+            {
+                Preset cfg = (Preset)PresetLst.SelectedItems.Cast<ListViewItem>().First().Tag;
+                Copier.CopyValues(Model, cfg);
+                cfgName.Text = cfg.Name;
+            }
+        }
+
+        //Вывод списка конфигов выбранного канала
+        private void DisplayChannel(object sender, SelectionChangedEventArgs e)
+        {
+            var df = (DataModel)this.DataContext;
+            if (ChannelLst.SelectedItems.Count == 1)
+            {
+                Channel cfg = (Channel)ChannelLst.SelectedItems.Cast<ListViewItem>().First().Tag;
+                DisplayConfigList(PresetLst, cfg);
+                chName.Text = cfg.ChannelName;
+                cfgName.Text = "";
+            }
+        }
+
+        private void DisplayChannel(object sender, MouseButtonEventArgs e)
+        {
+            var df = (DataModel)this.DataContext;
+            if (ChannelLst.SelectedItems.Count == 1)
+            {
+                Channel cfg = (Channel)ChannelLst.SelectedItems.Cast<ListViewItem>().First().Tag;
+                DisplayConfigList(PresetLst, cfg);
+                chName.Text = cfg.ChannelName;
+            }
         }
     }
 }

@@ -92,7 +92,7 @@ namespace PPH_153P_Configurator
         {
             var controller = (Controller)this.DataContext;
             controller.SendData(controller.CompareDataToSend(controller.InputData, controller.MainData));
-            PromptWindow alert = new PromptWindow("Данные успешно записаны", 1000);
+            PromptWindow alert = new PromptWindow("Данные отправлены", 1000);
             alert.ShowDialog();
         }
 
@@ -129,7 +129,6 @@ namespace PPH_153P_Configurator
         //Выводят список каналов/конфигов в заданный listview
         private void DisplayConfigList(ListView view, Channel configs)
         {
-            chName.Text = configs.ChannelName;
             if (configs != null) view.Items.Clear();
                 foreach (var cfg in configs.Presets)
                 {
@@ -155,18 +154,17 @@ namespace PPH_153P_Configurator
         //
 
         //Вывод списка конфигов выбранного канала
-        private void DisplayChannel(object sender, SelectionChangedEventArgs e)
+        private void DisplayChannel(object sender, MouseButtonEventArgs e)
         {
             if (ChannelLst.SelectedItems.Count == 1)
             {
                 Channel cfg = (Channel)ChannelLst.SelectedItems.Cast<ListViewItem>().First().Tag;
-                chName.Text = cfg.ChannelName;
                 DisplayConfigList(PresetLst, cfg);
             }
         }
 
         //Отображение значений конфигурации в полях ввода
-        private void DisplayConfig(object sender, SelectionChangedEventArgs e)
+        private void DisplayConfig(object sender, MouseButtonEventArgs e)
         {
             var ctrl = (Controller)this.DataContext;
 
@@ -181,12 +179,6 @@ namespace PPH_153P_Configurator
         private void CallEnterNameForm(object sender, RoutedEventArgs e)
         {
             ConfigEditor modal = new ConfigEditor();
-            try
-            {
-                modal.chans= XML.DeserializeXML(pathToPresets);
-            }catch (Exception ex)
-            {
-            }
             modal.ShowDialog();
         }
 

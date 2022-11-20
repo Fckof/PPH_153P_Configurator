@@ -14,7 +14,7 @@
           Focusable="True"
         >
         <Grid.RowDefinitions>
-            <RowDefinition Height="1.3*"/>
+            <RowDefinition Height="1.5*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height=".5*"/>
         </Grid.RowDefinitions>
@@ -23,73 +23,301 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
+
         <Grid
             Width="auto"  
             Height="auto" 
             Grid.Row="1"
             Grid.Column="2"
-            Margin="5 5 5 5"
             >
-            <Grid.RowDefinitions>
-                <RowDefinition Height=".1*"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <TextBlock
-                    Text="Канал: "
-                    FontSize="18"
-                    />
-            <TextBlock x:Name="chName"
-                    FontSize="18"
-                Margin="60 0 0 0"
-                    />
-            <Border x:Name="PresetChoose" 
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Border 
             Width="auto"  
             Height="auto" 
             Grid.Row="1"
+            Grid.Column="0"
+            Margin="5"
             CornerRadius="5"
             BorderThickness="1" 
             Background="#4CFFFFFF"
             BorderBrush="#000"
-            
+            >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition Height=".5*"/>
+                    </Grid.RowDefinitions>
+                    <Button 
+            Width="auto"
+            Height="auto"
+            Grid.Row="0"
+            Margin="5 5 5 5"
+            Background="#fff" 
+            FontSize="16" 
+            >
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </Button.Resources>
+                        <TextBlock
+                    TextWrapping="Wrap"
+                    TextAlignment="Center"
+                    Text="Сохранить изменения конфигурации"
+                />
+                    </Button>
+                    <Button 
+            Width="auto"
+            Height="auto"
+            Grid.Row="1"
+            Margin="5 5 5 5"
+            Background="#fff" 
+            FontSize="16"
+            >
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </Button.Resources>
+                        <TextBlock
+                    TextWrapping="Wrap"
+                    TextAlignment="Center"
+                    Text="Добавить новую конфигурацию"
+                />
+                    </Button>
+                    <Button 
+                    Width="auto"
+                    Height="auto"
+                    Background="#f5abab" 
+                    Grid.Column="0"
+                    Grid.Row="2"
+                    Margin="5 5 5 5"
+                    FontSize="16"
+                    >
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </Button.Resources>
+                        <TextBlock
+                    TextWrapping="Wrap"
+                    TextAlignment="Center"
+                    Text="Удалить выбранную конфигурацию"
+                        
+                />
+                    </Button>
+                </Grid>
+            </Border>
+            <Border 
+            Width="auto"  
+            Height="auto"
+            Grid.Column="1"
+            Margin="5"
+            CornerRadius="5"
+            BorderThickness="1" 
+            Background="#4CFFFFFF"
+            BorderBrush="#000"
+            >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition Height=".5*"/>
+                    </Grid.RowDefinitions>
+                    <Button 
+            Width="auto"
+            Height="auto"
+            Grid.Row="0"
+            Margin="5 5 5 5"
+            Background="#fff" 
+            FontSize="16"
+            >
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </Button.Resources>
+                        <TextBlock
+                    TextWrapping="Wrap"
+                    TextAlignment="Center"
+                    Text="Изменить название канала"
+                />
+                    </Button>
+                    <Button 
+            Width="auto"
+            Height="auto"
+            Grid.Row="1"
+            Margin="5 5 5 5"
+            Background="#fff" 
+            FontSize="16"
+            >
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </Button.Resources>
+                        <TextBlock
+                    TextWrapping="Wrap"
+                    TextAlignment="Center"
+                    Text="Добавить канал новый канал"
+                />
+                    </Button>
+                    <Button 
+                    Width="auto"
+                    Height="auto"
+                    Background="#f5abab" 
+                    Grid.Column="0"
+                    Grid.Row="2"
+                    Margin="5 5 5 5"
+                    FontSize="16"
+                    >
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </Button.Resources>
+                        <TextBlock
+                    TextWrapping="Wrap"
+                    TextAlignment="Center"
+                    Text="Удалить выбранный канал"
+                        
+                />
+                    </Button>
+                </Grid>
+            </Border>
+        </Grid>
+        <Button 
+            Width="auto"
+            Height="auto"
+            Grid.Column="0"
+            Grid.Row="2"
+            Margin="5 5 5 5"
+            Background="#fff" 
+            FontSize="16"
+            >
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <TextBlock
+                    TextWrapping="Wrap"
+                    TextAlignment="Center"
+                    Text="Сохранить файл конфигураций"
+                />
+        </Button>
+        
+        <Grid
+            Width="auto"  
+            Height="auto" 
+            Grid.Row="0"
+            Grid.Column="2"
+            Margin="5 10 5 5"
+            >
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height=".15*"/>
+            </Grid.RowDefinitions>
+            <Grid
+                    Width="auto"  
+            Height="auto" 
+            Grid.Row="1"
+                Margin="0 0 0 5"
+                    >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".85*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock
+                    Text="Название настройки:"
+                    FontSize="18"
+                    TextWrapping="Wrap"
+                    Grid.Column="0"
+                    />
+                <TextBox x:Name="cfgName"
+                    Grid.Column="1"
+                    FontSize="17"
+                    Width="auto"
+                    Height="auto"
+                    Margin="1"
+                    LostFocus="CheckEmptyInput"
+                    />
+            </Grid>
+            <Border x:Name="PresetChoose" 
+            Width="auto"  
+            Height="auto" 
+            Grid.Row="0"
+            CornerRadius="5"
+            BorderThickness="1" 
+            Background="#4CFFFFFF"
+            BorderBrush="#000"
+            Margin="0 0 0 5"
             >
                 <ListView
-                x:Name="PresetLst" 
-                SelectionChanged="DisplayConfig"
-                FontSize="18"
+                x:Name="PresetLst"
+                FontSize="18" MouseDoubleClick="DisplayConfig" SelectionChanged="DisplayConfig"
                 />
             </Border>
         </Grid>
         <Grid
-                Grid.Column="2"
+                Grid.Column="1"
                 Grid.Row="0"
                 Width="auto"  
                 Height="auto"
-                Margin="5 5 5 10"
+                Margin="5 10 5 5"
                 >
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.15*"/>
                 <RowDefinition/>
+                <RowDefinition Height="0.15*"/>
             </Grid.RowDefinitions>
-            <TextBlock
-                    Text="Выбор канала:"
-                    FontSize="18"
-                    />
-            <Border x:Name="ChannelChoose" 
-            Width="auto"  
+
+
+            <Grid
+                    Width="auto"  
             Height="auto" 
             Grid.Row="1"
-            CornerRadius="5"
-            BorderThickness="1" 
-            Background="#4CFFFFFF"
-            BorderBrush="#000"
-            >
-                <ListView
-                x:Name="ChannelLst" 
-                SelectionChanged="DisplayChannel"
-                FontSize="18"
-                >
-                    <ListViewItem/>
-                </ListView>
+            Margin="0 0 0 5"
+                    >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".7*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock
+                    Text="Название канала:"
+                    FontSize="18"
+                    TextWrapping="Wrap"
+                    Grid.Column="0"
+                    />
+                <TextBox x:Name="chName"
+                    Grid.Column="1"
+                    FontSize="17"
+                    Width="auto"
+                    Height="auto"
+                    Margin="1"
+                    LostFocus="CheckEmptyInput"
+                    />
+            </Grid>
+
+            <Border x:Name="ChannelChoose"
+                        Width="auto"
+                        Height="auto" 
+                        Grid.Row="0"
+                        CornerRadius="5"
+                        BorderThickness="1" 
+                        Background="#4CFFFFFF"
+                        BorderBrush="#000"
+                    Margin="0 0 0 5"
+                        >
+                    <ListView
+                x:Name="ChannelLst"
+                FontSize="18" SelectionChanged="DisplayChannel" MouseDoubleClick="DisplayChannel"
+                />
             </Border>
         </Grid>
         <Border x:Name="GeneralSettings" 

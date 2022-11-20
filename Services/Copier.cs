@@ -39,7 +39,7 @@ namespace PPH_153P_Configurator
         }
 
         //Обнуление значений объекта
-        public static void SetToNull(DataModel target)
+        public static void ClearModelValues(DataModel target)
         {
             target.Value = 0;
             target.NodeId = 0;

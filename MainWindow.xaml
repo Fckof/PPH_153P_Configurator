@@ -924,9 +924,8 @@
             BorderBrush="#000"
             >
                 <ListView
-                x:Name="ChannelLst" 
-                SelectionChanged="DisplayChannel"
-                FontSize="18"
+                x:Name="ChannelLst"
+                FontSize="18" MouseDoubleClick="DisplayChannel"
                 >
                     <ListViewItem/>
                 </ListView>
@@ -945,12 +944,8 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <TextBlock
-                    Text="Канал: "
+                    Text="Выбор настройки: "
                     FontSize="18"
-                    />
-            <TextBlock x:Name="chName"
-                    FontSize="18"
-                Margin="60 0 0 0"
                     />
             <Border x:Name="PresetChoose" 
             Width="auto"  
@@ -963,9 +958,8 @@
             
             >
             <ListView
-                x:Name="PresetLst" 
-                SelectionChanged="DisplayConfig"
-                FontSize="18"
+                x:Name="PresetLst"
+                FontSize="18" MouseDoubleClick="DisplayConfig"
                 />
         </Border>
         </Grid>
