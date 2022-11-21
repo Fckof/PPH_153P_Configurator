@@ -97,6 +97,37 @@
             <SettingSetter>false</SettingSetter>
           </BottomAZ>
         </Preset>
+        <Preset>
+          <Name>рапврнов</Name>
+          <NodeId>1</NodeId>
+          <Averaging>96</Averaging>
+          <MinSignalRange>0</MinSignalRange>
+          <MaxSignalRange>100</MaxSignalRange>
+          <TopAZ>
+            <Value>86.02</Value>
+            <Histeresis>5</Histeresis>
+            <IsSet>true</IsSet>
+            <SettingSetter>false</SettingSetter>
+          </TopAZ>
+          <TopPS>
+            <Value>40.01</Value>
+            <Histeresis>2.5</Histeresis>
+            <IsSet>true</IsSet>
+            <SettingSetter>false</SettingSetter>
+          </TopPS>
+          <BottomPS>
+            <Value>25</Value>
+            <Histeresis>1.2</Histeresis>
+            <IsSet>false</IsSet>
+            <SettingSetter>true</SettingSetter>
+          </BottomPS>
+          <BottomAZ>
+            <Value>18</Value>
+            <Histeresis>1.5</Histeresis>
+            <IsSet>false</IsSet>
+            <SettingSetter>false</SettingSetter>
+          </BottomAZ>
+        </Preset>
       </Presets>
     </Channel>
     <Channel>
@@ -391,34 +422,70 @@
             <SettingSetter>false</SettingSetter>
           </BottomAZ>
         </Preset>
+      </Presets>
+    </Channel>
+    <Channel>
+      <ChannelName>channss</ChannelName>
+      <Presets>
         <Preset>
-          <Name>fdg</Name>
+          <Name>newcog</Name>
           <NodeId>1</NodeId>
-          <Averaging>96</Averaging>
+          <Averaging>48</Averaging>
           <MinSignalRange>0</MinSignalRange>
           <MaxSignalRange>100</MaxSignalRange>
           <TopAZ>
-            <Value>86.02</Value>
-            <Histeresis>5</Histeresis>
-            <IsSet>true</IsSet>
+            <Value>0</Value>
+            <Histeresis>0</Histeresis>
+            <IsSet>false</IsSet>
             <SettingSetter>false</SettingSetter>
           </TopAZ>
           <TopPS>
-            <Value>40.01</Value>
-            <Histeresis>2.5</Histeresis>
-            <IsSet>true</IsSet>
+            <Value>0</Value>
+            <Histeresis>0</Histeresis>
+            <IsSet>false</IsSet>
             <SettingSetter>false</SettingSetter>
           </TopPS>
           <BottomPS>
-            <Value>25</Value>
-            <Histeresis>1.2</Histeresis>
-            <IsSet>false</IsSet>
-            <SettingSetter>true</SettingSetter>
+            <Value>38</Value>
+            <Histeresis>1</Histeresis>
+            <IsSet>true</IsSet>
+            <SettingSetter>false</SettingSetter>
           </BottomPS>
           <BottomAZ>
-            <Value>18</Value>
-            <Histeresis>1.5</Histeresis>
+            <Value>35</Value>
+            <Histeresis>1</Histeresis>
+            <IsSet>true</IsSet>
+            <SettingSetter>false</SettingSetter>
+          </BottomAZ>
+        </Preset>
+        <Preset>
+          <Name>лдгп</Name>
+          <NodeId>1</NodeId>
+          <Averaging>48</Averaging>
+          <MinSignalRange>0</MinSignalRange>
+          <MaxSignalRange>100</MaxSignalRange>
+          <TopAZ>
+            <Value>0</Value>
+            <Histeresis>0</Histeresis>
             <IsSet>false</IsSet>
+            <SettingSetter>false</SettingSetter>
+          </TopAZ>
+          <TopPS>
+            <Value>0</Value>
+            <Histeresis>0</Histeresis>
+            <IsSet>false</IsSet>
+            <SettingSetter>false</SettingSetter>
+          </TopPS>
+          <BottomPS>
+            <Value>38</Value>
+            <Histeresis>1</Histeresis>
+            <IsSet>true</IsSet>
+            <SettingSetter>false</SettingSetter>
+          </BottomPS>
+          <BottomAZ>
+            <Value>35</Value>
+            <Histeresis>1</Histeresis>
+            <IsSet>true</IsSet>
             <SettingSetter>false</SettingSetter>
           </BottomAZ>
         </Preset>

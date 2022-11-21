@@ -52,7 +52,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Thumb}">
-                        <Rectangle Fill="#000000" Height="2" Stroke="Black"></Rectangle>
+                        <Rectangle Fill="#000000" Height="1" Stroke="Black"></Rectangle>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -151,10 +151,7 @@
             BorderBrush="#000"
             >
             <Grid>
-                <Label Content="{Binding Source = MainData, Path=Value}"
-                       HorizontalAlignment="Left"
-                       Margin="0 20 0 0"
-                       />
+                
                 <Label 
                     Content="Max"
                     FontSize="20"
@@ -208,7 +205,7 @@
                     Background="{x:Null}"
                     Margin="0 30" SmallChange="0.01"
                     Style="{StaticResource ResourceKey=BlackScrollbar}" 
-                    Value="{Binding MainData.HalfRangeValue,Mode=OneWay}"
+                    Value="{Binding MainData.HalfRangeValue}"
                     IsEnabled="False"
                     />
                 <ScrollBar
@@ -925,9 +922,11 @@
             >
                 <ListView
                 x:Name="ChannelLst"
-                FontSize="18" MouseDoubleClick="DisplayChannel"
+                FontSize="18" 
+                    Focusable="True"
+                SelectionChanged="DisplayChannel"
+                    SelectionMode="Single"
                 >
-                    <ListViewItem/>
                 </ListView>
             </Border>
         </Grid>
@@ -959,7 +958,10 @@
             >
             <ListView
                 x:Name="PresetLst"
-                FontSize="18" MouseDoubleClick="DisplayConfig"
+                FontSize="18" 
+                MouseDoubleClick="DisplayConfig" 
+                SelectionChanged="DisplayConfig"
+                SelectionMode="Single"
                 />
         </Border>
         </Grid>

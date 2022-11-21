@@ -57,8 +57,6 @@ namespace PPH_153P_Configurator
         private void RedirectFocus(object sender, MouseButtonEventArgs e)
         {
             MainGrid.Focus();
-            PresetLst.SelectedItem = null;
-            ChannelLst.SelectedItem = null;
         }
 
         //Закрытие потока
@@ -154,7 +152,15 @@ namespace PPH_153P_Configurator
         //
 
         //Вывод списка конфигов выбранного канала
-        private void DisplayChannel(object sender, MouseButtonEventArgs e)
+        /*private void DisplayChannel(object sender, MouseButtonEventArgs e)
+        {
+            if (ChannelLst.SelectedItems.Count == 1)
+            {
+                Channel cfg = (Channel)ChannelLst.SelectedItems.Cast<ListViewItem>().First().Tag;
+                DisplayConfigList(PresetLst, cfg);
+            }
+        }*/
+        private void DisplayChannel(object sender, SelectionChangedEventArgs e)
         {
             if (ChannelLst.SelectedItems.Count == 1)
             {
@@ -174,12 +180,24 @@ namespace PPH_153P_Configurator
                 Copier.CopyValues(ctrl.InputData, cfg);
             }
         }
+        private void DisplayConfig(object sender, SelectionChangedEventArgs e)
+        {
+            var ctrl = (Controller)this.DataContext;
+
+            if (PresetLst.SelectedItems.Count == 1)
+            {
+                Preset cfg = (Preset)PresetLst.SelectedItems.Cast<ListViewItem>().First().Tag;
+                Copier.CopyValues(ctrl.InputData, cfg);
+            }
+        }
 
         //Вызов формы для добавления конфига/канала
         private void CallEnterNameForm(object sender, RoutedEventArgs e)
         {
             ConfigEditor modal = new ConfigEditor();
             modal.ShowDialog();
+            DisplayChannelList(ChannelLst, pathToPresets);
+            PresetLst.Items.Clear();
         }
 
         //Проверки для сохранения конфигурации/канала

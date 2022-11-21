@@ -58,6 +58,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Windows\ChannelChoose.xaml.cs">
+      <DependentUpon>ChannelChoose.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ConfigEditor.xaml.cs">
       <DependentUpon>ConfigEditor.xaml</DependentUpon>
     </Compile>
@@ -67,11 +70,15 @@
     </Compile>
     <Compile Include="Services\Transform.cs" />
     <Compile Include="Services\XML.cs" />
+    <Page Include="Windows\ChannelChoose.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\ConfigEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\EnterPresetName.xaml">
+    <Page Include="Windows\EnterName.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -88,8 +95,8 @@
     <Compile Include="CAN\Exceptions.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="Services\Copier.cs" />
-    <Compile Include="Windows\EnterPresetName.xaml.cs">
-      <DependentUpon>EnterPresetName.xaml</DependentUpon>
+    <Compile Include="Windows\EnterName.xaml.cs">
+      <DependentUpon>EnterName.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

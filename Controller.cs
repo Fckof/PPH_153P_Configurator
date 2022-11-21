@@ -122,7 +122,7 @@ namespace PPH_153P_Configurator
         //Отправляет CAN сообщения для записи в память устройства
         public void SendData(CanMessage[] messages)
         {
-            thread.Join(50);
+            thread.Join(10);
             foreach (CanMessage message in messages)
             {
                 channel.Write(message);

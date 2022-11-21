@@ -56,7 +56,7 @@ namespace PPH_153P_Configurator
             get { return _halfRangeValue; }
             set
             {
-                _halfRangeValue = (MaxSignalRange-MinSignalRange)/2f;
+                _halfRangeValue = (MaxSignalRange - MinSignalRange) / 2f;
                 OnPropertyChanged("HalfRangeValue");
             }
         }
@@ -88,6 +88,7 @@ namespace PPH_153P_Configurator
         {
             get { return _maxSignalRange; }
             set { _maxSignalRange = value;
+                HalfRangeValue = 0;
                 OnPropertyChanged("MaxSignalRange");
             }
         }
