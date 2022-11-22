@@ -23,7 +23,27 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-
+        <Button 
+            Width="auto"
+            Height="auto"
+            Grid.Row="2"
+            Grid.Column="1"
+            Margin="5 5 5 5"
+            Background="#fff" 
+            FontSize="16" 
+            Click="OpenFromFile" 
+            >
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <TextBlock
+                    TextWrapping="Wrap"
+                    TextAlignment="Center"
+                    Text="Открыть файл"
+                />
+        </Button>
         <Grid
             Width="auto"  
             Height="auto" 

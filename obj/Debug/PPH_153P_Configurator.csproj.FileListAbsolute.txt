@@ -46,3 +46,5 @@ C:\Users\Hyrule\source\repos\PPH_153P_Configurator\obj\Debug\Windows\ConfigEdito
 C:\Users\Hyrule\source\repos\PPH_153P_Configurator\obj\Debug\Windows\ConfigEditor.baml
 C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\Windows\EnterName.g.cs
 C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\Windows\EnterName.baml
+C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\Windows\ChannelChoose.g.cs
+C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\Windows\ChannelChoose.baml

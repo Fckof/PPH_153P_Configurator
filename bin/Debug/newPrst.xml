@@ -138,6 +138,37 @@
             <SettingSetter>false</SettingSetter>
           </BottomAZ>
         </Preset>
+        <Preset>
+          <Name>498</Name>
+          <NodeId>1</NodeId>
+          <Averaging>48</Averaging>
+          <MinSignalRange>0</MinSignalRange>
+          <MaxSignalRange>100</MaxSignalRange>
+          <TopAZ>
+            <Value>56</Value>
+            <Histeresis>1</Histeresis>
+            <IsSet>true</IsSet>
+            <SettingSetter>false</SettingSetter>
+          </TopAZ>
+          <TopPS>
+            <Value>52</Value>
+            <Histeresis>1</Histeresis>
+            <IsSet>true</IsSet>
+            <SettingSetter>false</SettingSetter>
+          </TopPS>
+          <BottomPS>
+            <Value>0</Value>
+            <Histeresis>0</Histeresis>
+            <IsSet>false</IsSet>
+            <SettingSetter>false</SettingSetter>
+          </BottomPS>
+          <BottomAZ>
+            <Value>0</Value>
+            <Histeresis>0</Histeresis>
+            <IsSet>false</IsSet>
+            <SettingSetter>false</SettingSetter>
+          </BottomAZ>
+        </Preset>
       </Presets>
     </Channel>
   </Channels>

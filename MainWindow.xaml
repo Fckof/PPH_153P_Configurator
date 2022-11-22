@@ -1349,7 +1349,7 @@
             Grid.Row="0"
             Margin="5 5 5 5"
             Background="#fff" 
-            FontSize="16" Click="CallEnterNameForm"
+            FontSize="16" Click="CallFileReductorForm"
             >
                     <Button.Resources>
                         <Style TargetType="Border">

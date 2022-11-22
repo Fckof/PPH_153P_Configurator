@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using PPH_153P_Configurator.Windows;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -20,19 +22,20 @@ namespace PPH_153P_Configurator
     /// </summary>
     public partial class ConfigEditor : Window
     {
+
         public DataModel Model { get; private set; }
         public ChannelsCollection ChansList { get; set; }
-        public ConfigEditor()
+        public ConfigEditor(string filePath)
         {
             InitializeComponent();
             Model = new DataModel();
             this.DataContext = Model;
-            pathToPresets = "Presets.xml";
+            pathToPresets = filePath;
             ChansList= GetChannelsCollection(pathToPresets);
             DisplayChannelList(ChannelLst, ChansList);
         }
         
-        string pathToPresets;
+        string pathToPresets { get; set; }
         private void AddPresetToListView(Preset preset, ListView target)
         {
             ListViewItem item = new ListViewItem();
@@ -213,7 +216,7 @@ namespace PPH_153P_Configurator
             {
                 Channel channel = (Channel)ChannelLst.SelectedItems.Cast<ListViewItem>().First().Tag;
                 channel.ChannelName=chName.Text;
-                
+
                 if (PresetLst.SelectedItems.Count == 1)
                 {
                     Preset preset = (Preset)PresetLst.SelectedItems.Cast<ListViewItem>().First().Tag;
@@ -222,27 +225,21 @@ namespace PPH_153P_Configurator
                 }
                 DisplayConfigList(PresetLst, channel);
             }
-            
+            else MessageBox.Show("Для сохранения значений выберите элемент из списка");
+
             DisplayChannelList(ChannelLst, ChansList);
             ClearNameInputs();
         }
 
         private void AddNewConfig(object sender, RoutedEventArgs e)
         {
-            
-            if (ChannelLst.SelectedItems.Count == 1)
-            {
-                EnterName form = new EnterName(Type.Preset);
-                Copier.CopyValues(form.Preset, Model);
-                var chan= (Channel)ChannelLst.SelectedItems.Cast<ListViewItem>().First().Tag;
-                form.Channel = chan;
+                ChannelChoose form = new ChannelChoose(ChansList,Model);
                 form.ShowDialog();
-                if (form.DialogResult==true)
-                {
-                    DisplayConfigList(PresetLst, chan);
-                }
+            if (form.DialogResult == true)
+            {
+                DisplayChannelList(ChannelLst, ChansList);
+                PresetLst.Items.Clear();
             }
-            else MessageBox.Show("Канал не выбран!");
         }
 
         private void SaveConfigFile(object sender, RoutedEventArgs e)
@@ -256,7 +253,7 @@ namespace PPH_153P_Configurator
 
         private void AddNewChannel(object sender, RoutedEventArgs e)
         {
-            EnterName form = new EnterName(Type.Channel);
+            EnterName form = new EnterName();
             form.Collection = ChansList;
             form.ShowDialog();
             if (form.DialogResult == true)
@@ -273,7 +270,7 @@ namespace PPH_153P_Configurator
             {
                 var channel = (Channel)ChannelLst.SelectedItems.Cast<ListViewItem>().First().Tag;
                 var preset = (Preset)PresetLst.SelectedItems.Cast<ListViewItem>().First().Tag;
-                var result = MessageBox.Show($"Вы уверены, что хотите удалить настройку {preset.Name}","Удаление",MessageBoxButton.OKCancel,MessageBoxImage.Warning);
+                var result = MessageBox.Show($"Вы уверены, что хотите удалить настройку <{preset.Name}>","Удаление",MessageBoxButton.OKCancel,MessageBoxImage.Warning);
                 if (result == MessageBoxResult.OK)
                 {
                     if (channel.Presets.Remove(preset))
@@ -290,7 +287,7 @@ namespace PPH_153P_Configurator
             if (ChannelLst.SelectedItems.Count == 1)
             {
                 var channel = (Channel)ChannelLst.SelectedItems.Cast<ListViewItem>().First().Tag;
-                var result = MessageBox.Show($"Вы уверены, что хотите удалить канал {channel.ChannelName}", "Удаление", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+                var result = MessageBox.Show($"Вы уверены, что хотите удалить канал <{channel.ChannelName}>", "Удаление", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
                 if (result == MessageBoxResult.OK)
                 {
                     if (ChansList.Channels.Remove(channel))
@@ -299,7 +296,20 @@ namespace PPH_153P_Configurator
                 }
 
             }
-            else MessageBox.Show("Выберите настройку для удаления");
+            else MessageBox.Show("Выберите канал для удаления");
+        }
+        private void OpenFromFile(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            if (dialog.ShowDialog() == true)
+            {
+                ChansList=GetChannelsCollection(pathToPresets);
+
+                pathToPresets = dialog.FileName;
+                XML.SerializeXML(pathToPresets, Global.defaultSettingsPath);
+                DisplayChannelList(ChannelLst, ChansList);
+                PresetLst.Items.Clear();
+            }
         }
     }
 }

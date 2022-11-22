@@ -58,6 +58,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Global.cs" />
     <Compile Include="Windows\ChannelChoose.xaml.cs">
       <DependentUpon>ChannelChoose.xaml</DependentUpon>
     </Compile>

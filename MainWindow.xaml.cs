@@ -22,16 +22,32 @@ using System.Xml.Serialization;
 
 namespace PPH_153P_Configurator
 {
-    
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
-            pathToPresets = "Presets.xml";
+            InitPresets();
+        }
+        private void InitPresets()
+        {
+            pathToPresets = GetPathToPresets(Global.defaultSettingsPath);
             DisplayChannelList(ChannelLst, pathToPresets);
         }
-        string pathToPresets;
+        public string pathToPresets { get; set; }
+        private string GetPathToPresets(string settingPath)
+        {
+            string presetPath;
+            try
+            {
+                presetPath = XML.DeserializeSettingsXML(settingPath);
+            }catch (Exception ex)
+            {
+                presetPath= "Presets.xml";
+                XML.SerializeXML(presetPath, settingPath);
+            }
+            return presetPath;
+        }
         //Проверка ввода числа типа float
         private void CheckFloatNumberInput(object sender, TextCompositionEventArgs e)
         {
@@ -101,6 +117,7 @@ namespace PPH_153P_Configurator
             if (dialog.ShowDialog() == true)
             {
                 pathToPresets = dialog.FileName;
+                XML.SerializeXML(pathToPresets, Global.defaultSettingsPath);
                 DisplayChannelList(ChannelLst, pathToPresets);
                 PresetLst.Items.Clear();
             }
@@ -192,11 +209,11 @@ namespace PPH_153P_Configurator
         }
 
         //Вызов формы для добавления конфига/канала
-        private void CallEnterNameForm(object sender, RoutedEventArgs e)
+        private void CallFileReductorForm(object sender, RoutedEventArgs e)
         {
-            ConfigEditor modal = new ConfigEditor();
+            ConfigEditor modal = new ConfigEditor(pathToPresets);
             modal.ShowDialog();
-            DisplayChannelList(ChannelLst, pathToPresets);
+            InitPresets();
             PresetLst.Items.Clear();
         }
 

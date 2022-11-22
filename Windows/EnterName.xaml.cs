@@ -24,19 +24,14 @@ namespace PPH_153P_Configurator
     /// </summary>
     public partial class EnterName : Window
     {
-        public EnterName(Type type)
+        public EnterName()
         {
             InitializeComponent();
-            this.type = type;
-            Preset = new Preset();
         }
-        private Type type { get; set; }
         public string InputName { get { return config.Text.Trim(' ').ToLower().Replace(" ", "_"); } }
         public ChannelsCollection Collection { get; set; }
-        public Channel Channel { get; set; }
-        public Preset Preset { get; set; }
-         
-        //Если имя канала не занято создает новый канал
+
+        //Проверка доступности имени канала
         private bool IsChannelNameFree(string text)
         {
             bool result = true;
@@ -46,47 +41,24 @@ namespace PPH_153P_Configurator
             }
             return result;
         }
-        private bool IsPresetNameFree(string text)
-        {
-            bool result = true;
-            foreach (var channel in Channel.Presets)
-            {
-                if (channel.Name == text) result = false;
-            }
-            return result;
-        }
 
         private void SubmitName(object sender, RoutedEventArgs e)
         {
-            switch (type)
+            if (IsChannelNameFree(InputName) && InputName.Length != 0)
             {
-                case Type.Channel:
-                    if (IsChannelNameFree(InputName) && InputName.Length!=0)
+                var chan = new Channel()
+                {
+                    ChannelName = InputName
+                };
+                Collection.Channels.Add(chan);
+                this.DialogResult = true;
+                        }
+            else
                     {
-                        Channel = new Channel()
-                        {
-                            ChannelName = InputName
-                        };
-                        Collection.Channels.Add(Channel);
+                MessageBox.Show("Имя недоступно");
                     }
-                    else
-                    {
-                        MessageBox.Show("Имя недоступно");
-                    }
-                    break;
-                case Type.Preset:
-                    if (IsPresetNameFree(InputName))
-                    {
-                        Preset.Name= InputName;
-                        Channel.Presets.Add(Preset);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Имя недоступно");
-                    }
-                    break;
-            }
-            this.DialogResult = true;
+            
         }
+
     }
 }

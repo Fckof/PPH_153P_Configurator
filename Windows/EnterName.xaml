@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PPH_153P_Configurator"
         mc:Ignorable="d"
-        Title="Задайте название:" Height="150" Width="300" 
+        Title="Задайте название:" Height="150" Width="200" 
         WindowStartupLocation="CenterScreen" 
         WindowStyle="SingleBorderWindow" 
         ResizeMode="NoResize" 
@@ -36,12 +36,10 @@
                  TextAlignment="Center"
                  FontSize="18"
                  Grid.Row="0"
-                 Width="200"
+                 Width="auto"
                  VerticalAlignment="Bottom"
-                 Margin="0 0 0 10"
+                 Margin="5 0 5 10"
             />
-        
-        
         <Button x:Name="Submit"
             Grid.Column="0"
             Grid.Row="3"
