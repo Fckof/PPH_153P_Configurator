@@ -2,6 +2,7 @@
 using PPH_153P_Configurator.Windows;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,6 @@ namespace PPH_153P_Configurator
     /// </summary>
     public partial class ConfigEditor : Window
     {
-
         public DataModel Model { get; private set; }
         public ChannelsCollection ChansList { get; set; }
         public ConfigEditor(string filePath)
@@ -34,8 +34,7 @@ namespace PPH_153P_Configurator
             ChansList= GetChannelsCollection(pathToPresets);
             DisplayChannelList(ChannelLst, ChansList);
         }
-        
-        string pathToPresets { get; set; }
+        public string pathToPresets { get; set; }
         private void AddPresetToListView(Preset preset, ListView target)
         {
             ListViewItem item = new ListViewItem();
@@ -71,7 +70,6 @@ namespace PPH_153P_Configurator
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Конфигурационный файл не найден или имеет некорректный формат");
                 return null;
             }
 
@@ -85,6 +83,10 @@ namespace PPH_153P_Configurator
                 {
                     AddChannelToListView(cfg, view);
                 }
+            }
+            else
+            {
+                view.Items.Clear();
             }
                 
         }
@@ -192,6 +194,11 @@ namespace PPH_153P_Configurator
                 chName.Text = cfg.ChannelName;
                 cfgName.Text = "";
             }
+            else
+            {
+                ClearNameInputs();
+                PresetLst.Items.Clear();
+            }
         }
 
         private void DisplayChannel(object sender, MouseButtonEventArgs e)
@@ -253,7 +260,7 @@ namespace PPH_153P_Configurator
 
         private void AddNewChannel(object sender, RoutedEventArgs e)
         {
-            EnterName form = new EnterName();
+            AddChannel form = new AddChannel();
             form.Collection = ChansList;
             form.ShowDialog();
             if (form.DialogResult == true)
@@ -291,7 +298,10 @@ namespace PPH_153P_Configurator
                 if (result == MessageBoxResult.OK)
                 {
                     if (ChansList.Channels.Remove(channel))
+                    {
                         DisplayChannelList(ChannelLst, ChansList);
+                        PresetLst.Items.Clear();
+                    }
                     else MessageBox.Show("Ошибка удаления");
                 }
 
@@ -303,13 +313,28 @@ namespace PPH_153P_Configurator
             OpenFileDialog dialog = new OpenFileDialog();
             if (dialog.ShowDialog() == true)
             {
-                ChansList=GetChannelsCollection(pathToPresets);
-
-                pathToPresets = dialog.FileName;
+                pathToPresets = dialog.SafeFileName;
+                ChansList =GetChannelsCollection(pathToPresets);
                 XML.SerializeXML(pathToPresets, Global.defaultSettingsPath);
                 DisplayChannelList(ChannelLst, ChansList);
                 PresetLst.Items.Clear();
             }
+        }
+
+        private void CreateConfigFile(object sender, RoutedEventArgs e)
+        {
+            InputWindow inputWindow = new InputWindow();
+            inputWindow.ShowDialog();
+            if (inputWindow.DialogResult == true)
+            {
+                pathToPresets = inputWindow.FileName;
+                (File.Create(pathToPresets)).Close();
+                XML.SerializeXML(ChansList, pathToPresets);
+                XML.SerializeXML(pathToPresets,Global.defaultSettingsPath);
+                PromptWindow prompt = new PromptWindow($"Файл <{inputWindow.FileName}> успешно создан!", 1000);
+                prompt.ShowDialog();
+            }
+
         }
     }
 }

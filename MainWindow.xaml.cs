@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -44,6 +45,7 @@ namespace PPH_153P_Configurator
             }catch (Exception ex)
             {
                 presetPath= "Presets.xml";
+                File.WriteAllText(settingPath, string.Empty);
                 XML.SerializeXML(presetPath, settingPath);
             }
             return presetPath;
@@ -116,10 +118,18 @@ namespace PPH_153P_Configurator
             OpenFileDialog dialog = new OpenFileDialog();
             if (dialog.ShowDialog() == true)
             {
-                pathToPresets = dialog.FileName;
-                XML.SerializeXML(pathToPresets, Global.defaultSettingsPath);
-                DisplayChannelList(ChannelLst, pathToPresets);
-                PresetLst.Items.Clear();
+                pathToPresets = dialog.SafeFileName;
+                if(DisplayChannelList(ChannelLst, pathToPresets))
+                {
+                    XML.SerializeXML(pathToPresets, Global.defaultSettingsPath);
+                    PresetLst.Items.Clear();
+                }
+                else
+                {
+                    ChannelLst.Items.Clear();
+                    PresetLst.Items.Clear();
+                }
+                
             }
         }
 
@@ -150,7 +160,7 @@ namespace PPH_153P_Configurator
                     AddPresetToListView(cfg, view);
                 }
         }
-        private void DisplayChannelList(ListView view, string path)
+        private bool DisplayChannelList(ListView view, string path)
         {
             try
             {
@@ -160,23 +170,15 @@ namespace PPH_153P_Configurator
                 {
                     AddChannelToListView(cfg, view);
                 }
+                return true;
             }
             catch (Exception ex)
             {
+                view.Items.Clear();
                 MessageBox.Show($"Конфигурационный файл не найден или имеет некорректный формат");
+                return false;
             }
         }
-        //
-
-        //Вывод списка конфигов выбранного канала
-        /*private void DisplayChannel(object sender, MouseButtonEventArgs e)
-        {
-            if (ChannelLst.SelectedItems.Count == 1)
-            {
-                Channel cfg = (Channel)ChannelLst.SelectedItems.Cast<ListViewItem>().First().Tag;
-                DisplayConfigList(PresetLst, cfg);
-            }
-        }*/
         private void DisplayChannel(object sender, SelectionChangedEventArgs e)
         {
             if (ChannelLst.SelectedItems.Count == 1)
@@ -218,38 +220,6 @@ namespace PPH_153P_Configurator
         }
 
         //Проверки для сохранения конфигурации/канала
-        private void SaveConfig(ChannelsCollection collection ,Channel channel, Preset preset)
-        {
-            var ctrl = (Controller)this.DataContext;
-            bool toAdd=true;
-            Copier.CopyValues(preset, ctrl.InputData);
-            channel.Presets.Add(preset);
-            DisplayConfigList(PresetLst, channel);
-            
-            if (collection != null)
-            {
-                foreach(Channel ch in collection.Channels)
-                {
-                    if (ch.ChannelName == channel.ChannelName)
-                    {
-                        collection.Channels[collection.Channels.IndexOf(ch)] = channel;
-                        toAdd = false;
-                        break;
-                    }
-                }
-                if (toAdd)
-                {
-                    collection.Channels.Add(channel);
-                }
-            }
-            else
-            {
-                collection = new ChannelsCollection();
-                collection.Channels.Add(channel);
-            }
-            XML.SerializeXML(collection, pathToPresets);
-            DisplayChannelList(ChannelLst, pathToPresets);
-        }
 
         //Если поля ввода пусты выводит 0
         private void CheckEmptyInput(object sender, RoutedEventArgs e)

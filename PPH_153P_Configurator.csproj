@@ -66,6 +66,9 @@
       <DependentUpon>ConfigEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="ICustom.cs" />
+    <Compile Include="Windows\InputWindow.xaml.cs">
+      <DependentUpon>InputWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\PromptWindow.xaml.cs">
       <DependentUpon>PromptWindow.xaml</DependentUpon>
     </Compile>
@@ -79,7 +82,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\EnterName.xaml">
+    <Page Include="Windows\AddChannel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -96,13 +99,17 @@
     <Compile Include="CAN\Exceptions.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="Services\Copier.cs" />
-    <Compile Include="Windows\EnterName.xaml.cs">
-      <DependentUpon>EnterName.xaml</DependentUpon>
+    <Compile Include="Windows\AddChannel.xaml.cs">
+      <DependentUpon>AddChannel.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Windows\InputWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\PromptWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

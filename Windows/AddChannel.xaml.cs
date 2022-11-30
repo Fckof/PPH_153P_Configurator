@@ -22,9 +22,9 @@ namespace PPH_153P_Configurator
     /// <summary>
     /// Логика взаимодействия для EnterPresetName.xaml
     /// </summary>
-    public partial class EnterName : Window
+    public partial class AddChannel : Window
     {
-        public EnterName()
+        public AddChannel()
         {
             InitializeComponent();
         }
