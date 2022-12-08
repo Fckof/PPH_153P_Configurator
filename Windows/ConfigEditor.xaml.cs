@@ -256,6 +256,8 @@ namespace PPH_153P_Configurator
             ChansList = GetChannelsCollection(pathToPresets);
             DisplayChannelList(ChannelLst, ChansList);
             PresetLst.Items.Clear();
+            PromptWindow prompt = new PromptWindow($"Файл успешно сохранён!", 1000);
+            prompt.ShowDialog();
         }
 
         private void AddNewChannel(object sender, RoutedEventArgs e)

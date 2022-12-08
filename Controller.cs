@@ -105,7 +105,6 @@ namespace PPH_153P_Configurator
                 {
                     Copier.ClearModelValues(MainData);
                 }
-                thread.Join(50);
             }
         }
 
@@ -122,12 +121,16 @@ namespace PPH_153P_Configurator
         //Отправляет CAN сообщения для записи в память устройства
         public void SendData(CanMessage[] messages)
         {
-            thread.Join(10);
+            //thread.Join(10);
+            threadCloser = false;
             foreach (CanMessage message in messages)
             {
                 channel.Write(message);
                 ParseWriteErrors(channel.ReadAll());
             }
+            threadCloser = true;
+            thread=new Thread(RecieveCanMessage);
+            thread.Start();
             Thread.Sleep(100);
             Copier.CopyValues(InputData,MainData);
         }

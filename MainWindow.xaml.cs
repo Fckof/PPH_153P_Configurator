@@ -42,7 +42,7 @@ namespace PPH_153P_Configurator
             try
             {
                 presetPath = XML.DeserializeSettingsXML(settingPath);
-            }catch (Exception ex)
+            }catch
             {
                 presetPath= "Presets.xml";
                 File.WriteAllText(settingPath, string.Empty);
@@ -172,7 +172,7 @@ namespace PPH_153P_Configurator
                 }
                 return true;
             }
-            catch (Exception ex)
+            catch
             {
                 view.Items.Clear();
                 MessageBox.Show($"Конфигурационный файл не найден или имеет некорректный формат");

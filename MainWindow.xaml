@@ -20,6 +20,29 @@
     </Window.DataContext>
 
     <Window.Resources>
+        <LinearGradientBrush x:Key="MouseOverBrush" StartPoint="0,0" EndPoint="0,1">
+            <LinearGradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="#E4F0FD" Offset="0"/>
+                    <GradientStop Color="#D7EAFD" Offset="1"/>
+                </GradientStopCollection>
+            </LinearGradientBrush.GradientStops>
+        </LinearGradientBrush>
+        <Style TargetType="{x:Type ListViewItem}">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Background" Value="{StaticResource MouseOverBrush}" />
+                </Trigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Foreground" Value="Black" />
+                </Trigger>
+            </Style.Triggers>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Style.Resources>
+        </Style>
 
         <Style x:Key="ScrollBarThumbStyleRed" TargetType="{x:Type Thumb}">
             <Setter Property="IsTabStop" Value="False"/>
@@ -956,13 +979,14 @@
             BorderBrush="#000"
             
             >
-            <ListView
+                <ListView
                 x:Name="PresetLst"
                 FontSize="18" 
                 MouseDoubleClick="DisplayConfig" 
                 SelectionChanged="DisplayConfig"
                 SelectionMode="Single"
-                />
+                >
+                </ListView>
         </Border>
         </Grid>
         <Border
