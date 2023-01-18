@@ -2,7 +2,7 @@
 <ChannelsCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Channels>
     <Channel>
-      <ChannelName>актп</ChannelName>
+      <ChannelName>АКТП</ChannelName>
       <Presets>
         <Preset>
           <Name>temp_1</Name>
@@ -36,7 +36,7 @@
           </BottomAZ>
         </Preset>
         <Preset>
-          <Name>t1c-in</Name>
+          <Name>T1C-IN</Name>
           <NodeId>1</NodeId>
           <Averaging>48</Averaging>
           <MinSignalRange>0</MinSignalRange>
@@ -67,7 +67,7 @@
           </BottomAZ>
         </Preset>
         <Preset>
-          <Name>f1c</Name>
+          <Name>F1C</Name>
           <NodeId>1</NodeId>
           <Averaging>48</Averaging>
           <MinSignalRange>0</MinSignalRange>
@@ -98,7 +98,7 @@
           </BottomAZ>
         </Preset>
         <Preset>
-          <Name>l1c</Name>
+          <Name>L1C</Name>
           <NodeId>1</NodeId>
           <Averaging>48</Averaging>
           <MinSignalRange>0</MinSignalRange>
@@ -129,7 +129,7 @@
           </BottomAZ>
         </Preset>
         <Preset>
-          <Name>a0</Name>
+          <Name>A0</Name>
           <NodeId>1</NodeId>
           <Averaging>48</Averaging>
           <MinSignalRange>0</MinSignalRange>
@@ -162,10 +162,10 @@
       </Presets>
     </Channel>
     <Channel>
-      <ChannelName>актп-кип</ChannelName>
+      <ChannelName>АКТП-КИП</ChannelName>
       <Presets>
         <Preset>
-          <Name>t_az-in</Name>
+          <Name>T_AZ-IN</Name>
           <NodeId>1</NodeId>
           <Averaging>48</Averaging>
           <MinSignalRange>0</MinSignalRange>
@@ -196,7 +196,7 @@
           </BottomAZ>
         </Preset>
         <Preset>
-          <Name>t_az-out</Name>
+          <Name>T_AZ-OUT</Name>
           <NodeId>2</NodeId>
           <Averaging>48</Averaging>
           <MinSignalRange>0</MinSignalRange>
@@ -227,7 +227,7 @@
           </BottomAZ>
         </Preset>
         <Preset>
-          <Name>t1_c-out</Name>
+          <Name>T1_C-OUT</Name>
           <NodeId>1</NodeId>
           <Averaging>48</Averaging>
           <MinSignalRange>0</MinSignalRange>
@@ -258,7 +258,7 @@
           </BottomAZ>
         </Preset>
         <Preset>
-          <Name>dt1_c</Name>
+          <Name>DT1_C</Name>
           <NodeId>1</NodeId>
           <Averaging>48</Averaging>
           <MinSignalRange>0</MinSignalRange>
@@ -289,7 +289,7 @@
           </BottomAZ>
         </Preset>
         <Preset>
-          <Name>dp1_c1</Name>
+          <Name>DP1_C1</Name>
           <NodeId>1</NodeId>
           <Averaging>48</Averaging>
           <MinSignalRange>0</MinSignalRange>
@@ -320,7 +320,7 @@
           </BottomAZ>
         </Preset>
         <Preset>
-          <Name>p1_c2</Name>
+          <Name>P1_C2</Name>
           <NodeId>1</NodeId>
           <Averaging>48</Averaging>
           <MinSignalRange>1</MinSignalRange>
@@ -351,7 +351,7 @@
           </BottomAZ>
         </Preset>
         <Preset>
-          <Name>p1_c3</Name>
+          <Name>P1_C3</Name>
           <NodeId>1</NodeId>
           <Averaging>48</Averaging>
           <MinSignalRange>1</MinSignalRange>
@@ -382,7 +382,7 @@
           </BottomAZ>
         </Preset>
         <Preset>
-          <Name>p1_c4</Name>
+          <Name>P1_C4</Name>
           <NodeId>1</NodeId>
           <Averaging>48</Averaging>
           <MinSignalRange>1</MinSignalRange>
@@ -413,7 +413,7 @@
           </BottomAZ>
         </Preset>
         <Preset>
-          <Name>t1_pump</Name>
+          <Name>T1_PUMP</Name>
           <NodeId>1</NodeId>
           <Averaging>48</Averaging>
           <MinSignalRange>0</MinSignalRange>
@@ -444,7 +444,7 @@
           </BottomAZ>
         </Preset>
         <Preset>
-          <Name>v1_pump</Name>
+          <Name>V1_PUMP</Name>
           <NodeId>1</NodeId>
           <Averaging>48</Averaging>
           <MinSignalRange>0.1</MinSignalRange>
@@ -475,7 +475,7 @@
           </BottomAZ>
         </Preset>
         <Preset>
-          <Name>l1_pump</Name>
+          <Name>L1_PUMP</Name>
           <NodeId>1</NodeId>
           <Averaging>48</Averaging>
           <MinSignalRange>0</MinSignalRange>
@@ -506,7 +506,7 @@
           </BottomAZ>
         </Preset>
         <Preset>
-          <Name>f_sokkt</Name>
+          <Name>F_SOKKT</Name>
           <NodeId>1</NodeId>
           <Averaging>48</Averaging>
           <MinSignalRange>0</MinSignalRange>
@@ -537,7 +537,7 @@
           </BottomAZ>
         </Preset>
         <Preset>
-          <Name>dp_sokkt</Name>
+          <Name>DP_SOKKT</Name>
           <NodeId>1</NodeId>
           <Averaging>48</Averaging>
           <MinSignalRange>0</MinSignalRange>
@@ -599,7 +599,7 @@
           </BottomAZ>
         </Preset>
         <Preset>
-          <Name>l_ft</Name>
+          <Name>L_FT</Name>
           <NodeId>1</NodeId>
           <Averaging>48</Averaging>
           <MinSignalRange>0</MinSignalRange>
@@ -630,7 +630,7 @@
           </BottomAZ>
         </Preset>
         <Preset>
-          <Name>t2_c-in</Name>
+          <Name>T2_C-IN</Name>
           <NodeId>1</NodeId>
           <Averaging>48</Averaging>
           <MinSignalRange>0</MinSignalRange>
@@ -661,7 +661,7 @@
           </BottomAZ>
         </Preset>
         <Preset>
-          <Name>t2_c-out-1</Name>
+          <Name>T2_C-OUT-1</Name>
           <NodeId>1</NodeId>
           <Averaging>48</Averaging>
           <MinSignalRange>0</MinSignalRange>
@@ -692,7 +692,7 @@
           </BottomAZ>
         </Preset>
         <Preset>
-          <Name>t2_c-out-2</Name>
+          <Name>T2_C-OUT-2</Name>
           <NodeId>1</NodeId>
           <Averaging>48</Averaging>
           <MinSignalRange>0</MinSignalRange>
@@ -723,7 +723,7 @@
           </BottomAZ>
         </Preset>
         <Preset>
-          <Name>p2_pump</Name>
+          <Name>P2_PUMP</Name>
           <NodeId>1</NodeId>
           <Averaging>48</Averaging>
           <MinSignalRange>0</MinSignalRange>
@@ -754,7 +754,7 @@
           </BottomAZ>
         </Preset>
         <Preset>
-          <Name>f2_c</Name>
+          <Name>F2_C</Name>
           <NodeId>1</NodeId>
           <Averaging>48</Averaging>
           <MinSignalRange>0</MinSignalRange>
@@ -785,7 +785,7 @@
           </BottomAZ>
         </Preset>
         <Preset>
-          <Name>l2_pc</Name>
+          <Name>L2_PC</Name>
           <NodeId>1</NodeId>
           <Averaging>48</Averaging>
           <MinSignalRange>0</MinSignalRange>
@@ -816,7 +816,7 @@
           </BottomAZ>
         </Preset>
         <Preset>
-          <Name>l_drain</Name>
+          <Name>L_DRAIN</Name>
           <NodeId>1</NodeId>
           <Averaging>48</Averaging>
           <MinSignalRange>0</MinSignalRange>
@@ -847,7 +847,7 @@
           </BottomAZ>
         </Preset>
         <Preset>
-          <Name>p_drain</Name>
+          <Name>P_DRAIN</Name>
           <NodeId>1</NodeId>
           <Averaging>48</Averaging>
           <MinSignalRange>0</MinSignalRange>
@@ -878,7 +878,7 @@
           </BottomAZ>
         </Preset>
         <Preset>
-          <Name>p_vg16</Name>
+          <Name>P_VG16</Name>
           <NodeId>1</NodeId>
           <Averaging>48</Averaging>
           <MinSignalRange>0</MinSignalRange>
@@ -909,7 +909,7 @@
           </BottomAZ>
         </Preset>
         <Preset>
-          <Name>l_vg16</Name>
+          <Name>L_VG16</Name>
           <NodeId>1</NodeId>
           <Averaging>48</Averaging>
           <MinSignalRange>0</MinSignalRange>
@@ -940,7 +940,7 @@
           </BottomAZ>
         </Preset>
         <Preset>
-          <Name>f_vg16</Name>
+          <Name>F_VG16</Name>
           <NodeId>1</NodeId>
           <Averaging>48</Averaging>
           <MinSignalRange>0</MinSignalRange>
@@ -971,7 +971,7 @@
           </BottomAZ>
         </Preset>
         <Preset>
-          <Name>dp_sump</Name>
+          <Name>DP_SUMP</Name>
           <NodeId>1</NodeId>
           <Averaging>48</Averaging>
           <MinSignalRange>0</MinSignalRange>
@@ -1002,7 +1002,7 @@
           </BottomAZ>
         </Preset>
         <Preset>
-          <Name>q_h</Name>
+          <Name>Q_H</Name>
           <NodeId>1</NodeId>
           <Averaging>48</Averaging>
           <MinSignalRange>0</MinSignalRange>

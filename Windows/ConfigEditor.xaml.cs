@@ -128,7 +128,7 @@ namespace PPH_153P_Configurator
         private void CheckEmptyStringInput(object sender, RoutedEventArgs e)
         {
             var textbox = (TextBox)sender;
-            string cleanText = textbox.Text.Trim(' ').ToLower().Replace(" ", "_"); ;
+            string cleanText = textbox.Text.Trim(' ').Replace(" ", "_"); ;
             if(cleanText.Length == 0 )
             {
                 textbox.Text = GetLviName(textbox.Name);
