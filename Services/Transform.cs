@@ -10,7 +10,7 @@ namespace PPH_153P_Configurator
     {
         public static float ToPercent(float value, float max, float min)
         {
-            return (float)Math.Round((100 * value / max - min),1);
+            return (float)Math.Round((100 * value / (max - min)),1);
         }
         public static float ToAbsValue(float percent, float max, float min)
         {
