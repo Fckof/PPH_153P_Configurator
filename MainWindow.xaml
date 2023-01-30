@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:vm="clr-namespace:PPH_153P_Configurator"
         mc:Ignorable="d"
-        Title="PPH-153P Configurator" 
+        Title="{DynamicResource Main_win_title}" 
         Height="720" 
         Width="1280" 
         ResizeMode="CanResize"
@@ -1365,14 +1365,14 @@
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
-                    <RowDefinition/>
+                    <RowDefinition Height=".7*"/>
                 </Grid.RowDefinitions>
                 <Button 
             Width="auto"
             Height="auto"
             Grid.Column="0"
             Grid.Row="0"
-            Margin="5 5 5 5"
+            Margin="2"
             Background="#fff" 
             FontSize="16" Click="CallFileReductorForm"
             >
@@ -1391,7 +1391,7 @@
             Width="auto"
             Height="auto"
             Grid.Row="1"
-            Margin="5 5 5 5"
+            Margin="2"
             Background="#fff" 
             FontSize="16" Click="OpenFromFile"
             >
@@ -1411,12 +1411,21 @@
                     Width="auto"
                     Height="auto"
                     Margin="5 5 5 5"
-                    Background="#fff" 
+                    Background="#fff"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Stretch"
+                    VerticalAlignment="Stretch"
                     FontSize="16"
-                    HorizontalContentAlignment="Center"
+                    BorderBrush="#000"
+                    BorderThickness="1"
+                    
                     >
-                    <MenuItem x:Name="menuLanguage" 
-                              Header="{DynamicResource Menu_language}" />
+                    <MenuItem x:Name="menuLanguage"
+                              Header="{DynamicResource Menu_language}" 
+                              HorizontalAlignment="Stretch"
+                              HorizontalContentAlignment="Stretch"
+                              VerticalAlignment="Stretch"
+                              VerticalContentAlignment="Stretch" />
                 </Menu>
             </Grid>
         </Border>

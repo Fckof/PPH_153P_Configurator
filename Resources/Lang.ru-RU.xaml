@@ -13,16 +13,16 @@
     <v:String x:Key="Block">Блокировка:</v:String>
     <v:String x:Key="LowerLimit">Выход за нижний предел:</v:String>
     <v:String x:Key="UpperLimit">Выход за верхний предел:</v:String>
-    <v:String x:Key="SettingsValue">Уставки:</v:String>
-    <v:String x:Key="Hysteresis">Гистерезис, %:</v:String>
+    <v:String x:Key="SettingsValue">Уставки</v:String>
+    <v:String x:Key="Hysteresis">Гистерезис, %</v:String>
     <v:String x:Key="Existence">Наличие:</v:String>
-    <v:String x:Key="Adjuster">Задатчик уставок:</v:String>
+    <v:String x:Key="Adjuster">Задатчик уставок</v:String>
     <v:String x:Key="Ch_choice">Выбор канала:</v:String>
     <v:String x:Key="St_choice">Выбор настройки:</v:String>
-    <v:String x:Key="Upload">Загрузить новую конфигурацию:</v:String>
-    <v:String x:Key="Reconnect">Переподключение к устройству:</v:String>
-    <v:String x:Key="EditFile">Изменить файл конфигурации:</v:String>
-    <v:String x:Key="OpenFile">Открыть файл конфигурации:</v:String>
+    <v:String x:Key="Upload">Загрузить новую конфигурацию</v:String>
+    <v:String x:Key="Reconnect">Переподключение к устройству</v:String>
+    <v:String x:Key="EditFile">Изменить файл конфигурации</v:String>
+    <v:String x:Key="OpenFile">Открыть файл конфигурации</v:String>
     <v:String x:Key="AZ_top">АЗ↑</v:String>
     <v:String x:Key="AZ_bottom">АЗ↓</v:String>
     <v:String x:Key="PS_top">ПС↑</v:String>
@@ -41,4 +41,5 @@
     <v:String x:Key="Save">Принять</v:String>
     <v:String x:Key="Decline">Отмена</v:String>
     <v:String x:Key="Menu_language">Russian</v:String>
+    <v:String x:Key="Main_win_title">ППХ-153P Конфигуратор</v:String>
 </ResourceDictionary>

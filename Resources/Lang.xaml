@@ -13,16 +13,16 @@
     <v:String x:Key="Block">Block:</v:String>
     <v:String x:Key="LowerLimit">Exceeding the lower limit:</v:String>
     <v:String x:Key="UpperLimit">Exceeding the upper limit:</v:String>
-    <v:String x:Key="SettingsValue">Setpoints value:</v:String>
-    <v:String x:Key="Hysteresis">Hysteresis, %:</v:String>
-    <v:String x:Key="Existence">Existence:</v:String>
-    <v:String x:Key="Adjuster">Setpoint adjuster:</v:String>
+    <v:String x:Key="SettingsValue">Setpoints value</v:String>
+    <v:String x:Key="Hysteresis">Hysteresis, %</v:String>
+    <v:String x:Key="Existence">Existence</v:String>
+    <v:String x:Key="Adjuster">Setpoint adjuster</v:String>
     <v:String x:Key="Ch_choice">Channel choice:</v:String>
     <v:String x:Key="St_choice">Setting choice:</v:String>
-    <v:String x:Key="Upload">Upload new configuration:</v:String>
-    <v:String x:Key="Reconnect">Reconnect to device:</v:String>
-    <v:String x:Key="EditFile">Edit config file:</v:String>
-    <v:String x:Key="OpenFile">Open config file:</v:String>
+    <v:String x:Key="Upload">Upload new configuration</v:String>
+    <v:String x:Key="Reconnect">Reconnect to device</v:String>
+    <v:String x:Key="EditFile">Edit config file</v:String>
+    <v:String x:Key="OpenFile">Open config file</v:String>
     <v:String x:Key="AZ_top">EMR↑</v:String>
     <v:String x:Key="AZ_bottom">EMR↓</v:String>
     <v:String x:Key="PS_top">WRN↑</v:String>
@@ -41,4 +41,5 @@
     <v:String x:Key="Save">Accept</v:String>
     <v:String x:Key="Decline">Decline</v:String>
     <v:String x:Key="Menu_language">English</v:String>
+    <v:String x:Key="Main_win_title">PPH-153P Configurator</v:String>
 </ResourceDictionary>

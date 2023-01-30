@@ -25,7 +25,6 @@ C:\Users\Hyrule\source\repos\PPH_153P_Configurator\bin\Debug\PPH_153P_Configurat
 C:\Users\Hyrule\source\repos\PPH_153P_Configurator\bin\Debug\PPH_153P_Configurator.pdb
 C:\Users\Hyrule\source\repos\PPH_153P_Configurator\obj\Debug\PPH_153P_Configurator.csproj.AssemblyReference.cache
 C:\Users\Hyrule\source\repos\PPH_153P_Configurator\obj\Debug\PPH_153P_Configurator.csproj.SuggestedBindingRedirects.cache
-C:\Users\Hyrule\source\repos\PPH_153P_Configurator\obj\Debug\Windows\EnterPresetName.g.cs
 C:\Users\Hyrule\source\repos\PPH_153P_Configurator\obj\Debug\MainWindow.g.cs
 C:\Users\Hyrule\source\repos\PPH_153P_Configurator\obj\Debug\Windows\PromptWindow.g.cs
 C:\Users\Hyrule\source\repos\PPH_153P_Configurator\obj\Debug\App.g.cs
@@ -33,7 +32,6 @@ C:\Users\Hyrule\source\repos\PPH_153P_Configurator\obj\Debug\PPH_153P_Configurat
 C:\Users\Hyrule\source\repos\PPH_153P_Configurator\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\Hyrule\source\repos\PPH_153P_Configurator\obj\Debug\PPH_153P_Configurator_MarkupCompile.cache
 C:\Users\Hyrule\source\repos\PPH_153P_Configurator\obj\Debug\PPH_153P_Configurator_MarkupCompile.lref
-C:\Users\Hyrule\source\repos\PPH_153P_Configurator\obj\Debug\Windows\EnterPresetName.baml
 C:\Users\Hyrule\source\repos\PPH_153P_Configurator\obj\Debug\MainWindow.baml
 C:\Users\Hyrule\source\repos\PPH_153P_Configurator\obj\Debug\Windows\PromptWindow.baml
 C:\Users\Hyrule\source\repos\PPH_153P_Configurator\obj\Debug\PPH_153P_Configurator.g.resources
@@ -53,3 +51,12 @@ C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\Windows\InputWindow.b
 C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\Resources\Lang.ru-RU.baml
 C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\Resources\Lang.baml
 C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\App.baml
+C:\Users\Hyrule\source\repos\PPH_153P_Configurator\obj\Debug\Resources\Lang.ru-RU.baml
+C:\Users\Hyrule\source\repos\PPH_153P_Configurator\obj\Debug\Resources\Lang.baml
+C:\Users\Hyrule\source\repos\PPH_153P_Configurator\obj\Debug\Windows\ChannelChoose.g.cs
+C:\Users\Hyrule\source\repos\PPH_153P_Configurator\obj\Debug\Windows\AddChannel.g.cs
+C:\Users\Hyrule\source\repos\PPH_153P_Configurator\obj\Debug\Windows\InputWindow.g.cs
+C:\Users\Hyrule\source\repos\PPH_153P_Configurator\obj\Debug\App.baml
+C:\Users\Hyrule\source\repos\PPH_153P_Configurator\obj\Debug\Windows\ChannelChoose.baml
+C:\Users\Hyrule\source\repos\PPH_153P_Configurator\obj\Debug\Windows\AddChannel.baml
+C:\Users\Hyrule\source\repos\PPH_153P_Configurator\obj\Debug\Windows\InputWindow.baml
