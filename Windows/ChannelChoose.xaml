@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PPH_153P_Configurator.Windows"
         mc:Ignorable="d"
-        Title="Выберите канал" 
         Height="350" Width="300" 
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
@@ -50,7 +49,7 @@
             Grid.Row="0"
             Margin="0 0 0 0"
             Grid.ColumnSpan="2"
-            Text="Название:"
+            Text="{DynamicResource SettingName}"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             FontSize="18"
@@ -101,7 +100,7 @@
             <TextBlock
                     TextWrapping="Wrap"
                     TextAlignment="Center"
-                    Text="Подтвердить"
+                    Text="{DynamicResource Save}"
                 />
         </Button>
         <Button 
@@ -122,8 +121,7 @@
             <TextBlock
                     TextWrapping="Wrap"
                     TextAlignment="Center"
-                    Text="Отмена"
-               
+                    Text="{DynamicResource Decline}"
                 />
         </Button>
     </Grid>

@@ -26,7 +26,7 @@ namespace PPH_153P_Configurator.Windows
             Copier.CopyValues(preset, model);
             DisplayChannelList(ChannelLst,items);
         }
-        private string InputName { get { return config.Text.Trim(' ').ToLower().Replace(" ", "_"); } }
+        private string InputName { get { return config.Text.Trim(' ').Replace(" ", "_"); } }
         private Preset preset { get; set; }
         private bool IsPresetNameFree(string text, Channel chan)
         {

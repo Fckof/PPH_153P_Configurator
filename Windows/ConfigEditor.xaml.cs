@@ -68,7 +68,7 @@ namespace PPH_153P_Configurator
             {
                 return XML.DeserializeXML(path);
             }
-            catch (Exception ex)
+            catch
             {
                 return null;
             }

@@ -289,11 +289,11 @@
           </BottomAZ>
         </Preset>
         <Preset>
-          <Name>DP1_C1</Name>
+          <Name>dP1_C1</Name>
           <NodeId>1</NodeId>
           <Averaging>48</Averaging>
           <MinSignalRange>0</MinSignalRange>
-          <MaxSignalRange>540</MaxSignalRange>
+          <MaxSignalRange>630</MaxSignalRange>
           <TopAZ>
             <Value>0</Value>
             <Histeresis>0</Histeresis>
@@ -320,11 +320,11 @@
           </BottomAZ>
         </Preset>
         <Preset>
-          <Name>P1_C2</Name>
+          <Name>P1_c2</Name>
           <NodeId>1</NodeId>
           <Averaging>48</Averaging>
-          <MinSignalRange>1</MinSignalRange>
-          <MaxSignalRange>700</MaxSignalRange>
+          <MinSignalRange>0</MinSignalRange>
+          <MaxSignalRange>1000</MaxSignalRange>
           <TopAZ>
             <Value>0</Value>
             <Histeresis>0</Histeresis>
@@ -351,11 +351,11 @@
           </BottomAZ>
         </Preset>
         <Preset>
-          <Name>P1_C3</Name>
+          <Name>P1_c3</Name>
           <NodeId>1</NodeId>
           <Averaging>48</Averaging>
-          <MinSignalRange>1</MinSignalRange>
-          <MaxSignalRange>500</MaxSignalRange>
+          <MinSignalRange>0</MinSignalRange>
+          <MaxSignalRange>1000</MaxSignalRange>
           <TopAZ>
             <Value>0</Value>
             <Histeresis>0</Histeresis>
@@ -382,11 +382,11 @@
           </BottomAZ>
         </Preset>
         <Preset>
-          <Name>P1_C4</Name>
+          <Name>P1_c4</Name>
           <NodeId>1</NodeId>
           <Averaging>48</Averaging>
-          <MinSignalRange>1</MinSignalRange>
-          <MaxSignalRange>200</MaxSignalRange>
+          <MinSignalRange>0</MinSignalRange>
+          <MaxSignalRange>400</MaxSignalRange>
           <TopAZ>
             <Value>0</Value>
             <Histeresis>0</Histeresis>
@@ -1017,6 +1017,37 @@
             <Value>1</Value>
             <Histeresis>1</Histeresis>
             <IsSet>true</IsSet>
+            <SettingSetter>false</SettingSetter>
+          </TopPS>
+          <BottomPS>
+            <Value>0</Value>
+            <Histeresis>0</Histeresis>
+            <IsSet>false</IsSet>
+            <SettingSetter>false</SettingSetter>
+          </BottomPS>
+          <BottomAZ>
+            <Value>0</Value>
+            <Histeresis>0</Histeresis>
+            <IsSet>false</IsSet>
+            <SettingSetter>false</SettingSetter>
+          </BottomAZ>
+        </Preset>
+        <Preset>
+          <Name>I1pump</Name>
+          <NodeId>1</NodeId>
+          <Averaging>48</Averaging>
+          <MinSignalRange>0</MinSignalRange>
+          <MaxSignalRange>100</MaxSignalRange>
+          <TopAZ>
+            <Value>0</Value>
+            <Histeresis>0</Histeresis>
+            <IsSet>false</IsSet>
+            <SettingSetter>false</SettingSetter>
+          </TopAZ>
+          <TopPS>
+            <Value>0</Value>
+            <Histeresis>0</Histeresis>
+            <IsSet>false</IsSet>
             <SettingSetter>false</SettingSetter>
           </TopPS>
           <BottomPS>

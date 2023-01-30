@@ -1,0 +1,44 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:v="clr-namespace:System;assembly=mscorlib"
+                    >
+    <v:String x:Key="NodeID">Node ID</v:String>
+    <v:String x:Key="InputRange">Input signal range</v:String>
+    <v:String x:Key="Averaging">Averaging, ms</v:String>
+    <v:String x:Key="InputCode">Input code:</v:String>
+    <v:String x:Key="Value">Value:</v:String>
+    <v:String x:Key="State">State:</v:String>
+    <v:String x:Key="Ready">Ready:</v:String>
+    <v:String x:Key="Test">Test:</v:String>
+    <v:String x:Key="Block">Block:</v:String>
+    <v:String x:Key="LowerLimit">Exceeding the lower limit:</v:String>
+    <v:String x:Key="UpperLimit">Exceeding the upper limit:</v:String>
+    <v:String x:Key="SettingsValue">Setpoints value:</v:String>
+    <v:String x:Key="Hysteresis">Hysteresis, %:</v:String>
+    <v:String x:Key="Existence">Existence:</v:String>
+    <v:String x:Key="Adjuster">Setpoint adjuster:</v:String>
+    <v:String x:Key="Ch_choice">Channel choice:</v:String>
+    <v:String x:Key="St_choice">Setting choice:</v:String>
+    <v:String x:Key="Upload">Upload new configuration:</v:String>
+    <v:String x:Key="Reconnect">Reconnect to device:</v:String>
+    <v:String x:Key="EditFile">Edit config file:</v:String>
+    <v:String x:Key="OpenFile">Open config file:</v:String>
+    <v:String x:Key="AZ_top">EMR↑</v:String>
+    <v:String x:Key="AZ_bottom">EMR↓</v:String>
+    <v:String x:Key="PS_top">WRN↑</v:String>
+    <v:String x:Key="PS_bottom">WRN↓</v:String>
+    <v:String x:Key="ChannelName">Channel name:</v:String>
+    <v:String x:Key="SettingName">Setting name:</v:String>
+    <v:String x:Key="SaveChanges">Apply changes</v:String>
+    <v:String x:Key="AddSetting">Add new setting</v:String>
+    <v:String x:Key="AddChannel">Add new channel</v:String>
+    <v:String x:Key="DeleteSetting">Delete selected setting</v:String>
+    <v:String x:Key="DeleteChannel">Delete selected channel</v:String>
+    <v:String x:Key="SaveConfigFile">Save config file</v:String>
+    <v:String x:Key="Alert_filesave">File successfully saved</v:String>
+    <v:String x:Key="Alert_datasent">Data uploaded</v:String>
+    <v:String x:Key="CreateConfigFile">Create config file</v:String>
+    <v:String x:Key="Save">Accept</v:String>
+    <v:String x:Key="Decline">Decline</v:String>
+    <v:String x:Key="Menu_language">English</v:String>
+</ResourceDictionary>

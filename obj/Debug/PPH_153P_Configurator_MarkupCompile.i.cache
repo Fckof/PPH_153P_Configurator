@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\User\source\repos\PPH_153P_Configurator\App.xaml
-6-1081716043
+81535167874
 1-314008671
 22-1622130882
 13-1310406943
-Windows\ChannelChoose.xaml;Windows\ConfigEditor.xaml;Windows\AddChannel.xaml;MainWindow.xaml;Windows\InputWindow.xaml;Windows\PromptWindow.xaml;
+Resources\Lang.ru-RU.xaml;Resources\Lang.xaml;Windows\ChannelChoose.xaml;Windows\ConfigEditor.xaml;Windows\AddChannel.xaml;MainWindow.xaml;Windows\InputWindow.xaml;Windows\PromptWindow.xaml;
 
-True
+False
 

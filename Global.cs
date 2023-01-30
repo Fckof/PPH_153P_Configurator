@@ -9,5 +9,6 @@ namespace PPH_153P_Configurator
     static class Global
     {
         public const string defaultSettingsPath = "settings.xml";
+        public static string lang="ru";
     }
 }

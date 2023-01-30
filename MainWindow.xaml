@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:vm="clr-namespace:PPH_153P_Configurator"
         mc:Ignorable="d"
-        Title="ППХ-153Р Конфигуратор" 
+        Title="PPH-153P Configurator" 
         Height="720" 
         Width="1280" 
         ResizeMode="CanResize"
@@ -298,7 +298,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock
-                    Text="Код вх.сигнала:"
+                    Text="{DynamicResource InputCode}"
                     FontSize="20"
                     TextWrapping="Wrap"
                     HorizontalAlignment="Right"
@@ -307,7 +307,7 @@
                     Grid.Column="0"
                     />
                 <Label
-                    Content="Статус узла:"
+                    Content="{DynamicResource State}"
                     FontSize="20"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
@@ -315,7 +315,7 @@
                     Grid.Column="0"
                     />
                 <Label
-                    Content="Значение:"
+                    Content="{DynamicResource Value}"
                     FontSize="20"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
@@ -374,7 +374,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Label
-                    Content="Исправность:"
+                    Content="{DynamicResource Ready}"
                     FontSize="20"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
@@ -382,7 +382,7 @@
                     Grid.Column="0"
                     />
                 <Label
-                    Content="Проверка:"
+                    Content="{DynamicResource Test}"
                     FontSize="20"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
@@ -390,7 +390,7 @@
                     Grid.Column="0"
                     />
                 <Label
-                    Content="Блокировка:"
+                    Content="{DynamicResource Block}"
                     FontSize="20"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
@@ -398,7 +398,7 @@
                     Grid.Column="0"
                     />
                 <TextBlock
-                    Text="Выход за нижний предел:"
+                    Text="{DynamicResource LowerLimit}"
                     FontSize="20"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
@@ -407,7 +407,7 @@
                     Grid.Column="0"
                     />
                 <TextBlock
-                    Text="Выход за верхний предел:"
+                    Text="{DynamicResource UpperLimit}"
                     FontSize="20"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
@@ -482,7 +482,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock
-                    Text="NodeID узла"
+                    Text="{DynamicResource NodeID}"
                     FontSize="20"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
@@ -490,7 +490,7 @@
                     Grid.Column="0"
                     />
                 <TextBlock
-                    Text="Диапазон вх.сигнала"
+                    Text="{DynamicResource InputRange}"
                     TextWrapping="Wrap"
                     FontSize="20"
                     HorizontalAlignment="Center"
@@ -499,7 +499,7 @@
                     Grid.Column="0"
                     />
                 <TextBlock
-                    Text="Усреднение, мс"
+                    Text="{DynamicResource Averaging}"
                     FontSize="20"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
@@ -605,14 +605,14 @@
                         </Button>
 
                         <Label
-                        Content="Уставки"
+                        Content="{DynamicResource SettingsValue}"
                         FontSize="20"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"
                         Grid.Column="1"
                         />
                         <TextBlock
-                        Text="Гистерезис, %"
+                        Text="{DynamicResource Hysteresis}"
                         FontSize="20"
                         TextWrapping="Wrap"
                         VerticalAlignment="Center"
@@ -620,14 +620,14 @@
                         Grid.Column="2"
                         />
                         <Label
-                        Content="Наличие"
+                        Content="{DynamicResource Existence}"
                         FontSize="20"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"
                         Grid.Column="3"
                         />
                         <TextBlock
-                        Text="Задатчик уставок"
+                        Text="{DynamicResource Adjuster}"
                         FontSize="20"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"
@@ -655,7 +655,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Label
-                            Content="АЗ↑"
+                            Content="{DynamicResource AZ_top}"
                             FontSize="20"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
@@ -725,7 +725,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Label
-                            Content="ПС↑"
+                            Content="{DynamicResource PS_top}"
                             FontSize="20"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
@@ -794,7 +794,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Label
-                            Content="ПС↓"
+                            Content="{DynamicResource PS_bottom}"
                             FontSize="20"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
@@ -863,7 +863,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Label
-                            Content="АЗ↓"
+                            Content="{DynamicResource AZ_bottom}"
                             FontSize="20"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
@@ -931,7 +931,7 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <TextBlock
-                    Text="Выбор канала:"
+                    Text="{DynamicResource Ch_choice}"
                     FontSize="18"
                     />
             <Border x:Name="ChannelChoose" 
@@ -966,7 +966,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <TextBlock
-                    Text="Выбор настройки: "
+                    Text="{DynamicResource St_choice}"
                     FontSize="18"
                     />
             <Border x:Name="PresetChoose" 
@@ -1023,7 +1023,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Label
-                            Content="АЗ↑"
+                            Content="{DynamicResource AZ_top}"
                             FontSize="15"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
@@ -1093,7 +1093,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Label
-                            Content="ПС↑"
+                            Content="{DynamicResource PS_top}"
                             FontSize="15"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
@@ -1164,7 +1164,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Label
-                            Content="ПС↓"
+                            Content="{DynamicResource PS_bottom}"
                             FontSize="15"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
@@ -1235,7 +1235,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Label
-                            Content="АЗ↓"
+                            Content="{DynamicResource AZ_bottom}"
                             FontSize="15"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
@@ -1323,7 +1323,7 @@
                         </Style>
                     </Button.Resources>
                     <TextBlock
-                        Text="Загрузить новую конфигурацию"
+                        Text="{DynamicResource Upload}"
                         />
                 </Button>
 
@@ -1341,15 +1341,15 @@
                         </Style>
                     </Button.Resources>
                     <TextBlock
-                        Text="Переподключение к устройству"
+                        Text="{DynamicResource Reconnect}"
                         />
                 </Button>
             </Grid>
         </Border>
-        
-        
-        
-        
+
+
+
+
         <Border x:Name="ListOperators" 
             Width="auto"  
             Height="auto" 
@@ -1363,6 +1363,7 @@
             >
             <Grid>
                 <Grid.RowDefinitions>
+                    <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
@@ -1380,12 +1381,12 @@
                             <Setter Property="CornerRadius" Value="5"/>
                         </Style>
                     </Button.Resources>
-                <TextBlock
+                    <TextBlock
                     TextWrapping="Wrap"
                     TextAlignment="Center"
-                    Text="Изменить файл конфигураций"
+                    Text="{DynamicResource EditFile}"
                 />
-            </Button>
+                </Button>
                 <Button 
             Width="auto"
             Height="auto"
@@ -1402,12 +1403,22 @@
                     <TextBlock
                     TextWrapping="Wrap"
                     TextAlignment="Center"
-                    Text="Открыть файл конфигурации"
+                    Text="{DynamicResource OpenFile}"
                 />
                 </Button>
+                <Menu 
+                    Grid.Row="2"
+                    Width="auto"
+                    Height="auto"
+                    Margin="5 5 5 5"
+                    Background="#fff" 
+                    FontSize="16"
+                    HorizontalContentAlignment="Center"
+                    >
+                    <MenuItem x:Name="menuLanguage" 
+                              Header="{DynamicResource Menu_language}" />
+                </Menu>
             </Grid>
         </Border>
-        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="163,-190,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
-
     </Grid>
 </Window>

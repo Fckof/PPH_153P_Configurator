@@ -1,0 +1,44 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:v="clr-namespace:System;assembly=mscorlib"
+                    >
+    <v:String x:Key="NodeID">Node ID узла</v:String>
+    <v:String x:Key="InputRange">Диапазон вх.сигнала</v:String>
+    <v:String x:Key="Averaging">Усреднение, мс</v:String>
+    <v:String x:Key="InputCode">Код вх.сигнала:</v:String>
+    <v:String x:Key="Value">Значение:</v:String>
+    <v:String x:Key="State">Статус узла:</v:String>
+    <v:String x:Key="Ready">Исправность:</v:String>
+    <v:String x:Key="Test">Проверка:</v:String>
+    <v:String x:Key="Block">Блокировка:</v:String>
+    <v:String x:Key="LowerLimit">Выход за нижний предел:</v:String>
+    <v:String x:Key="UpperLimit">Выход за верхний предел:</v:String>
+    <v:String x:Key="SettingsValue">Уставки:</v:String>
+    <v:String x:Key="Hysteresis">Гистерезис, %:</v:String>
+    <v:String x:Key="Existence">Наличие:</v:String>
+    <v:String x:Key="Adjuster">Задатчик уставок:</v:String>
+    <v:String x:Key="Ch_choice">Выбор канала:</v:String>
+    <v:String x:Key="St_choice">Выбор настройки:</v:String>
+    <v:String x:Key="Upload">Загрузить новую конфигурацию:</v:String>
+    <v:String x:Key="Reconnect">Переподключение к устройству:</v:String>
+    <v:String x:Key="EditFile">Изменить файл конфигурации:</v:String>
+    <v:String x:Key="OpenFile">Открыть файл конфигурации:</v:String>
+    <v:String x:Key="AZ_top">АЗ↑</v:String>
+    <v:String x:Key="AZ_bottom">АЗ↓</v:String>
+    <v:String x:Key="PS_top">ПС↑</v:String>
+    <v:String x:Key="PS_bottom">ПС↓</v:String>
+    <v:String x:Key="ChannelName">Название канала:</v:String>
+    <v:String x:Key="SettingName">Название настройки:</v:String>
+    <v:String x:Key="SaveChanges">Применить изменения</v:String>
+    <v:String x:Key="AddSetting">Добавить новую настройку</v:String>
+    <v:String x:Key="AddChannel">Добавить новый канал</v:String>
+    <v:String x:Key="DeleteSetting">Удалить выбранную настройку</v:String>
+    <v:String x:Key="DeleteChannel">Удалить выбранный канал</v:String>
+    <v:String x:Key="SaveConfigFile">Сохранить файл сонфигурации</v:String>
+    <v:String x:Key="Alert_filesave">Файл успешно сохранен</v:String>
+    <v:String x:Key="Alert_datasent">Данные отправлены</v:String>
+    <v:String x:Key="CreateConfigFile">Создать файл конфигураций</v:String>
+    <v:String x:Key="Save">Принять</v:String>
+    <v:String x:Key="Decline">Отмена</v:String>
+    <v:String x:Key="Menu_language">Russian</v:String>
+</ResourceDictionary>

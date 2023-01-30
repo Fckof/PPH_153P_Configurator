@@ -28,7 +28,7 @@ namespace PPH_153P_Configurator
         {
             InitializeComponent();
         }
-        public string InputName { get { return config.Text.Trim(' ').ToLower().Replace(" ", "_"); } }
+        public string InputName { get { return config.Text.Trim(' ').Replace(" ", "_"); } }
         public ChannelsCollection Collection { get; set; }
 
         //Проверка доступности имени канала

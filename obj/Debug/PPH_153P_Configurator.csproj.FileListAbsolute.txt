@@ -50,3 +50,6 @@ C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\Windows\AddChannel.g.
 C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\Windows\InputWindow.g.cs
 C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\Windows\AddChannel.baml
 C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\Windows\InputWindow.baml
+C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\Resources\Lang.ru-RU.baml
+C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\Resources\Lang.baml
+C:\Users\User\source\repos\PPH_153P_Configurator\obj\Debug\App.baml
