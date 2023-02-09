@@ -614,6 +614,7 @@
                         <TextBlock
                         Text="{DynamicResource Hysteresis}"
                         FontSize="20"
+                            Margin="1"
                         TextWrapping="Wrap"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"
@@ -625,13 +626,16 @@
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"
                         Grid.Column="3"
+                            Margin="1"
                         />
                         <TextBlock
                         Text="{DynamicResource Adjuster}"
                         FontSize="20"
+                          
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"
                         Grid.Column="4"
+                            Margin="1"
                         TextWrapping="Wrap"
                         />
                     </Grid>
@@ -1406,11 +1410,14 @@
                     Text="{DynamicResource OpenFile}"
                 />
                 </Button>
-                <Menu 
+                <StackPanel
                     Grid.Row="2"
-                    Width="auto"
+                    Orientation="Horizontal"
+                    >
+                
+                <Menu 
                     Height="auto"
-                    Margin="5 5 5 5"
+                    Margin="5"
                     Background="#fff"
                     HorizontalAlignment="Stretch"
                     HorizontalContentAlignment="Stretch"
@@ -1426,7 +1433,8 @@
                               HorizontalContentAlignment="Stretch"
                               VerticalAlignment="Stretch"
                               VerticalContentAlignment="Stretch" />
-                </Menu>
+                    </Menu>
+                </StackPanel>
             </Grid>
         </Border>
     </Grid>

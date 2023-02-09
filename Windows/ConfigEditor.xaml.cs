@@ -232,7 +232,12 @@ namespace PPH_153P_Configurator
                 }
                 DisplayConfigList(PresetLst, channel);
             }
-            else MessageBox.Show("Для сохранения значений выберите элемент из списка");
+            else
+            {
+                string message = App.Language.Name == "ru-RU" ? "Для сохранения значений выберите элемент из списка" :
+                    "To save values, select an item from the list";
+                MessageBox.Show(message);
+            } 
 
             DisplayChannelList(ChannelLst, ChansList);
             ClearNameInputs();
@@ -256,7 +261,9 @@ namespace PPH_153P_Configurator
             ChansList = GetChannelsCollection(pathToPresets);
             DisplayChannelList(ChannelLst, ChansList);
             PresetLst.Items.Clear();
-            PromptWindow prompt = new PromptWindow($"Файл успешно сохранён!", 1000);
+            string alert = App.Language.Name == "ru-RU" ? "Файл успешно сохранён!" :
+                "File saved";
+            PromptWindow prompt = new PromptWindow(alert, 1000);
             prompt.ShowDialog();
         }
 
@@ -279,24 +286,38 @@ namespace PPH_153P_Configurator
             {
                 var channel = (Channel)ChannelLst.SelectedItems.Cast<ListViewItem>().First().Tag;
                 var preset = (Preset)PresetLst.SelectedItems.Cast<ListViewItem>().First().Tag;
-                var result = MessageBox.Show($"Вы уверены, что хотите удалить настройку <{preset.Name}>","Удаление",MessageBoxButton.OKCancel,MessageBoxImage.Warning);
+                string question = App.Language.Name == "ru-RU" ? "Вы уверены, что хотите удалить настройку?" 
+                    : "Are you sure you want to delete the setting?";
+                string delete = App.Language.Name == "ru-RU" ? "Удаление" : "Deleting";
+                var result = MessageBox.Show($"{question} <{preset.Name}>",delete,MessageBoxButton.OKCancel,MessageBoxImage.Warning);
                 if (result == MessageBoxResult.OK)
                 {
                     if (channel.Presets.Remove(preset))
                         DisplayConfigList(PresetLst, channel);
-                    else MessageBox.Show("Ошибка удаления");
+                    else
+                    {
+                        string message = App.Language.Name == "ru-RU" ? "Ошибка удаления" : "Delete error";
+                        MessageBox.Show(message);
+                    } 
                     
                 }
                
             }
-            else MessageBox.Show("Выберите настройку для удаления");
+            else
+            {
+                string message = App.Language.Name == "ru-RU" ? "Выберите настройку для удаления" : "Select a setting to delete";
+                MessageBox.Show(message);
+            }
         }
         private void DeleteChannel(object sender, RoutedEventArgs e)
         {
             if (ChannelLst.SelectedItems.Count == 1)
             {
                 var channel = (Channel)ChannelLst.SelectedItems.Cast<ListViewItem>().First().Tag;
-                var result = MessageBox.Show($"Вы уверены, что хотите удалить канал <{channel.ChannelName}>", "Удаление", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+                string question = App.Language.Name == "ru-RU" ? "Вы уверены, что хотите удалить канал?"
+                    : "Are you sure you want to delete the channel?";
+                string delete = App.Language.Name == "ru-RU" ? "Удаление" : "Deleting";
+                var result = MessageBox.Show($"{question} <{channel.ChannelName}>", delete, MessageBoxButton.OKCancel, MessageBoxImage.Warning);
                 if (result == MessageBoxResult.OK)
                 {
                     if (ChansList.Channels.Remove(channel))
@@ -304,11 +325,19 @@ namespace PPH_153P_Configurator
                         DisplayChannelList(ChannelLst, ChansList);
                         PresetLst.Items.Clear();
                     }
-                    else MessageBox.Show("Ошибка удаления");
+                    else
+                    {
+                        string message = App.Language.Name == "ru-RU" ? "Ошибка удаления" : "Delete error";
+                        MessageBox.Show(message);
+                    }
                 }
 
             }
-            else MessageBox.Show("Выберите канал для удаления");
+            else
+            {
+                string message = App.Language.Name == "ru-RU" ? "Выберите канал для удаления" : "Select a channel to delete";
+                MessageBox.Show(message);
+            }
         }
         private void OpenFromFile(object sender, RoutedEventArgs e)
         {
@@ -333,7 +362,9 @@ namespace PPH_153P_Configurator
                 (File.Create(pathToPresets)).Close();
                 XML.SerializeXML(ChansList, pathToPresets);
                 XML.SerializeXML(pathToPresets,Global.defaultSettingsPath);
-                PromptWindow prompt = new PromptWindow($"Файл <{inputWindow.FileName}> успешно создан!", 1000);
+                string alert = App.Language.Name == "ru-RU" ? $"Файл <{inputWindow.FileName}> успешно создан!"
+                    : $"File {inputWindow.FileName} successfully created";
+                PromptWindow prompt = new PromptWindow(alert, 1000);
                 prompt.ShowDialog();
             }
 

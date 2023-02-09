@@ -69,9 +69,17 @@ namespace PPH_153P_Configurator.Windows
                     chan.Presets.Add(preset);
                     DialogResult = true;
                 }
-                else MessageBox.Show("Имя недоступно");
+                else
+                {
+                    string message = App.Language.Name == "ru-RU" ? "Имя недоступно" : "Name not available";
+                    MessageBox.Show(message);
+                }
             }
-            else MessageBox.Show("Канал не выбран");
+            else
+            {
+                string message = App.Language.Name == "ru-RU" ? "Канал не выбран" : "Channel not selected";
+                MessageBox.Show(message);
+            }
         }
     }
 }

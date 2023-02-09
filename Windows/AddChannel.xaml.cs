@@ -54,10 +54,11 @@ namespace PPH_153P_Configurator
                 this.DialogResult = true;
                         }
             else
-                    {
-                MessageBox.Show("Имя недоступно");
-                    }
-            
+            {
+                string message = App.Language.Name == "ru-RU" ? "Имя недоступно" : "Name not available";
+                MessageBox.Show(message);
+            }
+
         }
 
     }

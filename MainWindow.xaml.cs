@@ -126,8 +126,9 @@ namespace PPH_153P_Configurator
         private void MainWindow1_Loaded(object sender, RoutedEventArgs e)
         {
             var controller = (Controller)this.DataContext;
+            string alert = App.Language.Name == "ru-RU" ? "Утройство CAN не найдено" : "CAN device was not found";
             if (!controller.IsCANDeviceFound())
-                MessageBox.Show("Утройство CAN не найдено");
+                MessageBox.Show(alert);
             Copier.CopyValues(controller.InputData, controller.MainData);
         }
         
@@ -149,7 +150,8 @@ namespace PPH_153P_Configurator
         {
             var controller = (Controller)this.DataContext;
             controller.SendData(controller.CompareDataToSend(controller.InputData, controller.MainData));
-            PromptWindow alert = new PromptWindow("Данные отправлены", 1000);
+            string prompt = App.Language.Name == "ru-RU" ? "Данные отправлены" : "Data uploading";
+                PromptWindow alert = new PromptWindow(prompt, 1000);
             alert.ShowDialog();
         }
 
@@ -216,7 +218,9 @@ namespace PPH_153P_Configurator
             catch
             {
                 view.Items.Clear();
-                MessageBox.Show($"Конфигурационный файл не найден или имеет некорректный формат");
+                string message = App.Language.Name == "ru-RU" ? "Конфигурационный файл не найден или имеет некорректный формат" :
+                    "The configuration file was not found or is not in the correct format";
+                MessageBox.Show(message);
                 return false;
             }
         }
