@@ -43,4 +43,5 @@
     <v:String x:Key="Menu_language">English</v:String>
     <v:String x:Key="Main_win_title">PPH-153P Configurator</v:String>
     <v:String x:Key="Config_file_edit">Config file editor</v:String>
+    <v:String x:Key="Firmware">Firmware:</v:String>
 </ResourceDictionary>

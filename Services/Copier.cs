@@ -43,6 +43,8 @@ namespace PPH_153P_Configurator
         {
             target.Value = 0;
             target.NodeId = 0;
+            target.Firmware_hw = "";
+            target.Firmware_sw = "";
             target.StateBitArray = null;
             target.AnalogStateBitArray = null;
             target.MinSignalRange = 0;

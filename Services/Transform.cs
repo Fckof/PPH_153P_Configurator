@@ -21,5 +21,18 @@ namespace PPH_153P_Configurator
             int lgth = Math.Truncate(Math.Abs(value)).ToString().Length;
             return lgth>4 ? 0 : (float)Math.Round(value, 4-lgth);
         }
+        public static string ParseFirmware(string firmware)
+        {
+            var result = new StringBuilder(firmware);
+            if (firmware.Length == 0) return "";
+            result.Remove(0, 1);
+            result.Insert(0, ".");
+            try
+            {
+                result.Insert(0, (Convert.ToInt32(firmware[0].ToString(), 16) + 20).ToString());
+            }
+            catch { }
+            return result.ToString();
+        }
     }
 }

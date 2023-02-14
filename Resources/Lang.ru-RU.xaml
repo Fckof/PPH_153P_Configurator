@@ -43,4 +43,5 @@
     <v:String x:Key="Menu_language">Russian</v:String>
     <v:String x:Key="Main_win_title">ППХ-153P Конфигуратор</v:String>
     <v:String x:Key="Config_file_edit">Редактор файла конфигурации</v:String>
+    <v:String x:Key="Firmware">Прошивка:</v:String>
 </ResourceDictionary>

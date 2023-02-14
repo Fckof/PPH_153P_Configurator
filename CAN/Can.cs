@@ -218,7 +218,12 @@ namespace PPH_153P_Configurator
         message.Data = new byte[8];
         Array.Copy(tmpData, message.Data, message.Size);
       }
-      Int16 result = CiWrite(this.channel, ref message, 1);
+            Int16 result=0;
+            try
+            {
+                result= CiWrite(this.channel, ref message, 1);
+            }
+            catch { }
             if (result < 0)
             {
                 //throw CreateException(result);

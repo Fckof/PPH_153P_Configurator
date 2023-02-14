@@ -44,7 +44,8 @@ namespace PPH_153P_Configurator
         public int[] StateBitArray
         {
             get { return _stateBitArray; }
-            set { _stateBitArray = value;
+            set { 
+                _stateBitArray = value;
                 OnPropertyChanged("StateBitArray");
             }
         }
@@ -81,7 +82,26 @@ namespace PPH_153P_Configurator
                 OnPropertyChanged("MinSignalRange");
             }
         }
-
+        private string _firmware_sw;
+        public string Firmware_sw
+        {
+            get { return _firmware_sw; }
+            set
+            {
+                _firmware_sw = "Sw: " + Transform.ParseFirmware(value);
+                OnPropertyChanged("Firmware_sw");
+            }
+        }
+        private string _firmware_hw;
+        public string Firmware_hw
+        {
+            get { return _firmware_hw; }
+            set
+            {
+                _firmware_hw = "Hw: "+Transform.ParseFirmware(value);
+                OnPropertyChanged("Firmware_hw");
+            }
+        }
 
         private float _maxSignalRange;
         public float MaxSignalRange

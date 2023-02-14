@@ -260,7 +260,9 @@ namespace PPH_153P_Configurator
         //Возвращает массив CAN сообщений для запроса данных с устройства
         private CanMessage[] CompareRequests(DataModel item)
         {
-            return new CanMessage[] { 
+            return new CanMessage[] {
+                new CanMessage { Id = (uint)(0x600 + item.NodeId), Data = new byte[] { 0x40, 0x09, 0x10, 0x0 },Size=0x4 },
+                new CanMessage { Id = (uint)(0x600 + item.NodeId), Data = new byte[] { 0x40, 0x0A, 0x10, 0x0 },Size=0x4 },
                 new CanMessage { Id = (uint)(0x600 + item.NodeId), Data = new byte[] { 0x40, 0x21, 0x61, 0x1 },Size=0x4 },
                 new CanMessage { Id = (uint)(0x600 + item.NodeId), Data = new byte[] { 0x40, 0x23, 0x61, 0x1 },Size=0x4 },
                 new CanMessage { Id = (uint)(0x600 + item.NodeId), Data = new byte[] { 0x40, 0xA1, 0x61, 0x1 },Size=0x4 },
@@ -351,6 +353,13 @@ namespace PPH_153P_Configurator
                         break;
                     case 0x653F:
                         MainData.BottomAZ.SettingSetter = BitConverter.ToBoolean(mes.Data, 4);
+                        break;
+                    case 0x1009:
+                        MainData.Firmware_hw = Encoding.ASCII.GetString(mes.Data, 4, 4);
+                        break;
+                    case 0x100A:
+                        MainData.Firmware_sw = Encoding.ASCII.GetString(mes.Data, 4, 4);
+
                         break;
                 }
 
