@@ -6,3 +6,7 @@
 15.11.2022 15:23:01	| Index: 1 | ErrorCode: 1408
 15.11.2022 17:36:07	| Index: 1 | ErrorCode: 1408
 15.11.2022 17:36:22	| Index: 1 | ErrorCode: 1408
+02.03.2023 17:44:32	| Index: 9 | ErrorCode: 1408
+02.03.2023 17:47:27	| Index: 10 | ErrorCode: 1408
+03.03.2023 13:17:42	| Index: 16 | ErrorCode: 1408
+03.03.2023 13:23:30	| Index: 1 | ErrorCode: 1408

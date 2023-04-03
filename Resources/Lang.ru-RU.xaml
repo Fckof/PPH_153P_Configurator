@@ -34,7 +34,7 @@
     <v:String x:Key="AddChannel">Добавить новый канал</v:String>
     <v:String x:Key="DeleteSetting">Удалить выбранную настройку</v:String>
     <v:String x:Key="DeleteChannel">Удалить выбранный канал</v:String>
-    <v:String x:Key="SaveConfigFile">Сохранить файл сонфигурации</v:String>
+    <v:String x:Key="SaveConfigFile">Сохранить файл конфигурации</v:String>
     <v:String x:Key="Alert_filesave">Файл успешно сохранен</v:String>
     <v:String x:Key="Alert_datasent">Данные отправлены</v:String>
     <v:String x:Key="CreateConfigFile">Создать файл конфигураций</v:String>
